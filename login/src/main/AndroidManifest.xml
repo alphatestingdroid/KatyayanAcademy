@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.appsfeature.login">
+
+    <application>
+        <activity
+            android:name=".activity.MobileLoginActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ChangePasswordActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ProfileActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@style/AppTheme.ActionBar" />
+
+
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+    </application>
+</manifest>

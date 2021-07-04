@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bookAppointmentButton">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical"
+            android:weightSum="100" >
+
+            <LinearLayout
+                android:id="@+id/doctor_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/vertical_margin"
+                    android:paddingBottom="@dimen/vertical_margin"
+                    android:background="#008fc5" >
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_profile"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/progile_bg" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="#008fc5"
+                    android:paddingBottom="@dimen/vertical_margin"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/doctor_profile_part2"
+                    android:orientation="horizontal" >
+
+                    <RelativeLayout
+                        android:id="@+id/part2_row1_column1"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|center_vertical" >
+
+                        <TextView
+                            android:id="@+id/designation_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:text="Designation"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/designation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/designation_header"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="3dp"
+                            android:text="Consultant"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/part2_row1_column2"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|center_vertical" >
+
+                        <TextView
+                            android:id="@+id/department_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:text="Department"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/department"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/department_header"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <include layout="@layout/base_layout_no_data" />
+            </FrameLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/bookAppointmentButton"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:textColor="@android:color/white"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:textAllCaps="false"
+        android:text="Book an Appointment"
+        android:background="@color/colorButton" />
+</RelativeLayout>

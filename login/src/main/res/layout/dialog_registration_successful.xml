@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/themeBackgroundCardColor"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:id="@+id/ll_sv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/bg_circle_success"
+            android:padding="16dp"
+            android:src="@drawable/ic_checked" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:text="Registration Successful"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_reg_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="Admission No"
+            android:textColor="@color/themeTextColor"
+            android:textSize="@dimen/text_size_title" />
+
+        <TextView
+            android:id="@+id/tv_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="Password"
+            android:textColor="@color/themeTextColor"
+            android:textSize="@dimen/text_size_title" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:text="Note: Please save login credentials."
+            android:textColor="@color/themeTextColor"
+            android:textSize="@dimen/text_size_title" />
+
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorButton"
+            android:padding="10dp"
+            android:layout_marginTop="32dp"
+            android:text="OK"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

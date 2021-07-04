@@ -1,0 +1,50 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.Splash" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="InvoiceTitle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/themeTextColor</item>
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="InvoiceBody" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/themeTextColorLite</item>
+        <item name="android:textSize">@dimen/text_size_sub_title</item>
+    </style>
+
+    <style name="InvoiceBodySmall" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/themeTextColorLite</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/themeHintColor</item>
+        <item name="colorControlActivated">#FEC107</item>
+    </style>
+
+
+    <style name="Theme.AppCompat.Translucent2" parent="ActivityTheme.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+</resources>

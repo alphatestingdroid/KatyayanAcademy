@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/themeBackgroundCardColor"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/vertical_margin"
+        android:paddingBottom="@dimen/vertical_margin"
+        android:background="#008fc5" >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/progile_bg" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#008fc5"
+        android:paddingBottom="@dimen/vertical_margin"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textColor="@color/themeTextColor"
+        android:textSize="18sp"
+        android:text="@string/rating_message"
+        android:gravity="center"/>
+
+
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:theme="@style/RatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:numStars="5"
+        android:stepSize="1"  />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20.0dip"
+        android:layout_marginRight="20.0dip"
+        android:background="@drawable/round_edittext" >
+
+        <EditText
+            android:id="@+id/review"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5.0dip"
+            android:background="#00000000"
+            android:ems="5"
+            android:gravity="top"
+            android:hint="Write your review here..."
+            android:inputType="text|textCapSentences"
+            android:lines="5"
+            android:textSize="14.0sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/btn_negative"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:background="@drawable/bg_rating_negative_button"
+            android:textAllCaps="false"
+            android:layout_marginRight="4dp"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp" />
+
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/btn_positive"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/submit"
+            android:background="@drawable/bg_rating_positive_button"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="4dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/doctor_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#008fc5"
+    android:gravity="center"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:padding="8dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/progile_bg_small"
+            android:padding="6dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/vertical_margin_half"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/designation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@android:color/white"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/fees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginLeft="15dp">
+
+        <ImageView
+            android:id="@+id/img_profile_next"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerInside"
+            android:src="@drawable/profile_arrow_next" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,217 @@
+[{
+  "id": "1",
+  "StateName": "Andhra Pradesh",
+  "StateInitial": "AP",
+  "StateCode": "28",
+  "StateType": "STATE"
+}, {
+  "id": "2",
+  "StateName": "Andaman and Nicobar Islands",
+  "StateInitial": "AN",
+  "StateCode": "35",
+  "StateType": "UT"
+}, {
+  "id": "3",
+  "StateName": "Arunachal Pradesh",
+  "StateInitial": "AR",
+  "StateCode": "12",
+  "StateType": "STATE"
+}, {
+  "id": "4",
+  "StateName": "Assam",
+  "StateInitial": "AS",
+  "StateCode": "18",
+  "StateType": "STATE"
+}, {
+  "id": "5",
+  "StateName": "Bihar",
+  "StateInitial": "BR",
+  "StateCode": "10",
+  "StateType": "STATE"
+}, {
+  "id": "6",
+  "StateName": "Chandigarh",
+  "StateInitial": "CH",
+  "StateCode": "04",
+  "StateType": "UT"
+}, {
+  "id": "7",
+  "StateName": "Chhattisgarh",
+  "StateInitial": "CG",
+  "StateCode": "22",
+  "StateType": "STATE"
+}, {
+  "id": "8",
+  "StateName": "Dadar and Nagar Haveli",
+  "StateInitial": "DH",
+  "StateCode": "26",
+  "StateType": "UT"
+}, {
+  "id": "9",
+  "StateName": "Daman and Diu",
+  "StateInitial": "DD",
+  "StateCode": "25",
+  "StateType": "UT"
+}, {
+  "id": "10",
+  "StateName": "Delhi",
+  "StateInitial": "DL",
+  "StateCode": "07",
+  "StateType": "UT"
+}, {
+  "id": "11",
+  "StateName": "Goa",
+  "StateInitial": "GA",
+  "StateCode": "30",
+  "StateType": "STATE"
+}, {
+  "id": "12",
+  "StateName": "Gujarat",
+  "StateInitial": "GJ",
+  "StateCode": "24",
+  "StateType": "STATE"
+}, {
+  "id": "13",
+  "StateName": "Haryana",
+  "StateInitial": "HR",
+  "StateCode": "06",
+  "StateType": "STATE"
+}, {
+  "id": "14",
+  "StateName": "Himachal Pradesh",
+  "StateInitial": "HP",
+  "StateCode": "02",
+  "StateType": "STATE"
+}, {
+  "id": "15",
+  "StateName": "Jammu and Kashmir",
+  "StateInitial": "JK",
+  "StateCode": "01",
+  "StateType": "STATE"
+}, {
+  "id": "16",
+  "StateName": "Jharkhand",
+  "StateInitial": "JH",
+  "StateCode": "20",
+  "StateType": "STATE"
+}, {
+  "id": "17",
+  "StateName": "Karnataka",
+  "StateInitial": "KA",
+  "StateCode": "29",
+  "StateType": "STATE"
+}, {
+  "id": "18",
+  "StateName": "Kerala",
+  "StateInitial": "KL",
+  "StateCode": "32",
+  "StateType": "STATE"
+}, {
+  "id": "19",
+  "StateName": "Lakshadweep",
+  "StateInitial": "LD",
+  "StateCode": "31",
+  "StateType": "UT"
+}, {
+  "id": "20",
+  "StateName": "Madhya Pradesh",
+  "StateInitial": "MP",
+  "StateCode": "23",
+  "StateType": "STATE"
+}, {
+  "id": "21",
+  "StateName": "Maharashtra",
+  "StateInitial": "MH",
+  "StateCode": "27",
+  "StateType": "STATE"
+}, {
+  "id": "22",
+  "StateName": "Manipur",
+  "StateInitial": "MN",
+  "StateCode": "14",
+  "StateType": "STATE"
+}, {
+  "id": "23",
+  "StateName": "Meghalaya",
+  "StateInitial": "ML",
+  "StateCode": "17",
+  "StateType": "STATE"
+}, {
+  "id": "24",
+  "StateName": "Mizoram",
+  "StateInitial": "MZ",
+  "StateCode": "15",
+  "StateType": "STATE"
+}, {
+  "id": "25",
+  "StateName": "Nagaland",
+  "StateInitial": "NL",
+  "StateCode": "13",
+  "StateType": "STATE"
+}, {
+  "id": "26",
+  "StateName": "Odisha",
+  "StateInitial": "OR",
+  "StateCode": "21",
+  "StateType": "STATE"
+}, {
+  "id": "27",
+  "StateName": "Pondicherry",
+  "StateInitial": "PY",
+  "StateCode": "34",
+  "StateType": "UT"
+}, {
+  "id": "28",
+  "StateName": "Punjab",
+  "StateInitial": "PB",
+  "StateCode": "03",
+  "StateType": "STATE"
+}, {
+  "id": "29",
+  "StateName": "Rajasthan",
+  "StateInitial": "RJ",
+  "StateCode": "08",
+  "StateType": "STATE"
+}, {
+  "id": "30",
+  "StateName": "Sikkim",
+  "StateInitial": "SK",
+  "StateCode": "11",
+  "StateType": "STATE"
+}, {
+  "id": "31",
+  "StateName": "Tamil Nadu",
+  "StateInitial": "TN",
+  "StateCode": "33",
+  "StateType": "STATE"
+}, {
+  "id": "32",
+  "StateName": "Telangana",
+  "StateInitial": "TN",
+  "StateCode": "36",
+  "StateType": "STATE"
+}, {
+  "id": "33",
+  "StateName": "Tripura",
+  "StateInitial": "TR",
+  "StateCode": "16",
+  "StateType": "STATE"
+}, {
+  "id": "34",
+  "StateName": "Uttar Pradesh",
+  "StateInitial": "UP",
+  "StateCode": "09",
+  "StateType": "STATE"
+}, {
+  "id": "35",
+  "StateName": "Uttarakhand",
+  "StateInitial": "UK",
+  "StateCode": "05",
+  "StateType": "STATE"
+}, {
+  "id": "36",
+  "StateName": "West Bengal",
+  "StateInitial": "WB",
+  "StateCode": "19",
+  "StateType": "STATE"
+}]

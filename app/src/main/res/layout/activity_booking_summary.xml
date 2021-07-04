@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"  >
+
+        <include layout="@layout/layout_doctor_profile_mini"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f4f4f4"
+            android:orientation="vertical"
+            android:weightSum="100" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:background="@drawable/calendar_center_view" >
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dip"
+                    android:textColor="@android:color/white"
+                    android:textSize="16dip"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/select_member"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20.0dip"
+                android:layout_marginRight="20.0dip"
+                android:paddingLeft="8dp"
+                android:background="@drawable/from_parent_backgroung" >
+
+                <TextView
+                    android:id="@+id/membersText"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right|center"
+                    android:gravity="left|center"
+                    android:hint="SELECT MEMBER"
+                    android:padding="8dp"
+                    android:textSize="14.0sp" />
+
+                <ImageView
+                    android:id="@+id/dropDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/dropdown" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20.0dip"
+                android:visibility="gone"
+                android:layout_marginRight="20.0dip"
+                android:background="@drawable/round_edittext" >
+
+                <EditText
+                    android:id="@+id/descText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5.0dip"
+                    android:background="#00000000"
+                    android:ems="5"
+                    android:gravity="top"
+                    android:hint="Write short description of disease here..."
+                    android:inputType="text|textCapSentences"
+                    android:lines="5"
+                    android:textSize="14.0sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dip"
+                android:layout_marginLeft="16.0dip"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/termsCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/termsLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="7.0dip"
+                    android:text="I have read and accept"
+                    android:textSize="12.0sp" />
+
+                <TextView
+                    android:id="@+id/termsLink1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingTop="7.0dip"
+                    android:paddingBottom="7.0dip"
+                    android:text="@string/terms"
+                    android:textColor="#00437c"
+                    android:textSize="12.0sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="50dp"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:text="Confirm"
+                    android:textAllCaps="false"
+                    android:background="@drawable/bg_button_custom"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- End -->
+
+</FrameLayout>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/themeWindowBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"  >
+
+        <ImageView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop"
+            android:src="@drawable/find_doctor_top" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20.0dip"
+                android:layout_marginRight="20.0dip"
+                android:layout_marginTop="16.0dip"  >
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:background="@drawable/bg_image_search"
+                    android:src="@drawable/ic_gps"
+                    android:padding="14dp"
+                    android:tint="@color/colorWhite"
+                    android:layout_height="50dp"  />
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_edittext_search"
+                    android:completionThreshold="1"
+                    android:hint="Search By Location"
+                    android:imeOptions="actionSearch"
+                    android:paddingLeft="6.0dip"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#ffcccccc"
+                    android:textSize="14.0sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/separatorParent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"  >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/find_doctor_separator" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20.0dip"
+                android:layout_marginRight="20.0dip" >
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:background="@drawable/bg_image_search"
+                    android:src="@drawable/ic_search"
+                    android:padding="14dp"
+                    android:tint="@color/colorWhite"
+                    android:layout_height="50dp"  />
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_keyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_edittext_search"
+                    android:completionThreshold="1"
+                    android:hint="Search By Doctors, Clinics, Hospitals, Diseases..."
+                    android:imeOptions="actionSearch"
+                    android:paddingLeft="12dip"
+                    android:paddingRight="12dip"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#ffcccccc"
+                    android:textSize="14.0sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:gravity="center|top"
+                android:layout_marginTop="30dp" >
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerCrop"
+                    android:text="Search"
+                    android:textStyle="bold"
+                    android:paddingLeft="32dp"
+                    android:paddingRight="32dp"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/bg_button_custom" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

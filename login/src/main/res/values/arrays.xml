@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_gender">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="array_course">
+        <item>Select Course</item>
+        <item>CBSE Board</item>
+    </string-array>
+    <string-array name="array_sub_course">
+        <item>Select Sub Course</item>
+        <item>X</item>
+        <item>XII (Science)</item>
+        <item>XI (Science)</item>
+        <item>IX</item>
+        <item>VIII</item>
+        <item>VII</item>
+        <item>VI</item>
+        <item>V</item>
+        <item>IV</item>
+    </string-array>
+</resources>

@@ -1,0 +1,10 @@
+[{
+  "id": "1",
+  "name": "Credit"
+}, {
+  "id": "2",
+  "name": "Debit"
+}, {
+  "id": "3",
+  "name": "Refund"
+}]
