@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Katyayan Academy</string>
     <string name="terms">Terms and Conditions</string>
-    <string name="payment_success">Appointment Booked Successfully!</string>
     <string name="rating_message">Please take a moment to rate us.</string>
-    <string name="invoice_note">1- This is computer generated appointment letter only.  \n2- Original invoice shall be provided by doctor at clinic.  \n3- No signature required.</string>
     <string name="open_live_class">Open Live Class</string>
     <string name="no_live_class_available">No Live class available</string>
 </resources>

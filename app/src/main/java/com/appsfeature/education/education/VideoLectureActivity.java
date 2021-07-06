@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.appsfeature.education.R;
 import com.appsfeature.education.activity.BaseActivity;
 import com.appsfeature.education.adapter.VideoLectureAdapter;
-import com.appsfeature.education.doctor.VideoModel;
-import com.appsfeature.education.model.PresenterModel;
+import com.appsfeature.education.model.EducationModel;
+import com.appsfeature.education.entity.PresenterModel;
 import com.appsfeature.education.player.util.YTUtility;
 import com.appsfeature.education.util.SupportUtil;
 import com.helper.callback.Response;
@@ -25,7 +25,7 @@ public class VideoLectureActivity extends BaseActivity {
 
     private View llNoData;
     private VideoLectureAdapter adapter;
-    private final List<VideoModel> mList = new ArrayList<>();
+    private final List<EducationModel> mList = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,9 +48,9 @@ public class VideoLectureActivity extends BaseActivity {
         llNoData = findViewById(R.id.ll_no_data);
         RecyclerView rvList = findViewById(R.id.recycler_view);
         rvList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        adapter = new VideoLectureAdapter(this, mList, new Response.OnClickListener<VideoModel>() {
+        adapter = new VideoLectureAdapter(this, mList, new Response.OnClickListener<EducationModel>() {
             @Override
-            public void onItemClicked(View view, VideoModel item) {
+            public void onItemClicked(View view, EducationModel item) {
                 YTUtility.playVideo(VideoLectureActivity.this, item);
             }
         });

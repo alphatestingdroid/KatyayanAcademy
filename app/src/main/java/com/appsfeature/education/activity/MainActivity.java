@@ -17,8 +17,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.appsfeature.education.AppApplication;
 import com.appsfeature.education.R;
-import com.appsfeature.education.doctor.activity.DoctorSearchActivity;
-import com.appsfeature.education.education.LiveClassActivity;
 import com.appsfeature.education.util.AppConstant;
 import com.appsfeature.education.util.ClassUtil;
 import com.appsfeature.education.util.SupportUtil;

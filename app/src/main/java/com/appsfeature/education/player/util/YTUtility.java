@@ -4,23 +4,17 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import androidx.core.content.ContextCompat;
-
-import com.appsfeature.education.doctor.VideoModel;
-import com.appsfeature.education.model.ExtraProperty;
+import com.appsfeature.education.model.EducationModel;
+import com.appsfeature.education.entity.ExtraProperty;
 import com.appsfeature.education.player.YTPlayerActivity;
 import com.appsfeature.education.util.AppConstant;
-import com.appsfeature.login.LoginSDK;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
 import com.helper.util.BaseUtil;
 
@@ -80,7 +74,7 @@ public class YTUtility {
         }
     }
 
-    public static void playVideo(Context context, VideoModel item) {
+    public static void playVideo(Context context, EducationModel item) {
         ExtraProperty extraProperty = new ExtraProperty();
         extraProperty.setVideoId(getVideoIdFromUrl(item.getLectureVideo()));
         extraProperty.setVideoModel(item);

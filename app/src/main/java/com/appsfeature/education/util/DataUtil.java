@@ -3,7 +3,7 @@ package com.appsfeature.education.util;
 import android.text.TextUtils;
 
 import com.appsfeature.education.doctor.DoctorModel;
-import com.appsfeature.education.model.AppointmentModel;
+import com.appsfeature.education.entity.AppointmentModel;
 import com.appsfeature.login.model.Profile;
 import com.appsfeature.login.util.LoginPrefUtil;
 

@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center_horizontal"
-                android:text="@string/payment_success"
+                android:text="Title"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center_horizontal"
-                android:text="Appointment booked with "
+                android:text="SubTitle"
                 android:textColor="@color/themeTextColor"
                 android:textSize="@dimen/text_size_title" />
 
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="On date "
+                android:text="Date"
                 android:textColor="@color/themeTextColor"
                 android:textSize="@dimen/text_size_title" />
 

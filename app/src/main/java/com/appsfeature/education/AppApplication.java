@@ -14,7 +14,6 @@ import com.helper.util.DayNightPreference;
 public class AppApplication extends Application {
 
 
-    private static final String HOST_URL = "http://www.appsfeature.com/MrBizz/index.php/";
     private static AppApplication instance;
     private LoginSDK loginSdk;
     private ConfigManager configManager;

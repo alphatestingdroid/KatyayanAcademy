@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appsfeature.education.R;
-import com.appsfeature.education.doctor.VideoModel;
+import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.util.SupportUtil;
 import com.helper.callback.Response;
 
@@ -20,15 +20,15 @@ import java.util.List;
 
 public class VideoLectureAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private final Response.OnClickListener<VideoModel> clickListener;
+    private final Response.OnClickListener<EducationModel> clickListener;
     private final Activity activity;
-    private List<VideoModel> mList;
+    private List<EducationModel> mList;
 
     @Override
     @NonNull
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.slot_doctor_search, parent, false);
+                .inflate(R.layout.slot_video_view, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -37,7 +37,7 @@ public class VideoLectureAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return mList == null ? 0 : mList.size();
     }
 
-    public VideoLectureAdapter(Activity activity, List<VideoModel> mList, Response.OnClickListener<VideoModel> clickListener) {
+    public VideoLectureAdapter(Activity activity, List<EducationModel> mList, Response.OnClickListener<EducationModel> clickListener) {
         this.activity = activity;
         this.mList = mList;
         this.clickListener = clickListener;

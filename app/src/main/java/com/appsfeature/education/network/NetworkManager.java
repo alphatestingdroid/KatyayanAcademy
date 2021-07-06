@@ -6,9 +6,9 @@ import android.util.Log;
 
 import com.appsfeature.education.AppApplication;
 import com.appsfeature.education.doctor.DoctorModel;
-import com.appsfeature.education.doctor.VideoModel;
-import com.appsfeature.education.model.AppointmentModel;
-import com.appsfeature.education.model.SlotModel;
+import com.appsfeature.education.model.EducationModel;
+import com.appsfeature.education.entity.AppointmentModel;
+import com.appsfeature.education.entity.SlotModel;
 import com.appsfeature.education.patient.PatientModel;
 import com.appsfeature.education.util.AppConstant;
 import com.appsfeature.login.util.LoginConstant;
@@ -39,7 +39,7 @@ public class NetworkManager extends BaseNetworkManager {
         return instance;
     }
 
-    public void getVideoLecture(int courseId, boolean isLiveClass, final Response.Callback<List<VideoModel>> callback) {
+    public void getVideoLecture(int courseId, boolean isLiveClass, final Response.Callback<List<EducationModel>> callback) {
         Map<String, String> map = new HashMap<>();
         map.put("course_id", courseId + "");
         AppApplication.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_POST_FORM, AppConstant.HOST_MAIN
@@ -48,10 +48,10 @@ public class NetworkManager extends BaseNetworkManager {
                     @Override
                     public void onComplete(boolean status, String data) {
                         if (status && !TextUtils.isEmpty(data)) {
-                            parseConfigData(data, new TypeToken<List<VideoModel>>() {
-                            }.getType(), new ParserConfigDataSimple<List<VideoModel>>() {
+                            parseConfigData(data, new TypeToken<List<EducationModel>>() {
+                            }.getType(), new ParserConfigDataSimple<List<EducationModel>>() {
                                 @Override
-                                public void onSuccess(List<VideoModel> list) {
+                                public void onSuccess(List<EducationModel> list) {
                                     callback.onSuccess(list);
                                 }
 

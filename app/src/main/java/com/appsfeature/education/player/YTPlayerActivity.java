@@ -11,8 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.appsfeature.education.R;
-import com.appsfeature.education.doctor.VideoModel;
-import com.appsfeature.education.model.ExtraProperty;
+import com.appsfeature.education.model.EducationModel;
+import com.appsfeature.education.entity.ExtraProperty;
 import com.appsfeature.education.player.util.YTUtility;
 import com.appsfeature.education.util.AppConstant;
 import com.appsfeature.education.util.Logger;
@@ -30,7 +30,7 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
     private YouTubePlayer youTubePlayer;
     private boolean mOrientationLandScape = false;
     private String mVideoId;
-    private VideoModel mVideoModel;
+    private EducationModel mVideoModel;
     private String mTitle = "Player";
     private TextView tvLectureName, tvLectureSubject, tvLectureDate, tvLectureDiscription;
 

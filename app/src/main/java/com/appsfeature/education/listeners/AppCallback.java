@@ -1,6 +1,6 @@
 package com.appsfeature.education.listeners;
 
-import com.appsfeature.education.model.PresenterModel;
+import com.appsfeature.education.entity.PresenterModel;
 import com.helper.callback.Response;
 
 public class AppCallback {

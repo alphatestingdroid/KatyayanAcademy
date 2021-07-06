@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.appsfeature.education.AppApplication;
 import com.appsfeature.education.listeners.AppCallback;
-import com.appsfeature.education.model.ExtraProperty;
+import com.appsfeature.education.entity.ExtraProperty;
 import com.appsfeature.education.viewmodel.AppViewModel;
 
 public abstract class BaseActivity extends AppCompatActivity implements AppCallback.View {

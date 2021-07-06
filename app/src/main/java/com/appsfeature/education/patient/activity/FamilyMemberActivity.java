@@ -15,7 +15,7 @@ import com.appsfeature.education.R;
 import com.appsfeature.education.activity.BaseActivity;
 import com.appsfeature.education.adapter.FamilyMemberManagerAdapter;
 import com.appsfeature.education.listeners.AppCallback;
-import com.appsfeature.education.model.PresenterModel;
+import com.appsfeature.education.entity.PresenterModel;
 import com.appsfeature.education.patient.PatientModel;
 import com.appsfeature.education.util.ClassUtil;
 import com.appsfeature.education.util.SupportUtil;
@@ -55,7 +55,7 @@ public class FamilyMemberActivity extends BaseActivity {
         adapter = new FamilyMemberManagerAdapter(mList, new AppCallback.OnClickListener<PatientModel>() {
             @Override
             public void onItemClicked(View view, PatientModel item) {
-                ClassUtil.openPatientBookingHistoryActivity(FamilyMemberActivity.this, item.getName());
+//                ClassUtil.openPatientBookingHistoryActivity(FamilyMemberActivity.this, item.getName());
             }
 
             @Override
@@ -68,7 +68,7 @@ public class FamilyMemberActivity extends BaseActivity {
         findViewById(R.id.add_member).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClassUtil.openAddFamilyMemberActivity(FamilyMemberActivity.this);
+//                ClassUtil.openAddFamilyMemberActivity(FamilyMemberActivity.this);
             }
         });
     }

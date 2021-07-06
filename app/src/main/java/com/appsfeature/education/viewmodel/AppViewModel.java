@@ -8,13 +8,12 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 
-import com.appsfeature.education.doctor.DoctorModel;
-import com.appsfeature.education.doctor.VideoModel;
+import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.listeners.AppCallback;
-import com.appsfeature.education.model.AppointmentModel;
-import com.appsfeature.education.model.ExtraProperty;
-import com.appsfeature.education.model.PresenterModel;
-import com.appsfeature.education.model.SlotModel;
+import com.appsfeature.education.entity.AppointmentModel;
+import com.appsfeature.education.entity.ExtraProperty;
+import com.appsfeature.education.entity.PresenterModel;
+import com.appsfeature.education.entity.SlotModel;
 import com.appsfeature.education.network.NetworkManager;
 import com.appsfeature.education.patient.PatientModel;
 import com.appsfeature.education.util.AppConstant;
@@ -73,9 +72,9 @@ public class AppViewModel extends ViewModel {
 
     public void getLiveClass(int courseId) {
         viewCallback.onStartProgressBar();
-        networkHandler.getVideoLecture(courseId, true, new Response.Callback<List<VideoModel>>() {
+        networkHandler.getVideoLecture(courseId, true, new Response.Callback<List<EducationModel>>() {
             @Override
-            public void onSuccess(List<VideoModel> response) {
+            public void onSuccess(List<EducationModel> response) {
                 viewCallback.onStopProgressBar();
                 viewCallback.onUpdateUI(new PresenterModel().setVideoList(response));
             }
@@ -90,9 +89,9 @@ public class AppViewModel extends ViewModel {
 
     public void getVideoLecture(int courseId) {
         viewCallback.onStartProgressBar();
-        networkHandler.getVideoLecture(courseId, false, new Response.Callback<List<VideoModel>>() {
+        networkHandler.getVideoLecture(courseId, false, new Response.Callback<List<EducationModel>>() {
             @Override
-            public void onSuccess(List<VideoModel> response) {
+            public void onSuccess(List<EducationModel> response) {
                 viewCallback.onStopProgressBar();
                 viewCallback.onUpdateUI(new PresenterModel().setVideoList(response));
             }

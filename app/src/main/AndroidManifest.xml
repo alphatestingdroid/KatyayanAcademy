@@ -29,39 +29,14 @@
 
         <activity android:name="com.appsfeature.education.activity.MainActivity" />
         <activity
-            android:name="com.appsfeature.education.doctor.activity.DoctorSearchActivity"
-            android:theme="@style/ActivityTheme.ActionBar"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
-        <activity
             android:name=".education.VideoLectureActivity"
-            android:theme="@style/ActivityTheme.ActionBar" />
-
-        <activity android:name="com.appsfeature.education.doctor.activity.DoctorSlotViewActivity"
-            android:theme="@style/ActivityTheme.ActionBar" />
-
-        <activity android:name="com.appsfeature.education.doctor.activity.BookingSummaryActivity"
             android:theme="@style/ActivityTheme.ActionBar" />
 
         <activity android:name=".education.LiveClassActivity"
             android:theme="@style/ActivityTheme.ActionBar" />
 
-        <activity android:name="com.appsfeature.education.doctor.activity.BookingSuccessActivity"
-            android:theme="@style/ActivityTheme.NoActionBar"/>
-
-        <activity android:name="com.appsfeature.education.doctor.activity.InvoiceViewActivity"
-            android:theme="@style/ActivityTheme.NoActionBar"/>
-
         <activity android:name="com.appsfeature.education.patient.activity.FamilyMemberActivity"
             android:theme="@style/ActivityTheme.ActionBar"/>
-
-        <activity android:name="com.appsfeature.education.patient.activity.PatientBookingHistoryActivity"
-            android:theme="@style/ActivityTheme.ActionBar"/>
-
-        <activity android:name="com.appsfeature.education.patient.activity.PatientBookingDetailActivity"
-            android:theme="@style/ActivityTheme.ActionBar"/>
-
-        <activity android:name="com.appsfeature.education.patient.activity.AddFamilyManagerActivity"
-            android:theme="@style/AppTheme"/>
 
         <activity
             android:name=".player.YTPlayerActivity"

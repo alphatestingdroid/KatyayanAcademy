@@ -9,12 +9,10 @@ import android.widget.TextView;
 
 import com.appsfeature.education.R;
 import com.appsfeature.education.activity.BaseActivity;
-import com.appsfeature.education.doctor.VideoModel;
-import com.appsfeature.education.model.PresenterModel;
+import com.appsfeature.education.model.EducationModel;
+import com.appsfeature.education.entity.PresenterModel;
 import com.appsfeature.education.player.util.YTUtility;
-import com.appsfeature.education.util.ClassUtil;
 import com.appsfeature.education.util.SupportUtil;
-import com.helper.util.BaseUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class LiveClassActivity extends BaseActivity {
 
     private View llNoData;
-    private VideoModel mVideoModel;
+    private EducationModel mVideoModel;
     private TextView tvTitle, tvSubject, tvDate;
     private Button btnLiveClass;
     private boolean isActiveLiveClass = false;

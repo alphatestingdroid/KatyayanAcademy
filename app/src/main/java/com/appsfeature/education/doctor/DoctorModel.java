@@ -2,9 +2,9 @@ package com.appsfeature.education.doctor;
 
 import androidx.annotation.NonNull;
 
-import com.appsfeature.education.model.Award;
-import com.appsfeature.education.model.Education;
-import com.appsfeature.education.model.WorkExperience;
+import com.appsfeature.education.entity.Award;
+import com.appsfeature.education.entity.Education;
+import com.appsfeature.education.entity.WorkExperience;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
