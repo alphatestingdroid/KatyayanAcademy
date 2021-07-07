@@ -85,7 +85,7 @@ public class MainActivity extends BaseRemoteConfigActivity implements View.OnCli
     @Override
     public void onClick(View v) {
 //        if(RemoteConfig.isAppExpired(this)){
-//            SupportUtil.showToast(this, RemoteConfig.getAppExpiredErrorMessage(this));
+//            SupportUtil.showToast(this, RemoteConfig.getAppExpiredErrorMesāsage(this));
 //            return;
 //        }
         if (v.getId() == R.id.option_1) {

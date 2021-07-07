@@ -75,7 +75,7 @@ dependencies {
     implementation "com.google.firebase:firebase-crashlytics:$rootProject.ext.fb_crashlytics_version"
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
 
-    implementation 'com.github.appsfeature:browser:1.6'
+    implementation 'com.github.appsfeature:browser:1.7'
 
 }
 apply plugin: 'com.google.gms.google-services'
