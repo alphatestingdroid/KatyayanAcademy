@@ -49,6 +49,9 @@ public class EducationModel implements Serializable {
     @SerializedName("chapter_id")
     @Expose
     private String chapterId;
+    @SerializedName("chapter_name")
+    @Expose
+    private String chapterName;
 
     public String getId() {
         return id;
@@ -160,5 +163,13 @@ public class EducationModel implements Serializable {
 
     public void setChapterId(String chapterId) {
         this.chapterId = chapterId;
+    }
+
+    public String getChapterName() {
+        return chapterName;
+    }
+
+    public void setChapterName(String chapterName) {
+        this.chapterName = chapterName;
     }
 }

@@ -70,9 +70,9 @@ public class AppViewModel extends ViewModel {
         }
     }
 
-    public void getLiveClass(int courseId) {
+    public void getLiveClass(int courseId,int subCourseId) {
         viewCallback.onStartProgressBar();
-        networkHandler.getVideoLecture(courseId, true, new Response.Callback<List<EducationModel>>() {
+        networkHandler.getVideoLecture(courseId, subCourseId, true, new Response.Callback<List<EducationModel>>() {
             @Override
             public void onSuccess(List<EducationModel> response) {
                 viewCallback.onStopProgressBar();
@@ -87,9 +87,9 @@ public class AppViewModel extends ViewModel {
         });
     }
 
-    public void getVideoLecture(int courseId) {
+    public void getVideoLecture(int courseId, int subCourseId) {
         viewCallback.onStartProgressBar();
-        networkHandler.getVideoLecture(courseId, false, new Response.Callback<List<EducationModel>>() {
+        networkHandler.getVideoLecture(courseId, subCourseId, false, new Response.Callback<List<EducationModel>>() {
             @Override
             public void onSuccess(List<EducationModel> response) {
                 viewCallback.onStopProgressBar();

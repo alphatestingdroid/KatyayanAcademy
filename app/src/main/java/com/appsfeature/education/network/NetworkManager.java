@@ -39,9 +39,10 @@ public class NetworkManager extends BaseNetworkManager {
         return instance;
     }
 
-    public void getVideoLecture(int courseId, boolean isLiveClass, final Response.Callback<List<EducationModel>> callback) {
+    public void getVideoLecture(int courseId, int subCourseId, boolean isLiveClass, final Response.Callback<List<EducationModel>> callback) {
         Map<String, String> map = new HashMap<>();
         map.put("course_id", courseId + "");
+        map.put("sub_course_id", subCourseId + "");
         AppApplication.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_POST_FORM, AppConstant.HOST_MAIN
                 , isLiveClass ? ApiEndPoint.GET_LIVE_CLASS : ApiEndPoint.GET_OFFLINE_CLASS
                 , map, new ConfigManager.OnNetworkCall() {

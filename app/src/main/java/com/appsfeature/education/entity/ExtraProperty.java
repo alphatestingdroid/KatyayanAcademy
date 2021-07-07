@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Serializable {
 
     private int courseId;
+    private int subCourseId;
     private String doctorId;
     private String appointmentDate; //format yyyy-mm-dd
     private String appointmentTime;
@@ -24,6 +25,14 @@ public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Se
     private String apiKey;
     private EducationModel videoModel;
 
+
+    public int getSubCourseId() {
+        return subCourseId;
+    }
+
+    public void setSubCourseId(int subCourseId) {
+        this.subCourseId = subCourseId;
+    }
 
     public String getVideoId() {
         return videoId;

@@ -3,6 +3,8 @@ package com.appsfeature.education.education;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,9 +43,13 @@ public class LiveClassActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        fetchDataFromServer();
+    }
+
+    private void fetchDataFromServer() {
         active = true;
         if (getExtraProperty() != null) {
-            appPresenter.getLiveClass(getExtraProperty().getCourseId());
+            appPresenter.getLiveClass(getExtraProperty().getCourseId(), getExtraProperty().getSubCourseId());
         }
     }
 
@@ -56,9 +62,9 @@ public class LiveClassActivity extends BaseActivity {
         btnLiveClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isActiveLiveClass && mVideoModel != null){
+                if (isActiveLiveClass && mVideoModel != null) {
                     YTUtility.playVideo(LiveClassActivity.this, mVideoModel);
-                }else {
+                } else {
                     SupportUtil.showToast(LiveClassActivity.this, "Class was not live, Please wait.");
                 }
             }
@@ -73,10 +79,21 @@ public class LiveClassActivity extends BaseActivity {
         if (response.getVideoList() != null && response.getVideoList().size() > 0) {
             mVideoModel = response.getVideoList().get(0);
             loadData();
+            if (menuRefresh != null) {
+                menuRefresh.setVisible(false);
+            }
         } else {
             SupportUtil.showNoData(llNoData, View.VISIBLE);
             hideViews();
+            if (menuRefresh != null) {
+                menuRefresh.setVisible(true);
+            }
         }
+    }
+
+    @Override
+    public void onErrorOccurred(Exception e) {
+        onUpdateUI(new PresenterModel());
     }
 
     private void hideViews() {
@@ -101,7 +118,7 @@ public class LiveClassActivity extends BaseActivity {
 
     private void calculateTimeLeft() {
         Calendar mCalender = getCalendar();
-        if(mCalender != null) {
+        if (mCalender != null) {
             long seconds = ((mCalender.getTimeInMillis() - System.currentTimeMillis()) / 1000);
 
             int day = (int) TimeUnit.SECONDS.toDays(seconds);
@@ -110,7 +127,7 @@ public class LiveClassActivity extends BaseActivity {
             long second = TimeUnit.SECONDS.toSeconds(seconds) - (TimeUnit.SECONDS.toMinutes(seconds) * 60);
             String timeLeft = String.format(Locale.US, "%d Days %d hr %d min %d sec", day, (int) hours, (int) minute, (int) second);
             btnLiveClass.setText(timeLeft);
-            if(day <= 0 && hours <= 0 && minute <= 0 && second <= 0){
+            if (day <= 0 && hours <= 0 && minute <= 0 && second <= 0) {
                 isActiveLiveClass = true;
                 btnLiveClass.setText(getString(R.string.open_live_class));
             }
@@ -119,7 +136,7 @@ public class LiveClassActivity extends BaseActivity {
 
     public Calendar getCalendar() {
         try {
-            Date inputDate = new SimpleDateFormat("yyyy-MM-dd-HH:mm", Locale.US).parse(mVideoModel.getLiveClassDate() +"-"+mVideoModel.getLiveClassTime());
+            Date inputDate = new SimpleDateFormat("yyyy-MM-dd-HH:mm", Locale.US).parse(mVideoModel.getLiveClassDate() + "-" + mVideoModel.getLiveClassTime());
             Calendar date = Calendar.getInstance();
             if (inputDate != null) {
                 date.setTime(inputDate);
@@ -139,7 +156,9 @@ public class LiveClassActivity extends BaseActivity {
     protected void onStop() {
         super.onStop();
         active = false;
-        countDown.cancel();
+        if (countDown != null) {
+            countDown.cancel();
+        }
     }
 
     private CountDownTimer countDown;
@@ -164,18 +183,35 @@ public class LiveClassActivity extends BaseActivity {
     }
 
     @Override
-    public void onErrorOccurred(Exception e) {
-
-    }
-
-    @Override
     public void onStartProgressBar() {
-
+        SupportUtil.showNoDataProgress(llNoData);
     }
 
     @Override
     public void onStopProgressBar() {
 
+    }
+
+    private MenuItem menuRefresh;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_refresh, menu);
+        menuRefresh = menu.findItem(R.id.action_refresh);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        } else if (id == R.id.action_refresh) {
+            fetchDataFromServer();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

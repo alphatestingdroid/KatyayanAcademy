@@ -40,7 +40,7 @@ public class VideoLectureActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         if (getExtraProperty() != null) {
-            appPresenter.getVideoLecture(getExtraProperty().getCourseId());
+            appPresenter.getVideoLecture(getExtraProperty().getCourseId(), getExtraProperty().getSubCourseId());
         }
     }
 

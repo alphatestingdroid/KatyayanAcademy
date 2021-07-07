@@ -14,6 +14,7 @@ public class ClassUtil {
     public static void openLiveClassActivity(Activity activity) {
         ExtraProperty extraProperty = new ExtraProperty();
         extraProperty.setCourseId(LoginSDK.getInstance().getCourseId());
+        extraProperty.setSubCourseId(LoginSDK.getInstance().getSubCourseId());
         activity.startActivity(new Intent(activity, LiveClassActivity.class)
                 .putExtra(AppConstant.CATEGORY_PROPERTY, extraProperty));
     }
@@ -21,6 +22,7 @@ public class ClassUtil {
     public static void openVideoLectureActivity(Activity activity) {
         ExtraProperty extraProperty = new ExtraProperty();
         extraProperty.setCourseId(LoginSDK.getInstance().getCourseId());
+        extraProperty.setSubCourseId(LoginSDK.getInstance().getSubCourseId());
         activity.startActivity(new Intent(activity, VideoLectureActivity.class)
                 .putExtra(AppConstant.CATEGORY_PROPERTY, extraProperty));
     }
