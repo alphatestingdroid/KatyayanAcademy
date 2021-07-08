@@ -1,5 +1,6 @@
 package com.appsfeature.education;
 
+import android.app.Activity;
 import android.app.Application;
 
 import androidx.lifecycle.ViewModelProvider;
@@ -7,6 +8,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.appsfeature.education.util.AppConstant;
 import com.appsfeature.login.LoginSDK;
 import com.appsfeature.login.LoginType;
+import com.browser.BrowserSdk;
+import com.browser.interfaces.BrowserCallback;
 import com.config.config.ConfigManager;
 import com.config.util.ConfigUtil;
 import com.helper.util.DayNightPreference;
@@ -34,6 +37,13 @@ public class AppApplication extends Application {
         instance = this;
         getConfigManager();
         getLoginSDK();
+        BrowserSdk.getInstance().setCallback(new BrowserCallback() {
+            @Override
+            public void onOpenPdf(Activity activity, String url) {
+                String webUrl = "http://docs.google.com/gview?url=" + url +"&embedded=true";
+                BrowserSdk.open(activity, "PDF Viewer" , webUrl);
+            }
+        });
     }
 
 

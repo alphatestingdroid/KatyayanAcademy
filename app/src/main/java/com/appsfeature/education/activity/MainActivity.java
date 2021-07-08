@@ -189,7 +189,6 @@ public class MainActivity extends BaseRemoteConfigActivity implements View.OnCli
                 }
             }
         }
-
     }
 
     @Override
