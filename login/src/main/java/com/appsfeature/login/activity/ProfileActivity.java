@@ -30,6 +30,7 @@ import com.appsfeature.login.network.LoginNetwork;
 import com.appsfeature.login.util.DatePickerDialog;
 import com.appsfeature.login.util.FieldValidation;
 import com.appsfeature.login.util.LoginConstant;
+import com.appsfeature.login.util.LoginDataUtil;
 import com.appsfeature.login.util.LoginPrefUtil;
 import com.appsfeature.login.util.LoginUtil;
 import com.appsfeature.login.util.ProfileData;
@@ -42,7 +43,7 @@ import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private EditText etAdmissionNo, etDisplayName, etEmail, etMobile, etFatherName, etFatherMobile, etDOB,
+    private EditText etAdmissionNo, etClassSelected, etDisplayName, etEmail, etMobile, etFatherName, etFatherMobile, etDOB,
             etGender, etAddress, etState, etCity, etZip, etCountry;
     private List<String> mGenderList;
     private ProgressButton btnAction;
@@ -70,6 +71,12 @@ public class ProfileActivity extends AppCompatActivity {
         Profile profile = LoginPrefUtil.getProfileDetail();
 
         etAdmissionNo.setText(profile.getAdmissionNo());
+        if(LoginDataUtil.getInstance(this) != null && LoginDataUtil.getInstance(this).getSubCategories() != null) {
+            etClassSelected.setText(LoginDataUtil.getInstance(this).getSubCategories().get(profile.getSubCourseId()));
+            etClassSelected.setVisibility(View.VISIBLE);
+        }else {
+            etClassSelected.setVisibility(View.GONE);
+        }
         etDisplayName.setText(profile.getName());
         etEmail.setText(profile.getEmail());
         etMobile.setText(profile.getMobile());
@@ -86,7 +93,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         appVersion.setText("App Version : " + LoginSDK.getInstance().getVersionName());
 
-        disableFields(etAdmissionNo, etDisplayName, etEmail, etMobile, etFatherName, etFatherMobile, etDOB,
+        disableFields(etAdmissionNo, etClassSelected, etDisplayName, etEmail, etMobile, etFatherName, etFatherMobile, etDOB,
                 etGender, etAddress, etState, etCity, etZip, etCountry);
         btnAction.setVisibility(View.GONE);
     }
@@ -106,6 +113,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void initUi() {
         etAdmissionNo = findViewById(R.id.et_customer_field_0);
+        etClassSelected = findViewById(R.id.et_customer_field_00);
         etDisplayName = findViewById(R.id.et_customer_field_1);
         etEmail = findViewById(R.id.et_customer_field_2);
         etMobile = findViewById(R.id.et_customer_field_3);

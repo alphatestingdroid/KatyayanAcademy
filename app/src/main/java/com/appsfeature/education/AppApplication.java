@@ -6,6 +6,7 @@ import android.app.Application;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.appsfeature.education.util.AppConstant;
+import com.appsfeature.education.util.DataUtil;
 import com.appsfeature.login.LoginSDK;
 import com.appsfeature.login.LoginType;
 import com.browser.BrowserSdk;
@@ -44,6 +45,7 @@ public class AppApplication extends Application {
                 BrowserSdk.open(activity, "PDF Viewer" , webUrl);
             }
         });
+        DataUtil.getInstance(this);
     }
 
 

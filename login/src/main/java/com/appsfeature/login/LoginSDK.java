@@ -11,6 +11,7 @@ import com.appsfeature.login.activity.MobileLoginActivity;
 import com.appsfeature.login.activity.ProfileActivity;
 import com.appsfeature.login.model.Profile;
 import com.appsfeature.login.util.LoginConstant;
+import com.appsfeature.login.util.LoginDataUtil;
 import com.appsfeature.login.util.LoginPrefUtil;
 import com.appsfeature.login.util.LoginUtil;
 import com.config.config.ConfigManager;
@@ -67,6 +68,7 @@ public class LoginSDK {
     private LoginSDK(Context context, ConfigManager configManager) {
         this.context = context;
         this.configManager = configManager;
+        LoginDataUtil.getInstance(context);
     }
 
     public Context getContext() {

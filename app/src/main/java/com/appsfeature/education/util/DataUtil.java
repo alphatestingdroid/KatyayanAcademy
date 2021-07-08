@@ -1,13 +1,31 @@
 package com.appsfeature.education.util;
 
+import android.content.Context;
 import android.text.TextUtils;
 
+import com.appsfeature.education.R;
 import com.appsfeature.education.doctor.DoctorModel;
 import com.appsfeature.education.entity.AppointmentModel;
 import com.appsfeature.login.model.Profile;
+import com.appsfeature.login.util.AppData;
 import com.appsfeature.login.util.LoginPrefUtil;
 
+import java.util.HashMap;
+
 public class DataUtil {
+
+    private static DataUtil mInstance;
+
+    public static DataUtil getInstance(Context context) {
+        if(mInstance == null){
+            mInstance = new DataUtil(context);
+        }
+        return mInstance;
+    }
+
+    public DataUtil(Context context) {
+
+    }
 
     public static StringBuilder getDoctorAddress(DoctorModel doctorModel) {
         StringBuilder address = new StringBuilder();
