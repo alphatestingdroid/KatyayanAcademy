@@ -18,25 +18,41 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appsfeature.education.R;
+import com.appsfeature.education.listeners.ListItemType;
 import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.util.SupportUtil;
 import com.helper.callback.Response;
 
 import java.util.List;
-import java.util.Random;
 
 public class EducationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Response.OnClickListener<EducationModel> clickListener;
     private final Activity activity;
+    private final int viewType;
     private List<EducationModel> mList;
+
+    public EducationAdapter(Activity activity, int viewType, List<EducationModel> mList, Response.OnClickListener<EducationModel> clickListener) {
+        this.activity = activity;
+        this.mList = mList;
+        this.viewType = viewType;
+        this.clickListener = clickListener;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        super.getItemViewType(position);
+        return viewType;
+    }
 
     @Override
     @NonNull
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.slot_video_view, parent, false);
-        return new ViewHolder(itemView);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if(viewType == ListItemType.TYPE_CHAPTER) {
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.slot_chapter_item, parent, false));
+        }else {
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.slot_subject_item, parent, false));
+        }
     }
 
     @Override
@@ -44,49 +60,35 @@ public class EducationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return mList == null ? 0 : mList.size();
     }
 
-    public EducationAdapter(Activity activity, List<EducationModel> mList, Response.OnClickListener<EducationModel> clickListener) {
-        this.activity = activity;
-        this.mList = mList;
-        this.clickListener = clickListener;
-    }
-
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
         ViewHolder myViewHolder = (ViewHolder) holder;
-        myViewHolder.tvName.setText(mList.get(i).getLectureName());
-//
-        myViewHolder.tvDepartment.setText(mList.get(i).getSubjectName());
-        myViewHolder.tvLocation.setText(SupportUtil.getDateFormatted(mList.get(i).getLiveClassDate(), mList.get(i).getLiveClassTime()));
+        if(viewType == ListItemType.TYPE_CHAPTER) {
+            myViewHolder.tvTitle.setText( (position + 1) + " - " + mList.get(position).getLectureName());
+            myViewHolder.bottomLine.setBackgroundColor(Color.parseColor(getRandomColor(position)));
+        }else {
+            myViewHolder.tvTitle.setText(mList.get(position).getSubjectName());
 
-        myViewHolder.tvLocation.setBackgroundColor(Color.parseColor(colors[getRandomNum()]));
-
-        int mColor = Color.parseColor(getRandomColor(i));
-        setColorFilter(myViewHolder.tvLocation.getBackground(), mColor);
-
-//        if(mList.get(i).getProfilePicture() != null) {
-//            Picasso.get().load(mList.get(i).getProfilePicture())
-//                    .placeholder(R.drawable.ic_user_profile)
-//                    .error(R.drawable.ic_user_profile)
-//                    .into(myViewHolder.ivPic);
-//        } else {
-//            myViewHolder.ivPic.setImageResource(R.drawable.ic_user_profile);
-//        }
+            myViewHolder.bottomLine.setBackgroundColor(Color.parseColor(getRandomColor(position)));
+            if (myViewHolder.ivImage != null) {
+                int mColor = Color.parseColor(getRandomColor(position));
+                setColorFilter(myViewHolder.ivImage.getBackground(), mColor);
+            }
+        }
     }
 
 
     private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private final ImageView ivPic;
-        private TextView tvName;
-        private TextView tvDepartment;
-        private TextView tvLocation;
+        private final ImageView ivImage;
+        private final View bottomLine;
+        private final TextView tvTitle;
 
         private ViewHolder(View v) {
             super(v);
-            ivPic = v.findViewById(R.id.pic);
-            tvName = v.findViewById(R.id.name);
-            tvDepartment = v.findViewById(R.id.department);
-            tvLocation = v.findViewById(R.id.location);
+            ivImage = v.findViewById(R.id.iv_image);
+            tvTitle = v.findViewById(R.id.tv_title);
+            bottomLine = v.findViewById(R.id.bottom_line);
 
             itemView.setOnClickListener(this);
         }
@@ -98,15 +100,6 @@ public class EducationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
         }
     }
-
-    private int getRandomNum() {
-        Random r = new Random();
-        return r.nextInt(7);
-    }
-
-    private String[] colors = {
-            "#13c4a5", "#10a4b8", "#8a63b3", "#3b5295", "#fdbd57", "#f6624e", "#e7486b", "#9c4274"};
-
 
     @SuppressWarnings("deprecation")
     public static void setColorFilter(@NonNull Drawable drawable, int color) {
