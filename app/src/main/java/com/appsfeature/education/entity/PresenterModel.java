@@ -8,17 +8,17 @@ import java.util.List;
 
 public class PresenterModel {
 
-    private List<EducationModel> videoList = null;
+    private List<EducationModel> educationList = null;
     private List<SlotModel> slotModel = null;
     private List<AppointmentModel> appointmentModel = null;
     private PatientModel patientModel = null;
 
-    public List<EducationModel> getVideoList() {
-        return videoList;
+    public List<EducationModel> getEducationList() {
+        return educationList;
     }
 
-    public PresenterModel setVideoList(List<EducationModel> doctorList) {
-        this.videoList = doctorList;
+    public PresenterModel setEducationList(List<EducationModel> modelList) {
+        this.educationList = modelList;
         return this;
     }
 

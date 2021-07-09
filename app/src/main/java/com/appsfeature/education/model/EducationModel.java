@@ -53,6 +53,10 @@ public class EducationModel implements Serializable {
     @Expose
     private String chapterName;
 
+    @SerializedName(value = "category_type")
+    @Expose
+    private int categoryType;
+
     public String getId() {
         return id;
     }
@@ -171,5 +175,13 @@ public class EducationModel implements Serializable {
 
     public void setChapterName(String chapterName) {
         this.chapterName = chapterName;
+    }
+
+    public int getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(int categoryType) {
+        this.categoryType = categoryType;
     }
 }

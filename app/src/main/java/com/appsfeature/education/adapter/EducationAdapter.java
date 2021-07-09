@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.appsfeature.education.R;
 import com.appsfeature.education.listeners.ListItemType;
 import com.appsfeature.education.model.EducationModel;
-import com.appsfeature.education.util.SupportUtil;
 import com.helper.callback.Response;
 
 import java.util.List;
@@ -64,15 +63,18 @@ public class EducationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
         ViewHolder myViewHolder = (ViewHolder) holder;
         if(viewType == ListItemType.TYPE_CHAPTER) {
-            myViewHolder.tvTitle.setText( (position + 1) + " - " + mList.get(position).getLectureName());
+            myViewHolder.tvTitle.setText( (position + 1) + " - " + mList.get(position).getChapterName());
             myViewHolder.bottomLine.setBackgroundColor(Color.parseColor(getRandomColor(position)));
         }else {
+            if(mList.get(position).getSubjectName().length() > 0) {
+                myViewHolder.tvTitleTag.setText(mList.get(position).getSubjectName().substring(0, 1));
+            }
             myViewHolder.tvTitle.setText(mList.get(position).getSubjectName());
 
             myViewHolder.bottomLine.setBackgroundColor(Color.parseColor(getRandomColor(position)));
-            if (myViewHolder.ivImage != null) {
+            if (myViewHolder.tvTitleTag != null) {
                 int mColor = Color.parseColor(getRandomColor(position));
-                setColorFilter(myViewHolder.ivImage.getBackground(), mColor);
+                setColorFilter(myViewHolder.tvTitleTag.getBackground(), mColor);
             }
         }
     }
@@ -80,14 +82,13 @@ public class EducationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private final ImageView ivImage;
         private final View bottomLine;
-        private final TextView tvTitle;
+        private final TextView tvTitle, tvTitleTag;
 
         private ViewHolder(View v) {
             super(v);
-            ivImage = v.findViewById(R.id.iv_image);
             tvTitle = v.findViewById(R.id.tv_title);
+            tvTitleTag = v.findViewById(R.id.tv_title_tag);
             bottomLine = v.findViewById(R.id.bottom_line);
 
             itemView.setOnClickListener(this);

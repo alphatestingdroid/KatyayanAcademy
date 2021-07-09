@@ -10,20 +10,15 @@ import androidx.lifecycle.ViewModel;
 
 import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.listeners.AppCallback;
-import com.appsfeature.education.entity.AppointmentModel;
 import com.appsfeature.education.entity.ExtraProperty;
 import com.appsfeature.education.entity.PresenterModel;
-import com.appsfeature.education.entity.SlotModel;
 import com.appsfeature.education.network.NetworkManager;
-import com.appsfeature.education.patient.PatientModel;
 import com.appsfeature.education.util.AppConstant;
 import com.appsfeature.education.util.SupportUtil;
 import com.helper.callback.Response;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -70,13 +65,13 @@ public class AppViewModel extends ViewModel {
         }
     }
 
-    public void getLiveClass(int courseId,int subCourseId) {
+    public void getDynamicData(ExtraProperty extraProperty) {
         viewCallback.onStartProgressBar();
-        networkHandler.getVideoLecture(courseId, subCourseId, true, new Response.Callback<List<EducationModel>>() {
+        networkHandler.getDynamicData(extraProperty, new Response.Callback<List<EducationModel>>() {
             @Override
             public void onSuccess(List<EducationModel> response) {
                 viewCallback.onStopProgressBar();
-                viewCallback.onUpdateUI(new PresenterModel().setVideoList(response));
+                viewCallback.onUpdateUI(new PresenterModel().setEducationList(response));
             }
 
             @Override
@@ -86,167 +81,4 @@ public class AppViewModel extends ViewModel {
             }
         });
     }
-
-    public void getVideoLecture(int courseId, int subCourseId) {
-        viewCallback.onStartProgressBar();
-        networkHandler.getVideoLecture(courseId, subCourseId, false, new Response.Callback<List<EducationModel>>() {
-            @Override
-            public void onSuccess(List<EducationModel> response) {
-                viewCallback.onStopProgressBar();
-                viewCallback.onUpdateUI(new PresenterModel().setVideoList(response));
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                viewCallback.onStopProgressBar();
-                viewCallback.onErrorOccurred(e);
-            }
-        });
-    }
-
-    public void getDoctorSlotView(String doctorId, String appointmentDate) {
-        viewCallback.onStartProgressBar();
-        networkHandler.getDoctorSlotView(doctorId, appointmentDate, new Response.Callback<List<SlotModel>>() {
-            @Override
-            public void onSuccess(List<SlotModel> response) {
-                viewCallback.onStopProgressBar();
-                viewCallback.onUpdateUI(new PresenterModel().setSlotModel(response));
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                viewCallback.onStopProgressBar();
-                viewCallback.onErrorOccurred(e);
-            }
-        });
-    }
-
-    public void getPatientProfile(String patientId) {
-        viewCallback.onStartProgressBar();
-        networkHandler.getPatientProfile(patientId, new Response.Callback<PatientModel>() {
-            @Override
-            public void onSuccess(PatientModel response) {
-                viewCallback.onStopProgressBar();
-                viewCallback.onUpdateUI(new PresenterModel().setPatientModel(response));
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                viewCallback.onStopProgressBar();
-                viewCallback.onErrorOccurred(e);
-            }
-        });
-    }
-
-    public void getPatientBookingHistory(String patientId) {
-        viewCallback.onStartProgressBar();
-        networkHandler.getPatientBookingHistory(patientId, new Response.Callback<List<AppointmentModel>>() {
-            @Override
-            public void onSuccess(List<AppointmentModel> response) {
-                if (response != null && response.size() > 0)
-                    Collections.sort(response, new Comparator<AppointmentModel>() {
-                        @Override
-                        public int compare(AppointmentModel item, AppointmentModel item2) {
-                            Date value = getDate(item.getCreatedAt());
-                            Date value2 = getDate(item2.getCreatedAt());
-                            return value2.compareTo(value);
-                        }
-                    });
-                viewCallback.onStopProgressBar();
-                viewCallback.onUpdateUI(new PresenterModel().setAppointmentModel(response));
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                viewCallback.onStopProgressBar();
-                viewCallback.onErrorOccurred(e);
-            }
-        });
-    }
-
-    public static Date getDate(String cDate) {
-        try {
-            return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US).parse(cDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return new Date();
-        }
-    }
-
-    public void bookPatientAppointment(String patient_id, String doctor_id, String booking_date, String booking_slot
-            , String booking_type, String patient_name, String patient_gender, String patient_relation, String patient_dob, final Response.Callback<AppointmentModel> callback) {
-        viewCallback.onStartProgressBar();
-        networkHandler.bookPatientAppointment(patient_id, doctor_id, booking_date, booking_slot
-                , booking_type, patient_name, patient_gender, patient_relation, patient_dob, new Response.Callback<AppointmentModel>() {
-                    @Override
-                    public void onSuccess(AppointmentModel response) {
-                        viewCallback.onStopProgressBar();
-                        callback.onSuccess(response);
-                    }
-
-                    @Override
-                    public void onFailure(Exception e) {
-                        viewCallback.onStopProgressBar();
-                        callback.onFailure(e);
-                    }
-                });
-    }
-
-    public void addNewFamilyMember(String userId, String name, String gender, String relation
-            , String dob, final Response.Callback<PatientModel> callback) {
-        viewCallback.onStartProgressBar();
-        networkHandler.addNewFamilyMember(userId, name, gender, relation
-                , dob, new Response.Callback<PatientModel>() {
-                    @Override
-                    public void onSuccess(PatientModel response) {
-                        callback.onSuccess(response);
-                    }
-
-                    @Override
-                    public void onFailure(Exception e) {
-                        viewCallback.onStopProgressBar();
-                        callback.onFailure(e);
-                    }
-                });
-    }
-
-    public void deleteFamilyMember(String userId, String name, String gender, String relation, String dob, final Response.Callback<PatientModel> callback) {
-        networkHandler.deleteFamilyMember(userId, name, gender, dob, new Response.Callback<PatientModel>() {
-            @Override
-            public void onSuccess(PatientModel response) {
-                callback.onSuccess(response);
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                callback.onFailure(e);
-            }
-        });
-    }
-
-
-    public void cancelAppointment(String userId, String appointmentId, boolean isShowProgress, final Response.Callback<List<AppointmentModel>> callback) {
-        if(isShowProgress) {
-            viewCallback.onStartProgressBar();
-        }
-        networkHandler.cancelAppointment(userId, appointmentId, new Response.Callback<List<AppointmentModel>>() {
-            @Override
-            public void onSuccess(List<AppointmentModel> response) {
-                if(isShowProgress) {
-                    viewCallback.onStopProgressBar();
-                }
-                callback.onSuccess(response);
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                if(isShowProgress) {
-                    viewCallback.onStopProgressBar();
-                }
-                callback.onFailure(e);
-            }
-        });
-    }
-
-
 }

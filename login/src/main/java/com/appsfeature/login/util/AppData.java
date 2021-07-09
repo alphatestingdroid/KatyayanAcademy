@@ -1,7 +1,5 @@
 package com.appsfeature.login.util;
 
-import java.util.HashMap;
-
 public interface AppData {
 
     Integer[] catIds = {0, 1};

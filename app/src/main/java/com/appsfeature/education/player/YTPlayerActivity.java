@@ -47,7 +47,7 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
             ExtraProperty extraProperty = (ExtraProperty) intent.getSerializableExtra(AppConstant.CATEGORY_PROPERTY);
             if(extraProperty != null && extraProperty.getVideoId() != null){
                 mVideoId = extraProperty.getVideoId();
-                mVideoModel = extraProperty.getVideoModel();
+                mVideoModel = extraProperty.getEducationModel();
                 if(mVideoModel != null && !TextUtils.isEmpty(mVideoModel.getLectureName())){
                     mTitle = mVideoModel.getLectureName();
                     loadView();

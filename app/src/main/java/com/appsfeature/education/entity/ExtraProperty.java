@@ -2,9 +2,7 @@ package com.appsfeature.education.entity;
 
 import androidx.annotation.NonNull;
 
-import com.appsfeature.education.doctor.DoctorModel;
 import com.appsfeature.education.model.EducationModel;
-import com.appsfeature.education.patient.PatientModel;
 import com.helper.model.BaseCategoryProperty;
 
 import java.io.Serializable;
@@ -13,17 +11,11 @@ public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Se
 
     private int courseId;
     private int subCourseId;
-    private String doctorId;
-    private String appointmentDate; //format yyyy-mm-dd
-    private String appointmentTime;
-    private String memberName;
-    private boolean isDashboard = false;
-    private DoctorModel doctorModel;
-    private AppointmentModel appointmentModel;
-    private PatientModel patientModel;
+    private String subjectId;
+    private String chapterId;
     private String videoId;
     private String apiKey;
-    private EducationModel videoModel;
+    private EducationModel educationModel;
 
 
     public int getSubCourseId() {
@@ -42,12 +34,12 @@ public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Se
         this.videoId = videoId;
     }
 
-    public EducationModel getVideoModel() {
-        return videoModel;
+    public EducationModel getEducationModel() {
+        return educationModel;
     }
 
-    public void setVideoModel(EducationModel videoModel) {
-        this.videoModel = videoModel;
+    public void setEducationModel(EducationModel educationModel) {
+        this.educationModel = educationModel;
     }
 
     public String getApiKey() {
@@ -66,68 +58,20 @@ public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Se
         this.courseId = courseId;
     }
 
-    public String getDoctorId() {
-        return doctorId;
+    public String getSubjectId() {
+        return subjectId;
     }
 
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
+    public void setSubjectId(String subjectId) {
+        this.subjectId = subjectId;
     }
 
-    public String getAppointmentDate() {
-        return appointmentDate;
+    public String getChapterId() {
+        return chapterId;
     }
 
-    public void setAppointmentDate(String appointmentDate) {
-        this.appointmentDate = appointmentDate;
-    }
-
-    public String getAppointmentTime() {
-        return appointmentTime;
-    }
-
-    public void setAppointmentTime(String appointmentTime) {
-        this.appointmentTime = appointmentTime;
-    }
-
-    public DoctorModel getDoctorModel() {
-        return doctorModel;
-    }
-
-    public void setDoctorModel(DoctorModel doctorModel) {
-        this.doctorModel = doctorModel;
-    }
-
-    public AppointmentModel getAppointmentModel() {
-        return appointmentModel;
-    }
-
-    public void setAppointmentModel(AppointmentModel appointmentModel) {
-        this.appointmentModel = appointmentModel;
-    }
-
-    public PatientModel getPatientModel() {
-        return patientModel;
-    }
-
-    public void setPatientModel(PatientModel patientModel) {
-        this.patientModel = patientModel;
-    }
-
-    public String getMemberName() {
-        return memberName;
-    }
-
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
-    }
-
-    public boolean isDashboard() {
-        return isDashboard;
-    }
-
-    public void setDashboard(boolean dashboard) {
-        isDashboard = dashboard;
+    public void setChapterId(String chapterId) {
+        this.chapterId = chapterId;
     }
 
     @NonNull

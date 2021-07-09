@@ -77,7 +77,7 @@ public class YTUtility {
     public static void playVideo(Context context, EducationModel item) {
         ExtraProperty extraProperty = new ExtraProperty();
         extraProperty.setVideoId(getVideoIdFromUrl(item.getLectureVideo()));
-        extraProperty.setVideoModel(item);
+        extraProperty.setEducationModel(item);
         try {
             context.startActivity(new Intent(context, YTPlayerActivity.class)
                     .putExtra(AppConstant.CATEGORY_PROPERTY, extraProperty)

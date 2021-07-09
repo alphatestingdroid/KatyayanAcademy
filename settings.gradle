@@ -1,2 +1,2 @@
-rootProject.name='KatyayanAcademy'
+rootProject.name='katyayanacademy'
 include ':app', ':login'

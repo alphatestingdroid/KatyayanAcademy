@@ -6,6 +6,11 @@ import android.util.Log;
 
 import com.appsfeature.education.AppApplication;
 import com.appsfeature.education.doctor.DoctorModel;
+import com.appsfeature.education.education.EducationListActivity;
+import com.appsfeature.education.education.LiveClassActivity;
+import com.appsfeature.education.education.VideoLectureActivity;
+import com.appsfeature.education.entity.ExtraProperty;
+import com.appsfeature.education.listeners.ItemType;
 import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.entity.AppointmentModel;
 import com.appsfeature.education.entity.SlotModel;
@@ -39,13 +44,33 @@ public class NetworkManager extends BaseNetworkManager {
         return instance;
     }
 
-    public void getVideoLecture(int courseId, int subCourseId, boolean isLiveClass, final Response.Callback<List<EducationModel>> callback) {
+
+    public void getDynamicData(ExtraProperty extraProperty, final Response.Callback<List<EducationModel>> callback) {
         Map<String, String> map = new HashMap<>();
-        map.put("course_id", courseId + "");
-        map.put("sub_course_id", subCourseId + "");
+        map.put("course_id", extraProperty.getCourseId() + "");
+        map.put("sub_course_id", extraProperty.getSubCourseId() + "");
+        String methodName = ApiEndPoint.GET_OFFLINE_CLASS;
+        switch (extraProperty.getItemType()) {
+            case ItemType.CATEGORY_TYPE_LIVE_CLASS:
+                methodName = ApiEndPoint.GET_LIVE_CLASS;
+                break;
+            case ItemType.CATEGORY_TYPE_SUBJECT:
+                methodName = ApiEndPoint.GET_SUBJECT;
+                break;
+            case ItemType.CATEGORY_TYPE_CHAPTER:
+                methodName = ApiEndPoint.GET_CHAPTER;
+                map.put("subject_id", extraProperty.getSubjectId() + "");
+                break;
+            case ItemType.CATEGORY_TYPE_OFFLINE_VIDEOS:
+                methodName = ApiEndPoint.GET_OFFLINE_CLASS;
+                map.put("subject_id", extraProperty.getSubjectId() + "");
+                map.put("chapter_id", extraProperty.getChapterId() + "");
+                break;
+            default:
+                break;
+        }
         AppApplication.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_POST_FORM, AppConstant.HOST_MAIN
-                , isLiveClass ? ApiEndPoint.GET_LIVE_CLASS : ApiEndPoint.GET_OFFLINE_CLASS
-                , map, new ConfigManager.OnNetworkCall() {
+                , methodName, map, new ConfigManager.OnNetworkCall() {
                     @Override
                     public void onComplete(boolean status, String data) {
                         if (status && !TextUtils.isEmpty(data)) {
@@ -54,260 +79,6 @@ public class NetworkManager extends BaseNetworkManager {
                                 @Override
                                 public void onSuccess(List<EducationModel> list) {
                                     callback.onSuccess(list);
-                                }
-
-                                @Override
-                                public void onFailure(Exception error) {
-                                    callback.onFailure(error);
-                                }
-                            });
-                        } else {
-                            callback.onFailure(new Exception(!TextUtils.isEmpty(data) ? data : LoginConstant.ERROR_PLEASE_TRY_LATER));
-                        }
-                    }
-                });
-    }
-
-    public void getDoctorSlotView(String doctorId, String appointmentDate, final Response.Callback<List<SlotModel>> callback) {
-        Map<String, String> map = new HashMap<>();
-        map.put("doctor_id", doctorId + "");
-        map.put("appointment_date", appointmentDate + "");
-        AppApplication.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_GET, AppConstant.HOST_MAIN
-                , ApiEndPoint.DOCTOR_SLOT_VIEW
-                , map, new ConfigManager.OnNetworkCall() {
-                    @Override
-                    public void onComplete(boolean status, String data) {
-                        if (status && !TextUtils.isEmpty(data)) {
-                            parseConfigData(data, new TypeToken<List<SlotModel>>() {
-                            }.getType(), new ParserConfigDataSimple<List<SlotModel>>() {
-                                @Override
-                                public void onSuccess(List<SlotModel> list) {
-                                    callback.onSuccess(list);
-                                }
-
-                                @Override
-                                public void onFailure(Exception error) {
-                                    callback.onFailure(error);
-                                }
-                            });
-                        } else {
-                            callback.onFailure(new Exception(!TextUtils.isEmpty(data) ? data : LoginConstant.ERROR_PLEASE_TRY_LATER));
-                        }
-                    }
-                });
-    }
-
-    public void getDoctorProfile(String doctorId, final Response.Callback<List<DoctorModel>> callback) {
-        Map<String, String> map = new HashMap<>();
-        map.put("doctor_id", doctorId + "");
-        AppApplication.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_GET, AppConstant.HOST_MAIN
-                , ApiEndPoint.DOCTOR_PROFILE_VIEW
-                , map, new ConfigManager.OnNetworkCall() {
-                    @Override
-                    public void onComplete(boolean status, String data) {
-                        if (status && !TextUtils.isEmpty(data)) {
-                            parseConfigData(data, new TypeToken<List<DoctorModel>>() {
-                            }.getType(), new ParserConfigDataSimple<List<DoctorModel>>() {
-                                @Override
-                                public void onSuccess(List<DoctorModel> list) {
-                                    callback.onSuccess(list);
-                                }
-
-                                @Override
-                                public void onFailure(Exception error) {
-                                    callback.onFailure(error);
-                                }
-                            });
-                        } else {
-                            callback.onFailure(new Exception(!TextUtils.isEmpty(data) ? data : LoginConstant.ERROR_PLEASE_TRY_LATER));
-                        }
-                    }
-                });
-    }
-
-    public void getPatientProfile(String patientId, final Response.Callback<PatientModel> callback) {
-        Map<String, String> map = new HashMap<>();
-        map.put("patient_id", patientId + "");
-        AppApplication.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_GET, AppConstant.HOST_MAIN
-                , ApiEndPoint.PATIENT_PROFILE_VIEW
-                , map, new ConfigManager.OnNetworkCall() {
-                    @Override
-                    public void onComplete(boolean status, String data) {
-                        if (status && !TextUtils.isEmpty(data)) {
-                            parseConfigData(data, new TypeToken<PatientModel>() {
-                            }.getType(), new ParserConfigDataSimple<PatientModel>() {
-                                @Override
-                                public void onSuccess(PatientModel list) {
-                                    callback.onSuccess(list);
-                                }
-
-                                @Override
-                                public void onFailure(Exception error) {
-                                    callback.onFailure(error);
-                                }
-                            });
-                        } else {
-                            callback.onFailure(new Exception(!TextUtils.isEmpty(data) ? data : LoginConstant.ERROR_PLEASE_TRY_LATER));
-                        }
-                    }
-                });
-    }
-
-
-    public void getPatientBookingHistory(String patientId, final Response.Callback<List<AppointmentModel>> callback) {
-        Map<String, String> map = new HashMap<>();
-        map.put("patient_id", patientId + "");
-        AppApplication.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_GET, AppConstant.HOST_MAIN
-                , ApiEndPoint.PATIENT_BOOKING_HISTORY
-                , map, new ConfigManager.OnNetworkCall() {
-                    @Override
-                    public void onComplete(boolean status, String data) {
-                        if (status && !TextUtils.isEmpty(data)) {
-                            parseConfigData(data, new TypeToken<List<AppointmentModel>>() {
-                            }.getType(), new ParserConfigDataSimple<List<AppointmentModel>>() {
-                                @Override
-                                public void onSuccess(List<AppointmentModel> list) {
-                                    callback.onSuccess(list);
-                                }
-
-                                @Override
-                                public void onFailure(Exception error) {
-                                    callback.onFailure(error);
-                                }
-                            });
-                        } else {
-                            callback.onFailure(new Exception(!TextUtils.isEmpty(data) ? data : LoginConstant.ERROR_PLEASE_TRY_LATER));
-                        }
-                    }
-                });
-    }
-
-
-    public void bookPatientAppointment(String patient_id, String doctor_id, String booking_date, String booking_slot
-            , String booking_type, String patient_name, String patient_gender, String patient_relation, String patient_dob, final Response.Callback<AppointmentModel> callback) {
-        Map<String, String> map = new HashMap<>();
-        map.put("patient_id", patient_id + "");
-        map.put("doctor_id", doctor_id + "");
-        map.put("booking_date", booking_date + "");
-        map.put("booking_slot", booking_slot + "");
-        map.put("booking_type", booking_type + "");
-        map.put("patient_name", patient_name + "");
-        map.put("patient_gender", patient_gender + "");
-        map.put("patient_relation", patient_relation + "");
-        map.put("patient_dob", patient_dob + "");
-        AppApplication.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_POST, AppConstant.HOST_MAIN
-                , ApiEndPoint.PATIENT_APPOINTMENT_SUBMIT
-                , map, new ConfigManager.OnNetworkCall() {
-                    @Override
-                    public void onComplete(boolean status, String data) {
-                        if (status && !TextUtils.isEmpty(data)) {
-                            parseConfigData(data, new TypeToken<AppointmentModel>() {
-                            }.getType(), new ParserConfigDataSimple<AppointmentModel>() {
-                                @Override
-                                public void onSuccess(AppointmentModel item) {
-                                    if (item != null) {
-                                        callback.onSuccess(item);
-                                    } else {
-                                        callback.onFailure(new Exception(BaseConstants.NO_DATA));
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Exception error) {
-                                    callback.onFailure(error);
-                                }
-                            });
-                        } else {
-                            callback.onFailure(new Exception(!TextUtils.isEmpty(data) ? data : LoginConstant.ERROR_PLEASE_TRY_LATER));
-                        }
-                    }
-                });
-    }
-
-
-    public void addNewFamilyMember(String userId, String name, String gender, String relation
-            , String dob, final Response.Callback<PatientModel> callback) {
-        Map<String, String> map = new HashMap<>();
-        map.put("patient_id", userId + "");
-        map.put("family_name", name + "");
-        map.put("family_gender", gender + "");
-        map.put("family_relation", relation + "");
-        map.put("family_dob", dob + ""); //dd/MM/yyyy
-        AppApplication.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_POST, AppConstant.HOST_MAIN
-                , ApiEndPoint.PATIENT_FAMILY_UPDATE
-                , map, new ConfigManager.OnNetworkCall() {
-                    @Override
-                    public void onComplete(boolean status, String data) {
-                        if (status && !TextUtils.isEmpty(data)) {
-                            parseConfigData(data, new TypeToken<PatientModel>() {
-                            }.getType(), new ParserConfigDataSimple<PatientModel>() {
-                                @Override
-                                public void onSuccess(PatientModel item) {
-                                    if (item != null) {
-                                        callback.onSuccess(item);
-                                    } else {
-                                        callback.onFailure(new Exception(BaseConstants.NO_DATA));
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Exception error) {
-                                    callback.onFailure(error);
-                                }
-                            });
-                        } else {
-                            callback.onFailure(new Exception(!TextUtils.isEmpty(data) ? data : LoginConstant.ERROR_PLEASE_TRY_LATER));
-                        }
-                    }
-                });
-    }
-
-
-    public void deleteFamilyMember(String userId, String name, String gender, String dob, final Response.Callback<PatientModel> callback) {
-        Map<String, String> map = new HashMap<>();
-        map.put("patient_id", userId + "");
-        map.put("family_name", name + "");
-        map.put("family_dob", dob + ""); //dd/MM/yyyy
-        AppApplication.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_POST, AppConstant.HOST_MAIN
-                , ApiEndPoint.PATIENT_FAMILY_REMOVE
-                , map, new ConfigManager.OnNetworkCall() {
-                    @Override
-                    public void onComplete(boolean status, String data) {
-                        if (status && !TextUtils.isEmpty(data)) {
-                            parseConfigData(data, new TypeToken<PatientModel>() {
-                            }.getType(), new ParserConfigDataSimple<PatientModel>() {
-                                @Override
-                                public void onSuccess(PatientModel item) {
-                                    callback.onSuccess(item);
-                                }
-
-                                @Override
-                                public void onFailure(Exception error) {
-                                    callback.onFailure(error);
-                                }
-                            });
-                        } else {
-                            callback.onFailure(new Exception(!TextUtils.isEmpty(data) ? data : LoginConstant.ERROR_PLEASE_TRY_LATER));
-                        }
-                    }
-                });
-    }
-
-    public void cancelAppointment(String userId, String appointmentId, final Response.Callback<List<AppointmentModel>> callback) {
-        Map<String, String> map = new HashMap<>();
-        map.put("patient_id", userId);
-        map.put("appointment_id", appointmentId );
-        AppApplication.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_POST, AppConstant.HOST_MAIN
-                , ApiEndPoint.PATIENT_APPOINTMENT_CANCEL
-                , map, new ConfigManager.OnNetworkCall() {
-                    @Override
-                    public void onComplete(boolean status, String data) {
-                        if (status && !TextUtils.isEmpty(data)) {
-                            parseConfigData(data, new TypeToken<List<AppointmentModel>>() {
-                            }.getType(), new ParserConfigDataSimple<List<AppointmentModel>>() {
-                                @Override
-                                public void onSuccess(List<AppointmentModel> item) {
-                                    callback.onSuccess(item);
                                 }
 
                                 @Override

@@ -75,4 +75,14 @@ public class SupportUtil extends BaseUtil {
             return "0";
         }
     }
+
+
+    public static Date getDate(String cDate) {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.US).parse(cDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return new Date();
+        }
+    }
 }

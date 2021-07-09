@@ -1,6 +1,6 @@
 package com.appsfeature.education.listeners;
 
 public interface ListItemType {
-    int TYPE_SUBJECT = 1;
-    int TYPE_CHAPTER = 2;
+    int TYPE_SUBJECT = ItemType.CATEGORY_TYPE_SUBJECT;
+    int TYPE_CHAPTER = ItemType.CATEGORY_TYPE_CHAPTER;
 }

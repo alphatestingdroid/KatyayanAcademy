@@ -44,7 +44,7 @@ public class FamilyMemberActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         if (getExtraProperty() != null) {
-            appPresenter.getPatientProfile(AppApplication.getInstance().getLoginSDK().getUserId());
+//            appPresenter.getPatientProfile(AppApplication.getInstance().getLoginSDK().getUserId());
         }
     }
 
@@ -127,18 +127,18 @@ public class FamilyMemberActivity extends BaseActivity {
 
     private void deleteFamilyMember(PatientModel item) {
         SupportUtil.showDialog(this, getString(R.string.helper_popup_progress_message), true);
-        appPresenter.deleteFamilyMember(AppApplication.getInstance().getLoginSDK().getUserId(), item.getName(), item.getGender(), item.getRelation(), item.getDateOfBirth(), new Response.Callback<PatientModel>() {
-            @Override
-            public void onSuccess(PatientModel response) {
-                onStart();
-                SupportUtil.hideDialog();
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                SupportUtil.hideDialog();
-                SupportUtil.showToast(FamilyMemberActivity.this, e.getMessage());
-            }
-        });
+//        appPresenter.deleteFamilyMember(AppApplication.getInstance().getLoginSDK().getUserId(), item.getName(), item.getGender(), item.getRelation(), item.getDateOfBirth(), new Response.Callback<PatientModel>() {
+//            @Override
+//            public void onSuccess(PatientModel response) {
+//                onStart();
+//                SupportUtil.hideDialog();
+//            }
+//
+//            @Override
+//            public void onFailure(Exception e) {
+//                SupportUtil.hideDialog();
+//                SupportUtil.showToast(FamilyMemberActivity.this, e.getMessage());
+//            }
+//        });
     }
 }

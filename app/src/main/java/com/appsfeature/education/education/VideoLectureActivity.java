@@ -30,17 +30,17 @@ public class VideoLectureActivity extends BaseActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor_list);
+        setContentView(R.layout.activity_mapping_list);
 
         onInitializeUI();
-        setUpToolBar("Video Lecture");
+//        setUpToolBar("Video Lecture");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         if (getExtraProperty() != null) {
-            appPresenter.getVideoLecture(getExtraProperty().getCourseId(), getExtraProperty().getSubCourseId());
+            appPresenter.getDynamicData(getExtraProperty());
         }
     }
 
@@ -62,8 +62,8 @@ public class VideoLectureActivity extends BaseActivity {
         SupportUtil.showNoData(llNoData, View.GONE);
         llNoData.setVisibility(View.GONE);
         mList.clear();
-        if (response.getVideoList() != null && response.getVideoList().size() > 0) {
-            mList.addAll(response.getVideoList());
+        if (response.getEducationList() != null && response.getEducationList().size() > 0) {
+            mList.addAll(response.getEducationList());
         } else {
             SupportUtil.showNoData(llNoData, View.VISIBLE);
         }

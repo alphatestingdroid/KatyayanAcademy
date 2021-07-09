@@ -36,7 +36,7 @@ public class LiveClassActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_class);
-        setUpToolBar("Live Class");
+//        setUpToolBar("Live Class");
         initUi();
     }
 
@@ -49,7 +49,7 @@ public class LiveClassActivity extends BaseActivity {
     private void fetchDataFromServer() {
         active = true;
         if (getExtraProperty() != null) {
-            appPresenter.getLiveClass(getExtraProperty().getCourseId(), getExtraProperty().getSubCourseId());
+            appPresenter.getDynamicData(getExtraProperty());
         }
     }
 
@@ -76,8 +76,8 @@ public class LiveClassActivity extends BaseActivity {
     public void onUpdateUI(PresenterModel response) {
         SupportUtil.showNoData(llNoData, View.GONE);
         llNoData.setVisibility(View.GONE);
-        if (response.getVideoList() != null && response.getVideoList().size() > 0) {
-            mVideoModel = response.getVideoList().get(0);
+        if (response.getEducationList() != null && response.getEducationList().size() > 0) {
+            mVideoModel = response.getEducationList().get(0);
             loadData();
             if (menuRefresh != null) {
                 menuRefresh.setVisible(false);
