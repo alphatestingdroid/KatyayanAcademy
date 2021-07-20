@@ -15,6 +15,7 @@ public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Se
     private String chapterId;
     private String videoId;
     private String apiKey;
+    private boolean isLiveClass;
     private EducationModel educationModel;
 
 
@@ -72,6 +73,14 @@ public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Se
 
     public void setChapterId(String chapterId) {
         this.chapterId = chapterId;
+    }
+
+    public boolean isLiveClass() {
+        return isLiveClass;
+    }
+
+    public void setLiveClass(boolean liveClass) {
+        isLiveClass = liveClass;
     }
 
     @NonNull

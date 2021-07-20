@@ -52,6 +52,9 @@ public class Profile implements Serializable {
     @SerializedName("father_name")
     @Expose
     private String fatherName;
+    @SerializedName("mother_name")
+    @Expose
+    private String motherName;
     @SerializedName("student_photo")
     @Expose
     private String student_photo;
@@ -237,5 +240,13 @@ public class Profile implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getMotherName() {
+        return motherName;
+    }
+
+    public void setMotherName(String motherName) {
+        this.motherName = motherName;
     }
 }

@@ -77,12 +77,13 @@ public class LoginUtil extends BaseUtil {
     }
 
     public static void loadUserImage(String photoUrl, ImageView ivProfilePic) {
-        loadUserImage(photoUrl, ivProfilePic, R.drawable.ic_user_profile);
+        loadUserImage(photoUrl, ivProfilePic, R.drawable.ic_logo);
     }
     public static void loadUserImage(String photoUrl, ImageView ivProfilePic, int res) {
         if (!TextUtils.isEmpty(photoUrl)) {
             if (photoUrl.startsWith("http://") || photoUrl.startsWith("https://") || photoUrl.startsWith("file://")) {
-                LoginSDK.getInstance().getPicasso().load(photoUrl).resize(240, 240).centerCrop().placeholder(res).transform(new CircleTransform()).into(ivProfilePic);
+                LoginSDK.getInstance().getPicasso().load(photoUrl).resize(240, 240).centerCrop()
+                        .placeholder(res).transform(new CircleTransform()).into(ivProfilePic);
             }
         } else {
             ivProfilePic.setImageResource(res);

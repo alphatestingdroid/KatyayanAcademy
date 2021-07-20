@@ -74,9 +74,10 @@ public class YTUtility {
         }
     }
 
-    public static void playVideo(Context context, EducationModel item) {
+    public static void playVideo(Context context, EducationModel item, boolean isLiveClass) {
         ExtraProperty extraProperty = new ExtraProperty();
         extraProperty.setVideoId(getVideoIdFromUrl(item.getLectureVideo()));
+        extraProperty.setLiveClass(isLiveClass);
         extraProperty.setEducationModel(item);
         try {
             context.startActivity(new Intent(context, YTPlayerActivity.class)

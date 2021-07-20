@@ -22,7 +22,7 @@ import java.util.TimeZone;
 
 public class DatePickerDialog {
 
-    private static final String DEFAULT_DATE_FORMAT = "yyyy-MMM-dd";
+    private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
     private DateSelectListener mListener;
     private int day, month, year;
     private Boolean minDate, maxDate;
@@ -138,10 +138,10 @@ public class DatePickerDialog {
         return cal.getTime();
     }
 
-    public static String getDOBFormat(String cDate) {
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+    public static String getViewFormat(String cDate) {
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yy", Locale.US);
         try {
-            Date date = new SimpleDateFormat("yyyy-MMM-dd", Locale.US).parse(cDate);
+            Date date = new SimpleDateFormat(DEFAULT_DATE_FORMAT, Locale.US).parse(cDate);
             return date!=null ? outputFormat.format(date) : "0";
         } catch (ParseException e) {
             e.printStackTrace();

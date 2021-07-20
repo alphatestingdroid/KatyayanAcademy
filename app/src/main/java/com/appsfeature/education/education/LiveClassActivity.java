@@ -63,7 +63,7 @@ public class LiveClassActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (isActiveLiveClass && mVideoModel != null) {
-                    YTUtility.playVideo(LiveClassActivity.this, mVideoModel);
+                    YTUtility.playVideo(LiveClassActivity.this, mVideoModel, true);
                 } else {
                     SupportUtil.showToast(LiveClassActivity.this, "Class was not live, Please wait.");
                 }

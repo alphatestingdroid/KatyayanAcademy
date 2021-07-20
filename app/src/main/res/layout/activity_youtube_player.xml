@@ -12,8 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"/>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/layout_description"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -55,7 +55,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/progile_bg"
-                            android:src="@drawable/ic_user_profile"
+                            android:src="@drawable/ic_logo"
                             android:contentDescription="@string/app_name"
                             android:scaleType="centerCrop" />
 

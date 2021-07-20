@@ -51,7 +51,7 @@ public class VideoLectureActivity extends BaseActivity {
         adapter = new VideoLectureAdapter(this, mList, new Response.OnClickListener<EducationModel>() {
             @Override
             public void onItemClicked(View view, EducationModel item) {
-                YTUtility.playVideo(VideoLectureActivity.this, item);
+                YTUtility.playVideo(VideoLectureActivity.this, item, false);
             }
         });
         rvList.setAdapter(adapter);

@@ -43,7 +43,7 @@ import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private EditText etAdmissionNo, etClassSelected, etDisplayName, etEmail, etMobile, etFatherName, etFatherMobile, etDOB,
+    private EditText etAdmissionNo, etClassSelected, etDisplayName, etEmail, etMobile, etFatherName, etFatherMobile, etMotherName, etDOB,
             etGender, etAddress, etState, etCity, etZip, etCountry;
     private List<String> mGenderList;
     private ProgressButton btnAction;
@@ -51,6 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String imagePath;
     private boolean isFinishWhenCompleteUpdate = false;
     private TextView appVersion;
+    private String mDOB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +83,9 @@ public class ProfileActivity extends AppCompatActivity {
         etMobile.setText(profile.getMobile());
         etFatherName.setText(profile.getFatherName());
         etFatherMobile.setText(profile.getFatherMobile());
-        etDOB.setText(profile.getDateOfBirth());
+        etMotherName.setText(profile.getMotherName());
+        this.mDOB = profile.getDateOfBirth();
+        etDOB.setText(DatePickerDialog.getViewFormat(profile.getDateOfBirth()));
         etGender.setText(profile.getGender());
         etAddress.setText(profile.getAddress());
         etState.setText(profile.getState());
@@ -93,17 +96,15 @@ public class ProfileActivity extends AppCompatActivity {
 
         appVersion.setText("App Version : " + LoginSDK.getInstance().getVersionName());
 
-        disableFields(etAdmissionNo, etClassSelected, etDisplayName, etEmail, etMobile, etFatherName, etFatherMobile, etDOB,
-                etGender, etAddress, etState, etCity, etZip, etCountry);
-        btnAction.setVisibility(View.GONE);
+        updateEditFields(false, etAdmissionNo, etClassSelected, etDisplayName, etMobile, etCountry);
     }
 
-    private void disableFields(EditText... editTexts) {
+    private void updateEditFields(boolean isEditable, EditText... editTexts) {
         for (EditText editText : editTexts){
-            editText.setEnabled(false);
-            editText.setClickable(false);
-            editText.setFocusable(false);
-            editText.setFocusableInTouchMode(false);
+            editText.setEnabled(isEditable);
+            editText.setClickable(isEditable);
+            editText.setFocusable(isEditable);
+            editText.setFocusableInTouchMode(isEditable);
         }
     }
 
@@ -119,6 +120,7 @@ public class ProfileActivity extends AppCompatActivity {
         etMobile = findViewById(R.id.et_customer_field_3);
         etFatherName = findViewById(R.id.et_customer_field_4);
         etFatherMobile = findViewById(R.id.et_customer_field_5);
+        etMotherName = findViewById(R.id.et_customer_field_5_1);
         etGender = findViewById(R.id.et_customer_field_7);
         etDOB = findViewById(R.id.et_customer_field_8);
         etAddress = findViewById(R.id.et_customer_field_9);
@@ -157,7 +159,8 @@ public class ProfileActivity extends AppCompatActivity {
                 DatePickerDialog.newInstance(ProfileActivity.this, false, new DatePickerDialog.DateSelectListener() {
                     @Override
                     public void onSelectDateClick(Date date, String yyyyMMdd) {
-                        String dob = DatePickerDialog.getDOBFormat(yyyyMMdd);
+                        mDOB = yyyyMMdd;
+                        String dob = DatePickerDialog.getViewFormat(yyyyMMdd);
                         etDOB.setText(dob);
                     }
                 }).show();
@@ -171,58 +174,59 @@ public class ProfileActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         if (!FieldValidation.isEmpty(v.getContext(), etDisplayName)) {
                             return;
-                        } else if (!FieldValidation.isEmpty(v.getContext(), etFatherName)) {
-                            return;
-                        }else if (!FieldValidation.isEmpty(v.getContext(), etFatherMobile)) {
-                            return;
-                        }else if (!FieldValidation.isEmpty(v.getContext(), etDOB)) {
-                            return;
-                        }else if (!FieldValidation.isEmpty(v.getContext(), etGender)) {
-                            return;
-                        }else if (!FieldValidation.isEmpty(v.getContext(), etAddress)) {
-                            return;
-                        }else if (!FieldValidation.isEmpty(v.getContext(), etState)) {
-                            return;
-                        }else if (!FieldValidation.isEmpty(v.getContext(), etCity)) {
-                            return;
-                        }else if (!FieldValidation.isEmpty(v.getContext(), etZip)) {
-                            return;
-                        }else if (!FieldValidation.isEmpty(v.getContext(), etCountry)) {
+                        } else if (!FieldValidation.isEmpty(v.getContext(), etMobile)) {
                             return;
                         }
+//                        else if (!FieldValidation.isEmpty(v.getContext(), etFatherMobile)) {
+//                            return;
+//                        }else if (!FieldValidation.isEmpty(v.getContext(), etDOB)) {
+//                            return;
+//                        }else if (!FieldValidation.isEmpty(v.getContext(), etGender)) {
+//                            return;
+//                        }else if (!FieldValidation.isEmpty(v.getContext(), etAddress)) {
+//                            return;
+//                        }else if (!FieldValidation.isEmpty(v.getContext(), etState)) {
+//                            return;
+//                        }else if (!FieldValidation.isEmpty(v.getContext(), etCity)) {
+//                            return;
+//                        }else if (!FieldValidation.isEmpty(v.getContext(), etZip)) {
+//                            return;
+//                        }else if (!FieldValidation.isEmpty(v.getContext(), etCountry)) {
+//                            return;
+//                        }
                         LoginUtil.hideKeybord(ProfileActivity.this);
                         submitTask();
                     }
                 });
 
-        ivProfilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CropImage.startPickImageActivity(ProfileActivity.this);
-            }
-        });
+//        ivProfilePic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                CropImage.startPickImageActivity(ProfileActivity.this);
+//            }
+//        });
     }
 
 
     private void submitTask() {
-        String patientId = LoginSDK.getInstance().getUserId();
+        String userId = LoginSDK.getInstance().getUserId();
         String name = etDisplayName.getText().toString();
-        String email = etEmail.getText().toString();
         String mobile = etMobile.getText().toString();
-        String firstName = etFatherName.getText().toString();
-        String lastName = etFatherMobile.getText().toString();
-        String dob = etDOB.getText().toString();
+        String fatherName = etFatherName.getText().toString();
+        String fatherMobile = etFatherMobile.getText().toString();
+        String motherName = etMotherName.getText().toString();
+        String dob = mDOB;
         String gender = etGender.getText().toString();
         String address = etAddress.getText().toString();
-        String state = etState.getText().toString();
+//        String state = etState.getText().toString();
         String city = etCity.getText().toString();
         String zip = etZip.getText().toString();
         String country = etCountry.getText().toString();
         String userImage = LoginSDK.getInstance().getUserImage();
         String profilePictureOld = LoginUtil.getFileNameFromUrl(userImage);
 
-        LoginNetwork.getInstance(this).patientProfileUpdate(patientId, imagePath, name, firstName, lastName, dob
-                , gender, address, city, state, zip, country, email, profilePictureOld, new LoginListener<Profile>() {
+        LoginNetwork.getInstance(this).updateUserProfile(name, mobile, fatherName, fatherMobile, motherName
+                , dob, gender, address, city, zip, new LoginListener<Profile>() {
             @Override
             public void onPreExecute() {
                 btnAction.startProgress();

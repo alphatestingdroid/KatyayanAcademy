@@ -18,4 +18,5 @@ public interface NetworkApiEndPoint {
 
     String MOBILE_LOGIN_USER = "login_ap";
     String MOBILE_SIGN_UP = "saveUserData";
+    String EDIT_PROFILE_DATA = "editProfileData";
 }

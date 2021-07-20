@@ -1,10 +1,12 @@
 package com.appsfeature.education.player;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,9 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
     private EducationModel mVideoModel;
     private String mTitle = "Player";
     private TextView tvLectureName, tvLectureSubject, tvLectureDate, tvLectureDiscription;
+    private WebView webView;
+    private boolean isLiveClass = false;
+    private View layoutDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,7 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
             if(extraProperty != null && extraProperty.getVideoId() != null){
                 mVideoId = extraProperty.getVideoId();
                 mVideoModel = extraProperty.getEducationModel();
+                isLiveClass = extraProperty.isLiveClass();
                 if(mVideoModel != null && !TextUtils.isEmpty(mVideoModel.getLectureName())){
                     mTitle = mVideoModel.getLectureName();
                     loadView();
@@ -69,6 +75,14 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
         tvLectureSubject.setText(mVideoModel.getSubjectName());
         tvLectureDate.setText(SupportUtil.getDateFormatted(mVideoModel.getLiveClassDate(), mVideoModel.getLiveClassTime()));
         tvLectureDiscription.setText(mVideoModel.getLectureDescription());
+        applySettings(webView);
+        if(isLiveClass){
+            webView.setVisibility(View.VISIBLE);
+            layoutDescription.setVisibility(View.GONE);
+        }else {
+            webView.setVisibility(View.GONE);
+            layoutDescription.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initView() {
@@ -76,6 +90,22 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
         tvLectureSubject = findViewById(R.id.tv_lecture_subject);
         tvLectureDate = findViewById(R.id.tv_lecture_date);
         tvLectureDiscription = findViewById(R.id.tv_lecture_description);
+        layoutDescription = findViewById(R.id.layout_description);
+        webView = findViewById(R.id.webView);
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private void applySettings(WebView webView) {
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setAllowFileAccess(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
+    }
+
+    public void loadChatWindow(String videoId){
+        if (webView != null && isLiveClass) {
+            webView.loadUrl(AppConstant.URL_LIVE_CLASS_CHAT + videoId);
+        }
     }
 
     private void loadVideo(String apiKey) {
@@ -115,6 +145,8 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
                 mOrientationLandScape = isFullScreen;
             }
         });
+
+        loadChatWindow(mVideoId);
     }
 
 

@@ -234,26 +234,70 @@ public class LoginNetwork extends BaseNetworkManager {
                 });
     }
 
-    public void patientProfileUpdate(String patient_id, String imagePath, String profile_name, String first_name
-            , String last_name, String date_of_birth, String gender
-            , String address, String city, String state, String pincode, String country
-            , String email, String profile_picture_old, final LoginListener<Profile> callback) {
+    public void updateUserProfile(String name, String mobile, String fatherName
+            , String fatherMobile, String motherName, String dob, String gender, String address, String city
+            , String pincode, LoginListener<Profile> callback) {
+        callback.onPreExecute();
+        Map<String, String> map = new HashMap<>();
+        map.put("course_id", LoginSDK.getInstance().getCourseId() + "");
+        map.put("student_mobile", mobile + "");
+        map.put("student_name", name + "");
+        map.put("father_name", fatherName + "");
+        map.put("father_mobile", fatherMobile + "");
+        map.put("mother_name", motherName + "");
+        map.put("student_dob", dob + "");
+        map.put("gender", gender + "");
+        map.put("student_address1", address + "");
+        map.put("student_city", city + "");
+        map.put("pin_code", pincode + "");
+//        map.put("country", country + "");
+
+        LoginSDK.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_POST_FORM, ConfigConstant.HOST_LOGIN
+                , NetworkApiEndPoint.EDIT_PROFILE_DATA
+                , map, new ConfigManager.OnNetworkCall() {
+                    @Override
+                    public void onComplete(boolean status, String data) {
+                        if (status && !TextUtils.isEmpty(data)) {
+                            parseConfigData(data, new TypeToken<List<Profile>>() {
+                            }.getType(), new ParserConfigDataSimple<List<Profile>>() {
+                                @Override
+                                public void onSuccess(List<Profile> profile) {
+                                    if (profile != null && profile.size() > 0) {
+                                        callback.onSuccess(profile.get(profile.size() -1));
+                                    } else {
+                                        callback.onError(new Exception(LoginConstant.ERROR_PLEASE_TRY_LATER));
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Exception error) {
+                                    callback.onError(error);
+                                }
+                            });
+                        } else {
+                            callback.onError(new Exception(!TextUtils.isEmpty(data) ? data : LoginConstant.ERROR_PLEASE_TRY_LATER));
+                        }
+                    }
+                });
+    }
+
+    public void updateUserProfile2(String userId, String imagePath, String name, String mobile, String fatherName
+            , String fatherMobile, String motherName, String dob, String gender, String address, String city
+            , String pincode, String country, String profilePictureOld, LoginListener<Profile> callback) {
         callback.onPreExecute();
         boolean isMobile = LoginSDK.getInstance().getLoginType() == LoginType.TYPE_MOBILE;
         Map<String, String> map = new HashMap<>();
-        map.put("patient_id", patient_id + "");
-        map.put("profile_name", profile_name + "");
-        map.put("first_name", first_name + "");
-        map.put("last_name", last_name + "");
-        map.put("date_of_birth", date_of_birth + "");
+        map.put("student_mobile", mobile + "");
+        map.put("student_name", name + "");
+        map.put("father_name", fatherName + "");
+        map.put("father_mobile", fatherMobile + "");
+        map.put("mother_name", motherName + "");
+        map.put("student_dob", dob + "");
         map.put("gender", gender + "");
-        map.put("address", address + "");
-        map.put("city", city + "");
-        map.put("state", state + "");
-        map.put("pincode", pincode + "");
-        map.put("country", country + "");
-        map.put("email", email + "");
-        map.put("profile_picture_old", profile_picture_old + "");
+        map.put("student_address1", address + "");
+        map.put("student_city", city + "");
+        map.put("pin_code", pincode + "");
+//        map.put("country", country + "");
 
         MultipartBody.Part fileToUpload = null;
         if (!TextUtils.isEmpty(imagePath)) {

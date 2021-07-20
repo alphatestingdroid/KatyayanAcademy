@@ -123,7 +123,7 @@ public class MobileSignUp extends BaseFragment {
                 DatePickerDialog.newInstance(activity, false, new DatePickerDialog.DateSelectListener() {
                     @Override
                     public void onSelectDateClick(Date date, String yyyyMMdd) {
-                        String dob = DatePickerDialog.getDOBFormat(yyyyMMdd);
+                        String dob = DatePickerDialog.getViewFormat(yyyyMMdd);
                         etDOB.setText(dob);
                     }
                 }).show();

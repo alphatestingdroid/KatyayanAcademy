@@ -14,4 +14,5 @@ public interface AppConstant {
     String RATING_TOAST_SUBMIT_MESSAGE = "Thanks for your support.";
 
     String URL_CLASS_SCHEDULE = "https://katyayanacademy.com/erp/index.php/student/liveschedule";
+    String URL_LIVE_CLASS_CHAT = "https://katyayanacademy.com/erp/index.php/student/chat/";
 }
