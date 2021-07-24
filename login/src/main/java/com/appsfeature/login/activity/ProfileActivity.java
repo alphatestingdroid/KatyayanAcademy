@@ -45,7 +45,7 @@ import java.util.List;
 public class ProfileActivity extends AppCompatActivity {
 
     private EditText etAdmissionNo, etClassSelected, etDisplayName, etEmail, etMobile, etFatherName, etFatherMobile, etMotherName, etDOB,
-            etGender, etAddress, etState, etCity, etZip, etCountry;
+            etGender, etAddress, etState, etCity, etCountry;
     private List<String> mGenderList;
     private ProgressButton btnAction;
     private ImageView ivProfilePic;
@@ -91,7 +91,6 @@ public class ProfileActivity extends AppCompatActivity {
         etAddress.setText(profile.getAddress());
         etState.setText(profile.getState());
         etCity.setText(profile.getCity());
-        etZip.setText(profile.getPinCode());
 
         setImage(profile.getProfilePicture());
 
@@ -127,7 +126,6 @@ public class ProfileActivity extends AppCompatActivity {
         etAddress = findViewById(R.id.et_customer_field_9);
         etState = findViewById(R.id.et_customer_field_10);
         etCity = findViewById(R.id.et_customer_field_11);
-        etZip = findViewById(R.id.et_customer_field_12);
         etCountry = findViewById(R.id.et_customer_field_13);
         ivProfilePic = findViewById(R.id.ivProfilePic);
         appVersion = findViewById(R.id.app_version);
@@ -221,13 +219,12 @@ public class ProfileActivity extends AppCompatActivity {
         String address = etAddress.getText().toString();
 //        String state = etState.getText().toString();
         String city = etCity.getText().toString();
-        String zip = etZip.getText().toString();
         String country = etCountry.getText().toString();
         String userImage = LoginSDK.getInstance().getUserImage();
         String profilePictureOld = LoginUtil.getFileNameFromUrl(userImage);
 
         LoginNetwork.getInstance(this).updateUserProfile(name, mobile, fatherName, fatherMobile, motherName
-                , dob, gender, address, city, zip, new LoginListener<Profile>() {
+                , dob, gender, address, city, new LoginListener<Profile>() {
             @Override
             public void onPreExecute() {
                 btnAction.startProgress();

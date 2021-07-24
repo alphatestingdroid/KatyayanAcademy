@@ -194,14 +194,13 @@ public class LoginNetwork extends BaseNetworkManager {
                 });
     }
 
-    public void signUp(String name, String mobile, String dob, String mGender, String pinCode, int mCourseId, int mSubCourseId, String collegeCode, LoginListener<Profile> callback) {
+    public void signUp(String name, String mobile, String dob, String mGender, int mCourseId, int mSubCourseId, String collegeCode, LoginListener<Profile> callback) {
         callback.onPreExecute();
         Map<String, String> map = new HashMap<>();
         map.put("student_name", name + "");
         map.put("student_mobile", mobile + "");
         map.put("student_dob", dob + "");
         map.put("student_gender", mGender + "");
-        map.put("pin_code", pinCode + "");
         map.put("course_id", mCourseId + "");
         map.put("sub_course_id", mSubCourseId + "");
         map.put("college_code", collegeCode + "");
@@ -235,8 +234,7 @@ public class LoginNetwork extends BaseNetworkManager {
     }
 
     public void updateUserProfile(String name, String mobile, String fatherName
-            , String fatherMobile, String motherName, String dob, String gender, String address, String city
-            , String pincode, LoginListener<Profile> callback) {
+            , String fatherMobile, String motherName, String dob, String gender, String address, String city, LoginListener<Profile> callback) {
         callback.onPreExecute();
         Map<String, String> map = new HashMap<>();
         map.put("course_id", LoginSDK.getInstance().getCourseId() + "");
@@ -250,7 +248,7 @@ public class LoginNetwork extends BaseNetworkManager {
         map.put("student_gender", gender + "");
         map.put("student_address1", address + "");
         map.put("student_city", city + "");
-        map.put("pin_code", pincode + "");
+        map.put("pin_code", "");
 //        map.put("country", country + "");
 
         LoginSDK.getInstance().getConfigManager().getData(ConfigConstant.CALL_TYPE_POST_FORM, ConfigConstant.HOST_LOGIN

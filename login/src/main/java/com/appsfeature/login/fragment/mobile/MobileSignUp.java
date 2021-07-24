@@ -38,7 +38,7 @@ import java.util.Date;
  */
 public class MobileSignUp extends BaseFragment {
 
-    private EditText etName, etMobile, etDOB, etPinCode, etCollegeCode;
+    private EditText etName, etMobile, etDOB, etCollegeCode;
     private LinearLayout llTearms, llLogin;
 
 
@@ -80,7 +80,6 @@ public class MobileSignUp extends BaseFragment {
         etName = (EditText) v.findViewById(R.id.et_company_name);
         etMobile = (EditText) v.findViewById(R.id.et_company_mobile);
         etDOB = (EditText) v.findViewById(R.id.et_company_dob);
-        etPinCode = (EditText) v.findViewById(R.id.et_company_pin_code);
         etCollegeCode = (EditText) v.findViewById(R.id.et_company_college_code);
 
         spGender = (Spinner) v.findViewById(R.id.sp_company_gender);
@@ -149,8 +148,6 @@ public class MobileSignUp extends BaseFragment {
                         } else if (mGender.equalsIgnoreCase("select gender")) {
                             LoginUtil.showToast(getContext(), "Please select gender");
                             return;
-                        } else if (!FieldValidation.isEmpty(getContext(), etPinCode)) {
-                            return;
                         } else if (mCourseId == 0) {
                             LoginUtil.showToast(getContext(), "Please select course");
                             return;
@@ -186,10 +183,9 @@ public class MobileSignUp extends BaseFragment {
         final String name = etName.getText().toString();
         final String mobile = etMobile.getText().toString();
         final String dob = mDOB;
-        final String pinCode = etPinCode.getText().toString();
         final String collegeCode = etCollegeCode.getText().toString();
         LoginNetwork.getInstance(getContext())
-                .signUp(name, mobile, dob, mGender, pinCode, mCourseId, mSubCourseId, collegeCode, new LoginListener<Profile>() {
+                .signUp(name, mobile, dob, mGender, mCourseId, mSubCourseId, collegeCode, new LoginListener<Profile>() {
                     @Override
                     public void onPreExecute() {
                         btnAction.startProgress();
