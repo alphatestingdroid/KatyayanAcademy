@@ -4,6 +4,7 @@ package com.appsfeature.login.fragment.mobile;
  * Created by Admin on 5/22/2017.
  */
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,7 +13,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import androidx.fragment.app.FragmentActivity;
+
 import com.appsfeature.login.R;
+import com.appsfeature.login.dialog.ErrorDialog;
 import com.appsfeature.login.fragment.BaseFragment;
 import com.appsfeature.login.model.Profile;
 import com.appsfeature.login.network.LoginListener;
@@ -30,6 +34,7 @@ public class MobileChangePassword extends BaseFragment {
     private Listener mListener;
     private ProgressButton btnAction;
     private boolean isForgetPass;
+    private Activity activity;
 
     public interface Listener {
         void onPasswordChangedSuccess();
@@ -44,10 +49,9 @@ public class MobileChangePassword extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.login_change_pass, container, false);
+        activity = getActivity();
         initToolBarTheme(getActivity(), v, "Change Password");
         InitUI(v);
         return v;
@@ -122,6 +126,7 @@ public class MobileChangePassword extends BaseFragment {
                         @Override
                         public void onError(Exception e) {
                             btnAction.revertProgress();
+                            ErrorDialog.newInstance(activity, e.getMessage()).show();
                         }
                     });
         }else {
@@ -145,7 +150,7 @@ public class MobileChangePassword extends BaseFragment {
 
                         @Override
                         public void onError(Exception e) {
-                            LoginUtil.showToast(getContext(), e.getMessage());
+                            ErrorDialog.newInstance(activity, e.getMessage()).show();
                             btnAction.revertProgress();
                         }
                     });

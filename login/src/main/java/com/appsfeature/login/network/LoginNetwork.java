@@ -240,13 +240,14 @@ public class LoginNetwork extends BaseNetworkManager {
         callback.onPreExecute();
         Map<String, String> map = new HashMap<>();
         map.put("course_id", LoginSDK.getInstance().getCourseId() + "");
+        map.put("admission_no", LoginSDK.getInstance().getAdmissionNo() + "");
         map.put("student_mobile", mobile + "");
         map.put("student_name", name + "");
         map.put("father_name", fatherName + "");
         map.put("father_mobile", fatherMobile + "");
         map.put("mother_name", motherName + "");
         map.put("student_dob", dob + "");
-        map.put("gender", gender + "");
+        map.put("student_gender", gender + "");
         map.put("student_address1", address + "");
         map.put("student_city", city + "");
         map.put("pin_code", pincode + "");

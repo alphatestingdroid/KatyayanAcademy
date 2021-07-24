@@ -1,5 +1,7 @@
 package com.appsfeature.login.util;
 
+import com.helper.util.BaseConstants;
+
 public class LoginConstant {
 
     public static final String OPEN_EDIT_PROFILE = "isOpenEditProfile";
@@ -8,6 +10,9 @@ public class LoginConstant {
 
     public static final String CATEGORY_PROPERTY = "category_property";
     public static final String EXTRA_PROPERTY = CATEGORY_PROPERTY;
+
+    public static final String SERVER_TIME_OUT_MSG = BaseConstants.Error.MSG_ERROR;
+    public static final String SERVER_TIME_OUT_TAG = "Alert!";
 
     public interface SharedPref {
         String IS_LOGIN_COMPLETE = "isLogComplete";

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.appsfeature.login.R;
+import com.appsfeature.login.dialog.ErrorDialog;
 import com.appsfeature.login.fragment.BaseFragment;
 import com.appsfeature.login.model.Profile;
 import com.appsfeature.login.network.LoginListener;
@@ -129,7 +130,9 @@ public class MobileOTPVerification extends BaseFragment {
                         @Override
                         public void onError(Exception e) {
                             btnAction.revertProgress();
-                            LoginUtil.showToast(getActivity(), e.getMessage());
+                            if (getActivity() != null) {
+                                ErrorDialog.newInstance(getActivity(), e.getMessage()).show();
+                            }
                         }
                     });
         } else {

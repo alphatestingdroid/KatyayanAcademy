@@ -19,6 +19,7 @@ import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.util.ClassUtil;
 import com.appsfeature.education.util.SupportUtil;
 import com.appsfeature.login.LoginSDK;
+import com.appsfeature.login.dialog.ErrorDialog;
 import com.helper.callback.Response;
 
 import java.util.ArrayList;
@@ -99,7 +100,7 @@ public class EducationListActivity extends BaseActivity implements Response.OnCl
 
     @Override
     public void onErrorOccurred(Exception e) {
-        SupportUtil.showToast(this, e.getMessage());
+        ErrorDialog.newInstance(this, e.getMessage()).show();
         if (mList != null && mList.size() < 1) {
             SupportUtil.showNoData(llNoData, View.VISIBLE);
         } else {

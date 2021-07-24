@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.appsfeature.login.LoginSDK;
 import com.appsfeature.login.R;
+import com.appsfeature.login.dialog.ErrorDialog;
 import com.appsfeature.login.fragment.BaseFragment;
 import com.appsfeature.login.model.Profile;
 import com.appsfeature.login.network.LoginListener;
@@ -66,8 +67,8 @@ public class MobileLogin extends BaseFragment {
         llForgot = v.findViewById(R.id.ll_forgot);
 
         if(LoginSDK.getInstance().isDebugMode()){
-            etUsername.setText("KA20001");
-            etPassword.setText("235319");
+            etUsername.setText("KA217182");
+            etPassword.setText("519737");
         }
 
         btnAction = ProgressButton.newInstance(getContext(), v)
@@ -130,7 +131,9 @@ public class MobileLogin extends BaseFragment {
                     @Override
                     public void onError(Exception e) {
                         btnAction.revertProgress();
-                        LoginUtil.showToast(getActivity(), e.getMessage());
+                        if (getActivity() != null) {
+                            ErrorDialog.newInstance(getActivity(), e.getMessage()).show();
+                        }
                     }
                 });
 

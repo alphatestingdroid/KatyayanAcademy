@@ -15,6 +15,7 @@ import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.entity.PresenterModel;
 import com.appsfeature.education.player.util.YTUtility;
 import com.appsfeature.education.util.SupportUtil;
+import com.appsfeature.login.dialog.ErrorDialog;
 import com.helper.callback.Response;
 
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class VideoLectureActivity extends BaseActivity {
 
     @Override
     public void onErrorOccurred(Exception e) {
-        SupportUtil.showToast(this, e.getMessage());
+        ErrorDialog.newInstance(this, e.getMessage()).show();
         if (mList != null && mList.size() < 1) {
             SupportUtil.showNoData(llNoData, View.VISIBLE);
         }else {

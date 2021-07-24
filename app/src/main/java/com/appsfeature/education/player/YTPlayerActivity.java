@@ -19,6 +19,7 @@ import com.appsfeature.education.player.util.YTUtility;
 import com.appsfeature.education.util.AppConstant;
 import com.appsfeature.education.util.Logger;
 import com.appsfeature.education.util.SupportUtil;
+import com.appsfeature.login.LoginSDK;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -104,7 +105,7 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
 
     public void loadChatWindow(String videoId){
         if (webView != null && isLiveClass) {
-            webView.loadUrl(AppConstant.URL_LIVE_CLASS_CHAT + videoId);
+            webView.loadUrl(AppConstant.URL_LIVE_CLASS_CHAT + videoId + "/" + LoginSDK.getInstance().getAdmissionNo());
         }
     }
 

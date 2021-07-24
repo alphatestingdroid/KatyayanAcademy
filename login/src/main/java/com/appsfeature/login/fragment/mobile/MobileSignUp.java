@@ -3,6 +3,7 @@ package com.appsfeature.login.fragment.mobile;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.appsfeature.login.R;
 import com.appsfeature.login.activity.ProfileActivity;
+import com.appsfeature.login.dialog.ErrorDialog;
 import com.appsfeature.login.fragment.BaseFragment;
 import com.appsfeature.login.model.Profile;
 import com.appsfeature.login.network.LoginListener;
@@ -46,6 +48,7 @@ public class MobileSignUp extends BaseFragment {
     private String mGender = "";
     private int mCourseId, mSubCourseId;
     private Activity activity;
+    private String mDOB;
 
     public interface Listener {
         void addLoginOption();
@@ -123,6 +126,7 @@ public class MobileSignUp extends BaseFragment {
                 DatePickerDialog.newInstance(activity, false, new DatePickerDialog.DateSelectListener() {
                     @Override
                     public void onSelectDateClick(Date date, String yyyyMMdd) {
+                        mDOB = yyyyMMdd;
                         String dob = DatePickerDialog.getViewFormat(yyyyMMdd);
                         etDOB.setText(dob);
                     }
@@ -139,7 +143,8 @@ public class MobileSignUp extends BaseFragment {
                             return;
                         } else if (!FieldValidation.isEmpty(getContext(), etMobile)) {
                             return;
-                        } else if (!FieldValidation.isEmpty(getContext(), etDOB)) {
+                        } else if (TextUtils.isEmpty(mDOB)) {
+                            LoginUtil.showToast(getContext(), "Please select DOB");
                             return;
                         } else if (mGender.equalsIgnoreCase("select gender")) {
                             LoginUtil.showToast(getContext(), "Please select gender");
@@ -180,7 +185,7 @@ public class MobileSignUp extends BaseFragment {
     private void executeTask() {
         final String name = etName.getText().toString();
         final String mobile = etMobile.getText().toString();
-        final String dob = etDOB.getText().toString();
+        final String dob = mDOB;
         final String pinCode = etPinCode.getText().toString();
         final String collegeCode = etCollegeCode.getText().toString();
         LoginNetwork.getInstance(getContext())
@@ -205,7 +210,9 @@ public class MobileSignUp extends BaseFragment {
                     @Override
                     public void onError(Exception e) {
                         btnAction.revertProgress();
-                        LoginUtil.showToast(getActivity(), e.getMessage());
+                        if (getActivity() != null) {
+                            ErrorDialog.newInstance(getActivity(), e.getMessage()).show();
+                        }
                     }
                 });
 //        LoginNetwork.getInstance(getContext())

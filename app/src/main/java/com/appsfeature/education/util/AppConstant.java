@@ -3,7 +3,7 @@ package com.appsfeature.education.util;
 import com.config.config.ConfigConstant;
 
 public interface AppConstant {
-    String BASE_URL = "https://bharatsamachartv.in/katyayan/v2/webapi/";
+    String BASE_URL = "https://bharatsamachartv.in/katyayan/v3/webapi/";
 
     String DEVELOPER_NAME = "";
     String CATEGORY_PROPERTY = "category_property";
