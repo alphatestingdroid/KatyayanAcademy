@@ -2,6 +2,7 @@ package com.appsfeature.education.adapter;
 
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,13 @@ public class VideoLectureAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         myViewHolder.tvName.setText(mList.get(i).getLectureName());
 //
         myViewHolder.tvDepartment.setText(mList.get(i).getSubjectName());
-        myViewHolder.tvLocation.setText(SupportUtil.getDateFormatted(mList.get(i).getLiveClassDate(), mList.get(i).getLiveClassTime()));
+        String dateTime = SupportUtil.getDateFormatted(mList.get(i).getLiveClassDate(), mList.get(i).getLiveClassTime());
+        if(!TextUtils.isEmpty(dateTime)) {
+            myViewHolder.tvDate.setText(dateTime);
+            myViewHolder.tvDate.setVisibility(View.VISIBLE);
+        }else {
+            myViewHolder.tvDate.setVisibility(View.GONE);
+        }
 
 //        if(mList.get(i).getProfilePicture() != null) {
 //            Picasso.get().load(mList.get(i).getProfilePicture())
@@ -67,14 +74,14 @@ public class VideoLectureAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         private final ImageView ivPic;
         private TextView tvName;
         private TextView tvDepartment;
-        private TextView tvLocation;
+        private TextView tvDate;
 
         private ViewHolder(View v) {
             super(v);
             ivPic = v.findViewById(R.id.pic);
             tvName = v.findViewById(R.id.name);
             tvDepartment = v.findViewById(R.id.department);
-            tvLocation = v.findViewById(R.id.location);
+            tvDate = v.findViewById(R.id.location);
 
             itemView.setOnClickListener(this);
         }

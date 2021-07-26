@@ -9,4 +9,5 @@ public interface ApiEndPoint {
 
     String GET_LIVE_CLASS = "getLiveclass";
     String GET_OFFLINE_CLASS = "getOfflineclass";
+    String GET_OLD_CLASS = "getoldclass";
 }

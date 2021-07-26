@@ -72,7 +72,7 @@ public class SupportUtil extends BaseUtil {
             return date!=null ? outputFormat.format(date) : "0";
         } catch (ParseException e) {
             e.printStackTrace();
-            return "0";
+            return "";
         }
     }
 

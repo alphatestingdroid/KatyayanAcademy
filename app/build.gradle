@@ -17,8 +17,8 @@ android {
     productFlavors {
         katyayanacademy {
             applicationId "com.katyayanacademy.katyayanacademy"
-            versionCode 8
-            versionName "3.4"
+            versionCode 9
+            versionName "3.5"
         }
     }
     signingConfigs {
@@ -71,6 +71,7 @@ dependencies {
     implementation 'gun0912.ted:tedpermission:2.2.3'
 
     implementation 'org.bitbucket.droidhelios:firebase-config:1.2'
+    implementation 'com.google.android.play:core:1.10.0'
 
     implementation "com.google.firebase:firebase-crashlytics:$rootProject.ext.fb_crashlytics_version"
     implementation files('libs/YouTubeAndroidPlayerApi.jar')

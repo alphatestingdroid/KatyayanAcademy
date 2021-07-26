@@ -191,13 +191,13 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_menu_class_schedule"
+                            android:src="@drawable/ic_menu_study_material"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Class Schedule"
+                            android:text="Study Material"
                             android:gravity="center"
                             android:textSize="18sp"
                             android:layout_marginTop="8dp"/>
@@ -213,6 +213,7 @@
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         android:orientation="vertical"
                         android:gravity="center_horizontal|center_vertical">
 
@@ -286,16 +287,17 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_menu_study_material"
+                            android:src="@drawable/ic_menu_class_schedule"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Study Material"
+                            android:text="Class Schedule"
                             android:gravity="center"
                             android:textSize="18sp"
                             android:layout_marginTop="8dp"/>
+
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

@@ -29,7 +29,7 @@ import com.config.util.ConfigUtil;
 import com.google.android.material.navigation.NavigationView;
 import com.helper.util.BaseUtil;
 
-public class MainActivity extends BaseRemoteConfigActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseInAppUpdateActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
@@ -89,23 +89,18 @@ public class MainActivity extends BaseRemoteConfigActivity implements View.OnCli
 //            return;
 //        }
         if (v.getId() == R.id.option_1) {
-            ClassUtil.openLiveClassActivity(MainActivity.this);
-            return;
+            ClassUtil.openLiveClassActivity(this);
         } else if (v.getId() == R.id.option_2) {
-            ClassUtil.openVideoLectureActivity(MainActivity.this);
-            return;
+            ClassUtil.openVideoLectureActivity(this, "Video Lecture", false);
         } else if (v.getId() == R.id.option_3) {
-            BrowserSdk.open(this, "Class Schedule", AppConstant.URL_CLASS_SCHEDULE);
-            return;
+            ClassUtil.openVideoLectureActivity(this, "Study Material", true);
         } else if (v.getId() == R.id.option_4) {
-
+            SupportUtil.showToast(this, "Update Later");
         } else if (v.getId() == R.id.option_5) {
             openProfile();
-            return;
         } else if (v.getId() == R.id.option_6) {
-
+            BrowserSdk.open(this, "Class Schedule", AppConstant.URL_CLASS_SCHEDULE);
         }
-        SupportUtil.showToast(this, "Update Later");
     }
 
     @Override

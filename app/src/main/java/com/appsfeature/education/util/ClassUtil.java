@@ -24,12 +24,13 @@ public class ClassUtil {
         openActivity(activity, extraProperty);
     }
 
-    public static void openVideoLectureActivity(Activity activity) {
+    public static void openVideoLectureActivity(Activity activity, String title, boolean isOldVideos) {
         ExtraProperty extraProperty = new ExtraProperty();
-        extraProperty.setTitle("Video Lecture");
+        extraProperty.setTitle(title);
         extraProperty.setCourseId(LoginSDK.getInstance().getCourseId());
         extraProperty.setSubCourseId(LoginSDK.getInstance().getSubCourseId());
         extraProperty.setItemType(ItemType.CATEGORY_TYPE_SUBJECT);
+        extraProperty.setOldVideos(isOldVideos);
         openActivity(activity, extraProperty);
     }
 
@@ -48,6 +49,7 @@ public class ClassUtil {
         switch (itemType) {
             case ItemType.CATEGORY_TYPE_LIVE_CLASS:
                 return LiveClassActivity.class;
+            case ItemType.CATEGORY_TYPE_OLD_VIDEOS:
             case ItemType.CATEGORY_TYPE_OFFLINE_VIDEOS:
                 return VideoLectureActivity.class;
             case ItemType.CATEGORY_TYPE_SUBJECT:

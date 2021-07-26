@@ -78,7 +78,11 @@ public class EducationListActivity extends BaseActivity implements Response.OnCl
         }else if(property.getItemType() == ItemType.CATEGORY_TYPE_CHAPTER){
             property.setChapterId(item.getId());
             property.setTitle(item.getChapterName());
-            property.setItemType(ItemType.CATEGORY_TYPE_OFFLINE_VIDEOS);
+            if(property.isOldVideos()){
+                property.setItemType(ItemType.CATEGORY_TYPE_OLD_VIDEOS);
+            }else {
+                property.setItemType(ItemType.CATEGORY_TYPE_OFFLINE_VIDEOS);
+            }
         }else if(item.getCategoryType() > 0) {
             property.setItemType(item.getCategoryType());
         }
