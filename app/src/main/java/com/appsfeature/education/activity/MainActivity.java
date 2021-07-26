@@ -29,7 +29,7 @@ import com.config.util.ConfigUtil;
 import com.google.android.material.navigation.NavigationView;
 import com.helper.util.BaseUtil;
 
-public class MainActivity extends BaseInAppUpdateActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseInAppUpdateFlexibleActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
@@ -107,10 +107,6 @@ public class MainActivity extends BaseInAppUpdateActivity implements View.OnClic
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         item.setChecked(true);
         drawerLayout.closeDrawers();
-//        if(RemoteConfig.isAppExpired(this)){
-//            SupportUtil.showToast(this, RemoteConfig.getAppExpiredErrorMessage(this));
-//            return true;
-//        }
         switch (item.getItemId()) {
             case R.id.nav_share:
                 ConfigUtil.share(this, "");
