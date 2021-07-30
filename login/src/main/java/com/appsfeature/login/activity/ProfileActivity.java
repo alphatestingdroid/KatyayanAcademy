@@ -22,7 +22,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.appsfeature.login.LoginSDK;
 import com.appsfeature.login.R;
 import com.appsfeature.login.dialog.CommonSelector;
-import com.appsfeature.login.dialog.ErrorDialog;
 import com.appsfeature.login.dialog.StateSelector;
 import com.appsfeature.login.model.Profile;
 import com.appsfeature.login.model.StateModel;
@@ -255,7 +254,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onError(Exception e) {
                 btnAction.revertProgress();
-                ErrorDialog.newInstance(ProfileActivity.this, e.getMessage()).show();
+                LoginUtil.showToast(ProfileActivity.this, e.getMessage());
             }
         });
     }

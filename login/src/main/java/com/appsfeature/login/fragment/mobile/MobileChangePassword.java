@@ -13,10 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import androidx.fragment.app.FragmentActivity;
-
 import com.appsfeature.login.R;
-import com.appsfeature.login.dialog.ErrorDialog;
 import com.appsfeature.login.fragment.BaseFragment;
 import com.appsfeature.login.model.Profile;
 import com.appsfeature.login.network.LoginListener;
@@ -126,7 +123,7 @@ public class MobileChangePassword extends BaseFragment {
                         @Override
                         public void onError(Exception e) {
                             btnAction.revertProgress();
-                            ErrorDialog.newInstance(activity, e.getMessage()).show();
+                            LoginUtil.showToast(activity, e.getMessage());
                         }
                     });
         }else {
@@ -150,7 +147,7 @@ public class MobileChangePassword extends BaseFragment {
 
                         @Override
                         public void onError(Exception e) {
-                            ErrorDialog.newInstance(activity, e.getMessage()).show();
+                            LoginUtil.showToast(activity, e.getMessage());
                             btnAction.revertProgress();
                         }
                     });

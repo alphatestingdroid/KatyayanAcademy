@@ -11,11 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.appsfeature.education.R;
 import com.appsfeature.education.activity.BaseActivity;
 import com.appsfeature.education.adapter.VideoLectureAdapter;
-import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.entity.PresenterModel;
+import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.player.util.YTUtility;
 import com.appsfeature.education.util.SupportUtil;
-import com.appsfeature.login.dialog.ErrorDialog;
 import com.helper.callback.Response;
 import com.helper.util.BaseConstants;
 

@@ -10,17 +10,13 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.appsfeature.education.AppApplication;
 import com.appsfeature.education.R;
 import com.appsfeature.education.activity.BaseActivity;
 import com.appsfeature.education.adapter.FamilyMemberManagerAdapter;
-import com.appsfeature.education.listeners.AppCallback;
 import com.appsfeature.education.entity.PresenterModel;
+import com.appsfeature.education.listeners.AppCallback;
 import com.appsfeature.education.patient.PatientModel;
-import com.appsfeature.education.util.ClassUtil;
 import com.appsfeature.education.util.SupportUtil;
-import com.appsfeature.login.dialog.ErrorDialog;
-import com.helper.callback.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +86,7 @@ public class FamilyMemberActivity extends BaseActivity {
 
     @Override
     public void onErrorOccurred(Exception e) {
-        ErrorDialog.newInstance(this, e.getMessage()).show();
+        SupportUtil.showToast(this, e.getMessage());
         if (mList != null && mList.size() < 1) {
             SupportUtil.showNoData(llNoData, View.VISIBLE);
         }else {

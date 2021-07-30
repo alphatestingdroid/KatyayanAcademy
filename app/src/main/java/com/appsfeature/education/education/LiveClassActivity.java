@@ -11,11 +11,10 @@ import android.widget.TextView;
 
 import com.appsfeature.education.R;
 import com.appsfeature.education.activity.BaseActivity;
-import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.entity.PresenterModel;
+import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.player.util.YTUtility;
 import com.appsfeature.education.util.SupportUtil;
-import com.appsfeature.login.dialog.ErrorDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -94,7 +93,6 @@ public class LiveClassActivity extends BaseActivity {
 
     @Override
     public void onErrorOccurred(Exception e) {
-        ErrorDialog.newInstance(this, e.getMessage()).show();
         onUpdateUI(new PresenterModel());
     }
 
