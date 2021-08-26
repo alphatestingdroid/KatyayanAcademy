@@ -54,12 +54,10 @@ public class ContentActivity extends BaseActivity {
         adapter = new ContentAdapter(this, getExtraProperty().getContentType(), mList, new Response.OnClickListener<EducationModel>() {
             @Override
             public void onItemClicked(View view, EducationModel item) {
-                if(SupportUtil.parseInt(item.getLectureType()) == ContentType.TYPE_VIDEO) {
-                    YTUtility.playVideo(ContentActivity.this, item, false);
-                }else if(SupportUtil.parseInt(item.getLectureType()) == ContentType.TYPE_PDF) {
+                if(SupportUtil.parseInt(item.getLectureType()) == ContentType.TYPE_PDF) {
                     AppApplication.getInstance().openPdf(ContentActivity.this, SupportUtil.parseInt(item.getId()), item.getLectureName(), item.getLectureNotes(), item.getSubjectName());
                 }else{
-                    SupportUtil.showToast(ContentActivity.this, BaseConstants.Error.MSG_ERROR);
+                    YTUtility.playVideo(ContentActivity.this, item, false);
                 }
             }
         });

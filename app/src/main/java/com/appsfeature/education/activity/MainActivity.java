@@ -89,7 +89,8 @@ public class MainActivity extends BaseInAppUpdateFlexibleActivity implements Vie
 //            return;
 //        }
         if (v.getId() == R.id.option_1) {
-            ClassUtil.openLiveClassActivity(this);
+            throw new RuntimeException("Test Crash"); // Force a crash
+//            ClassUtil.openLiveClassActivity(this);
         } else if (v.getId() == R.id.option_2) {
             ClassUtil.openCategoryActivity(this, ContentType.TYPE_VIDEO, "Video Lecture", false);
         } else if (v.getId() == R.id.option_3) {
