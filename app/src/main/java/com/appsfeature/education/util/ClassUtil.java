@@ -3,13 +3,11 @@ package com.appsfeature.education.util;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.appsfeature.education.education.EducationListActivity;
+import com.appsfeature.education.education.CategoryListActivity;
 import com.appsfeature.education.education.LiveClassActivity;
-import com.appsfeature.education.education.VideoLectureActivity;
+import com.appsfeature.education.education.ContentActivity;
 import com.appsfeature.education.entity.ExtraProperty;
 import com.appsfeature.education.listeners.ItemType;
-import com.appsfeature.education.listeners.ListItemType;
-import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.login.LoginSDK;
 
 public class ClassUtil {
@@ -24,12 +22,17 @@ public class ClassUtil {
         openActivity(activity, extraProperty);
     }
 
-    public static void openVideoLectureActivity(Activity activity, String title, boolean isOldVideos) {
+    public static void openCategoryActivity(Activity activity, int contentType, String title) {
+        openCategoryActivity(activity, contentType, title, false);
+    }
+
+    public static void openCategoryActivity(Activity activity, int contentType, String title, boolean isOldVideos) {
         ExtraProperty extraProperty = new ExtraProperty();
         extraProperty.setTitle(title);
         extraProperty.setCourseId(LoginSDK.getInstance().getCourseId());
         extraProperty.setSubCourseId(LoginSDK.getInstance().getSubCourseId());
         extraProperty.setItemType(ItemType.CATEGORY_TYPE_SUBJECT);
+        extraProperty.setContentType(contentType);
         extraProperty.setOldVideos(isOldVideos);
         openActivity(activity, extraProperty);
     }
@@ -51,11 +54,11 @@ public class ClassUtil {
                 return LiveClassActivity.class;
             case ItemType.CATEGORY_TYPE_OLD_VIDEOS:
             case ItemType.CATEGORY_TYPE_OFFLINE_VIDEOS:
-                return VideoLectureActivity.class;
+                return ContentActivity.class;
             case ItemType.CATEGORY_TYPE_SUBJECT:
-                return EducationListActivity.class;
+                return CategoryListActivity.class;
             case ItemType.CATEGORY_TYPE_CHAPTER:
-                return EducationListActivity.class;
+                return CategoryListActivity.class;
             default:
                 return null;
         }

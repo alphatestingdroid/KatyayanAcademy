@@ -160,7 +160,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Video Lecture"
+                            android:text="Previous Live Clases"
                             android:gravity="center"
                             android:textSize="18sp"
                             android:layout_marginTop="8dp"/>
@@ -191,13 +191,13 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_menu_study_material"
+                            android:src="@drawable/ic_menu_test_series"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Study Material"
+                            android:text="Video Lecture"
                             android:gravity="center"
                             android:textSize="18sp"
                             android:layout_marginTop="8dp"/>
@@ -213,7 +213,6 @@
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:visibility="gone"
                         android:orientation="vertical"
                         android:gravity="center_horizontal|center_vertical">
 
@@ -221,13 +220,13 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_menu_test_series"
+                            android:src="@drawable/ic_menu_study_material"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Test Series"
+                            android:text="Study Material"
                             android:gravity="center"
                             android:textSize="18sp"
                             android:layout_marginTop="8dp"/>

@@ -4,12 +4,11 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     flavorDimensions "default"
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 30
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -17,8 +16,8 @@ android {
     productFlavors {
         katyayanacademy {
             applicationId "com.katyayanacademy.katyayanacademy"
-            versionCode 9
-            versionName "3.5"
+            versionCode 10
+            versionName "3.6"
         }
     }
     signingConfigs {
@@ -60,6 +59,7 @@ dependencies {
 
     implementation "org.bitbucket.android-dennislabs:helper:$rootProject.ext.helper"
     implementation "org.bitbucket.droidhelios:api-config:$rootProject.ext.api_config"
+    implementation "org.bitbucket.droidhelios:pdf-viewer-simple:1.0-alpha01"
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation project(path: ':login')
@@ -78,5 +78,7 @@ dependencies {
 
     implementation 'com.github.appsfeature:browser:1.7'
 
+    implementation "androidx.room:room-runtime:$rootProject.ext.room_version"
+//    annotationProcessor "androidx.room:room-compiler:$rootProject.ext.room_version"
 }
 apply plugin: 'com.google.gms.google-services'

@@ -5,16 +5,9 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.appsfeature.education.AppApplication;
-import com.appsfeature.education.doctor.DoctorModel;
-import com.appsfeature.education.education.EducationListActivity;
-import com.appsfeature.education.education.LiveClassActivity;
-import com.appsfeature.education.education.VideoLectureActivity;
 import com.appsfeature.education.entity.ExtraProperty;
 import com.appsfeature.education.listeners.ItemType;
 import com.appsfeature.education.model.EducationModel;
-import com.appsfeature.education.entity.AppointmentModel;
-import com.appsfeature.education.entity.SlotModel;
-import com.appsfeature.education.patient.PatientModel;
 import com.appsfeature.education.util.AppConstant;
 import com.appsfeature.login.util.LoginConstant;
 import com.config.config.ConfigConstant;
@@ -22,7 +15,6 @@ import com.config.config.ConfigManager;
 import com.google.gson.reflect.TypeToken;
 import com.helper.callback.Response;
 import com.helper.network.BaseNetworkManager;
-import com.helper.util.BaseConstants;
 
 import java.util.HashMap;
 import java.util.List;
@@ -60,6 +52,7 @@ public class NetworkManager extends BaseNetworkManager {
             case ItemType.CATEGORY_TYPE_CHAPTER:
                 methodName = ApiEndPoint.GET_CHAPTER;
                 map.put("subject_id", extraProperty.getSubjectId() + "");
+                map.put("lecture_type", extraProperty.getContentType() + "");
                 break;
             case ItemType.CATEGORY_TYPE_OFFLINE_VIDEOS:
                 methodName = ApiEndPoint.GET_OFFLINE_CLASS;
@@ -70,6 +63,7 @@ public class NetworkManager extends BaseNetworkManager {
                 methodName = ApiEndPoint.GET_OLD_CLASS;
                 map.put("subject_id", extraProperty.getSubjectId() + "");
                 map.put("chapter_id", extraProperty.getChapterId() + "");
+                map.put("lecture_type", extraProperty.getContentType() + "");
                 break;
             default:
                 break;

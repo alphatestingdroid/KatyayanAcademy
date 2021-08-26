@@ -17,9 +17,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.appsfeature.education.AppApplication;
 import com.appsfeature.education.R;
+import com.appsfeature.education.listeners.ContentType;
 import com.appsfeature.education.util.AppConstant;
 import com.appsfeature.education.util.ClassUtil;
-import com.appsfeature.education.util.SupportUtil;
 import com.appsfeature.login.LoginSDK;
 import com.appsfeature.login.network.NetworkApiEndPoint;
 import com.appsfeature.login.util.LoginPrefUtil;
@@ -91,11 +91,11 @@ public class MainActivity extends BaseInAppUpdateFlexibleActivity implements Vie
         if (v.getId() == R.id.option_1) {
             ClassUtil.openLiveClassActivity(this);
         } else if (v.getId() == R.id.option_2) {
-            ClassUtil.openVideoLectureActivity(this, "Video Lecture", false);
+            ClassUtil.openCategoryActivity(this, ContentType.TYPE_VIDEO, "Video Lecture", false);
         } else if (v.getId() == R.id.option_3) {
-            ClassUtil.openVideoLectureActivity(this, "Study Material", true);
+            ClassUtil.openCategoryActivity(this, ContentType.TYPE_VIDEO, "Old Videos", true);
         } else if (v.getId() == R.id.option_4) {
-            SupportUtil.showToast(this, "Update Later");
+            ClassUtil.openCategoryActivity(this, ContentType.TYPE_PDF, "Study Material", true);
         } else if (v.getId() == R.id.option_5) {
             openProfile();
         } else if (v.getId() == R.id.option_6) {

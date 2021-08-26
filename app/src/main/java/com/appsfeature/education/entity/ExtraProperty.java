@@ -11,6 +11,7 @@ public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Se
 
     private int courseId;
     private int subCourseId;
+    private int contentType;
     private String subjectId;
     private String chapterId;
     private String videoId;
@@ -19,6 +20,13 @@ public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Se
     private boolean isOldVideos;
     private EducationModel educationModel;
 
+    public int getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(int contentType) {
+        this.contentType = contentType;
+    }
 
     public int getSubCourseId() {
         return subCourseId;

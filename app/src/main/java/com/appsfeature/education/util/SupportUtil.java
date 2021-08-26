@@ -2,6 +2,7 @@ package com.appsfeature.education.util;
 
 import android.graphics.Typeface;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Base64;
 import android.view.View;
@@ -83,6 +84,18 @@ public class SupportUtil extends BaseUtil {
         } catch (ParseException e) {
             e.printStackTrace();
             return new Date();
+        }
+    }
+
+    public static int parseInt(String value) {
+        if(TextUtils.isEmpty(value)){
+            return 0;
+        }
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 }

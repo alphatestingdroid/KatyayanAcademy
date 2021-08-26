@@ -13,7 +13,10 @@ import com.browser.BrowserSdk;
 import com.browser.interfaces.BrowserCallback;
 import com.config.config.ConfigManager;
 import com.config.util.ConfigUtil;
+import com.helper.util.BaseUtil;
 import com.helper.util.DayNightPreference;
+import com.pdfviewer.PDFViewer;
+import com.pdfviewer.util.PDFFileUtil;
 
 public class AppApplication extends Application {
 
@@ -41,11 +44,18 @@ public class AppApplication extends Application {
         BrowserSdk.getInstance().setCallback(new BrowserCallback() {
             @Override
             public void onOpenPdf(Activity activity, String url) {
-                String webUrl = "http://docs.google.com/gview?url=" + url +"&embedded=true";
-                BrowserSdk.open(activity, "PDF Viewer" , webUrl);
+                int id = (int) System.currentTimeMillis();
+                String fileName = PDFFileUtil.getFileNameFromUrl(url);
+                openPdf(activity, id, "Doc" + BaseUtil.getTimeStamp(), fileName, url, null);
             }
         });
         DataUtil.getInstance(this);
+        PDFViewer.getInstance()
+                .setBaseUrl(AppConstant.BASE_URL_PDF_DOWNLOAD)
+                .setDisablePrint(false)
+                .setDisableShare(false)
+                .init(this);
+        PDFViewer.setDownloadDirectory(this,AppConstant.PDF_FOLDER_NAME);
     }
 
 
@@ -74,5 +84,18 @@ public class AppApplication extends Application {
                     .setVersionName(BuildConfig.VERSION_NAME);
         }
         return loginSdk;
+    }
+
+    public void openPdf(Activity activity, int id, String pdfTitle, String pdfFileName) {
+        openPdf(activity, id, pdfTitle, pdfFileName, null);
+    }
+
+    public void openPdf(Activity activity, int id, String pdfTitle, String pdfFileName, String subTitle) {
+        String pdfFileUrl = AppConstant.BASE_URL_PDF_DOWNLOAD + pdfFileName;
+        openPdf(activity, id, pdfTitle, pdfFileName, pdfFileUrl, subTitle);
+    }
+
+    public void openPdf(Activity activity, int id, String pdfTitle, String pdfFileName, String pdfFileUrl, String subTitle) {
+        PDFViewer.openPdfDownloadActivity(activity, id, pdfTitle, pdfFileName, AppConstant.BASE_URL_PDF_DOWNLOAD , pdfFileUrl, subTitle);
     }
 }
