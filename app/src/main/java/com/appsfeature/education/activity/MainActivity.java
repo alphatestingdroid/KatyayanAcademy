@@ -3,8 +3,10 @@ package com.appsfeature.education.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +22,7 @@ import com.appsfeature.education.R;
 import com.appsfeature.education.listeners.ContentType;
 import com.appsfeature.education.util.AppConstant;
 import com.appsfeature.education.util.ClassUtil;
+import com.appsfeature.education.util.DynamicUrlCreator;
 import com.appsfeature.login.LoginSDK;
 import com.appsfeature.login.network.NetworkApiEndPoint;
 import com.appsfeature.login.util.LoginPrefUtil;
@@ -27,9 +30,11 @@ import com.appsfeature.login.util.LoginUtil;
 import com.browser.BrowserSdk;
 import com.config.util.ConfigUtil;
 import com.google.android.material.navigation.NavigationView;
+import com.helper.util.BaseDynamicUrlCreator;
 import com.helper.util.BaseUtil;
 
-public class MainActivity extends BaseInAppUpdateFlexibleActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseInAppUpdateFlexibleActivity implements View.OnClickListener
+        , NavigationView.OnNavigationItemSelectedListener, BaseDynamicUrlCreator.DynamicUrlResult {
 
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
@@ -44,6 +49,7 @@ public class MainActivity extends BaseInAppUpdateFlexibleActivity implements Vie
         setContentView(R.layout.activity_main);
         setupToolbar();
         initView();
+        onNewIntent(getIntent());
     }
 
     private Toolbar toolbar;
@@ -195,4 +201,26 @@ public class MainActivity extends BaseInAppUpdateFlexibleActivity implements Vie
     private void openProfile() {
         LoginSDK.getInstance().openLoginPage(this, true);
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent != null) {
+            if(DynamicUrlCreator.isValidIntent(this)) {
+                new DynamicUrlCreator(this)
+                        .register(this);
+            }
+        }
+    }
+
+    @Override
+    public void onDynamicUrlResult(Uri uri, String extraData) {
+        DynamicUrlCreator.openActivity(this, uri, extraData);
+    }
+
+    @Override
+    public void onError(Exception e) {
+        Log.d("DynamicUrlCreator", "onError:" + e.toString());
+    }
+
 }

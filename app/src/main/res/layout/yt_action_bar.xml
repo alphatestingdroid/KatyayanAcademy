@@ -30,4 +30,12 @@
         android:scaleType="fitXY"
         android:padding="12dp"
         android:src="@drawable/ic_menu_fullscreen"/>
+
+    <ImageView
+        android:id="@+id/iv_action_share"
+        android:layout_width="?android:attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
+        android:scaleType="fitXY"
+        android:padding="12dp"
+        android:src="@drawable/ic_menu_share"/>
 </LinearLayout>

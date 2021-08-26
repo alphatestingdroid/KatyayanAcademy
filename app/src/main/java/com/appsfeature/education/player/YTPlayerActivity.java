@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebView;
@@ -17,6 +18,7 @@ import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.entity.ExtraProperty;
 import com.appsfeature.education.player.util.YTUtility;
 import com.appsfeature.education.util.AppConstant;
+import com.appsfeature.education.util.DynamicUrlCreator;
 import com.appsfeature.education.util.Logger;
 import com.appsfeature.education.util.SupportUtil;
 import com.appsfeature.login.LoginSDK;
@@ -39,6 +41,7 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
     private WebView webView;
     private boolean isLiveClass = false;
     private View layoutDescription;
+    private ExtraProperty extraProperty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,7 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
 
     private void getArguments(Intent intent) {
         if (intent.getSerializableExtra(AppConstant.CATEGORY_PROPERTY) instanceof ExtraProperty) {
-            ExtraProperty extraProperty = (ExtraProperty) intent.getSerializableExtra(AppConstant.CATEGORY_PROPERTY);
+            extraProperty = (ExtraProperty) intent.getSerializableExtra(AppConstant.CATEGORY_PROPERTY);
             if(extraProperty != null && extraProperty.getVideoId() != null){
                 mVideoId = extraProperty.getVideoId();
                 mVideoModel = extraProperty.getEducationModel();
@@ -242,6 +245,13 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
                     mOrientationLandScape = !mOrientationLandScape;
                     youTubePlayer.setFullscreen(mOrientationLandScape);
                 }
+            }
+        });
+        (findViewById(R.id.iv_action_share)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DynamicUrlCreator(YTPlayerActivity.this)
+                        .shareVideo(extraProperty.getVideoId(), extraProperty, extraProperty.getTitle());
             }
         });
     }

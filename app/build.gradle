@@ -17,8 +17,8 @@ android {
     productFlavors {
         katyayanacademy {
             applicationId "com.katyayanacademy.katyayanacademy"
-            versionCode 11
-            versionName "3.7"
+            versionCode 12
+            versionName "3.12"
         }
     }
     signingConfigs {
@@ -78,7 +78,7 @@ dependencies {
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
 
     implementation 'com.github.appsfeature:browser:1.7'
-
+    implementation 'com.google.firebase:firebase-dynamic-links:20.1.1'
     implementation "androidx.room:room-runtime:$rootProject.ext.room_version"
 //    annotationProcessor "androidx.room:room-compiler:$rootProject.ext.room_version"
 }

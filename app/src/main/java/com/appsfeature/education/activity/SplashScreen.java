@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 
 import com.appsfeature.education.AppApplication;
 import com.appsfeature.education.R;
@@ -61,7 +62,19 @@ public class SplashScreen extends Activity {
 	}
 
 	private void startMainActivity() {
-		startActivity(new Intent(SplashScreen.this, MainActivity.class));
-		finish();
+		Intent intent = getIntent();
+		intent.setClass(this, MainActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+		startActivity(intent);
+		new Handler(Looper.myLooper()).postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					finishAffinity();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}, 500);
 	}
 }
