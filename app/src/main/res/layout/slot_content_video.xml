@@ -84,8 +84,7 @@
                         android:layout_height="35dp"
                         android:layout_marginRight="8dp"
                         android:contentDescription="@string/app_name"
-                        android:src="@drawable/ic_youtube_play"
-                        app:tint="@color/colorButton" />
+                        android:src="@drawable/ic_play_button" />
 
                     <!-- Rightend Arrow -->
                     <ImageView
