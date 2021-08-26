@@ -22,9 +22,11 @@ import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.google.gson.reflect.TypeToken;
 import com.helper.callback.Response;
+import com.helper.task.TaskRunner;
 import com.helper.util.BaseDynamicUrlCreator;
 import com.helper.util.BaseUtil;
 import com.pdfviewer.util.PDFDynamicShare;
+import com.pdfviewer.util.Screenshot;
 
 import java.util.HashMap;
 
@@ -44,7 +46,9 @@ public class DynamicUrlCreator extends BaseDynamicUrlCreator {
             }else if(url.getQueryParameter(ACTION_TYPE).equals(TYPE_VIDEO)) {
                 //Handle your module event here.
                 ExtraProperty extraProperty = fromJson(extraData, new TypeToken<ExtraProperty>(){});
-                YTUtility.playVideo(activity, extraProperty);
+                if (extraProperty != null) {
+                    YTUtility.playVideo(activity, extraProperty);
+                }
             }
         }
     }
@@ -53,9 +57,9 @@ public class DynamicUrlCreator extends BaseDynamicUrlCreator {
         HashMap<String, String> param = new HashMap<>();
         param.put("id", id);
         param.put(ACTION_TYPE, TYPE_VIDEO);
-        showProgress(View.VISIBLE);
         String extraDataJson = toJson(extraData, new TypeToken<ExtraProperty>() {
         });
+        showProgress(View.VISIBLE);
         generate(param, extraDataJson, new DynamicUrlCreator.DynamicUrlCallback() {
             @Override
             public void onDynamicUrlGenerate(String url) {
@@ -68,8 +72,13 @@ public class DynamicUrlCreator extends BaseDynamicUrlCreator {
             public void onError(Exception e) {
                 showProgress(View.GONE);
                 Log.d(DynamicUrlCreator.class.getSimpleName(), "onError:" + e.toString());
+                shareMe(description, getPlayStoreLink());
             }
         });
+    }
+
+    private String getPlayStoreLink() {
+        return "http://play.google.com/store/apps/details?id=" + context.getPackageName();
     }
 
     @Override
@@ -152,7 +161,7 @@ public class DynamicUrlCreator extends BaseDynamicUrlCreator {
 
     private void shareMe(String description, String deepLink) {
         if (BaseUtil.isValidUrl(deepLink)) {
-            String openLink = "\nChick here to open : \n" + deepLink;
+            String openLink = "\nChick here to watch video : \n" + deepLink;
 
             String extraText = description + "\n\n" + openLink;
 

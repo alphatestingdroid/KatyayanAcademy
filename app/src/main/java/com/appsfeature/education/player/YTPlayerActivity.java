@@ -251,7 +251,8 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
             @Override
             public void onClick(View v) {
                 new DynamicUrlCreator(YTPlayerActivity.this)
-                        .shareVideo(extraProperty.getVideoId(), extraProperty, extraProperty.getTitle());
+                        .shareVideo(extraProperty.getVideoId(), extraProperty
+                                , extraProperty.getTitle());
             }
         });
     }
