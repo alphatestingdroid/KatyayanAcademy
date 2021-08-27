@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.appsfeature.education.R;
 import com.appsfeature.education.activity.BaseActivity;
-import com.appsfeature.education.adapter.EducationAdapter;
+import com.appsfeature.education.adapter.CategoryAdapter;
 import com.appsfeature.education.entity.ExtraProperty;
 import com.appsfeature.education.entity.PresenterModel;
 import com.appsfeature.education.listeners.ItemType;
@@ -28,7 +28,7 @@ import java.util.List;
 public class CategoryListActivity extends BaseActivity implements Response.OnClickListener<EducationModel> {
 
     private View llNoData;
-    private EducationAdapter adapter;
+    private CategoryAdapter adapter;
     private final List<EducationModel> mList = new ArrayList<>();
 
     @Override
@@ -59,7 +59,7 @@ public class CategoryListActivity extends BaseActivity implements Response.OnCli
         }else {
             rvList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         }
-        adapter = new EducationAdapter(this, getExtraProperty().getItemType(), mList, this);
+        adapter = new CategoryAdapter(this, getExtraProperty().getItemType(), mList, this);
         rvList.setAdapter(adapter);
     }
 

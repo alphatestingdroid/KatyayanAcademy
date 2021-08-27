@@ -67,14 +67,15 @@ public class SupportUtil extends BaseUtil {
     }
 
     public static String getDateFormatted(String inputDate, String time) {
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM yy | hh:mm a", Locale.US);
-        try {
-            Date date = new SimpleDateFormat("yyyy-MM-dd-HH:mm", Locale.US).parse(inputDate + "-" + time);
-            return date!=null ? outputFormat.format(date) : "0";
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return "";
-        }
+//        SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM yy | hh:mm a", Locale.US);
+//        try {
+//            Date date = new SimpleDateFormat("yyyy-MM-dd-HH:mm", Locale.US).parse(inputDate + "-" + time);
+//            return date!=null ? outputFormat.format(date) : "0";
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//            return "";
+//        }
+        return BaseUtil.getTimeSpanString(inputDate + " " + time + ":00");
     }
 
 

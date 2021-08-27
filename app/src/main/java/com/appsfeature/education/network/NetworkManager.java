@@ -58,6 +58,7 @@ public class NetworkManager extends BaseNetworkManager {
                 methodName = ApiEndPoint.GET_OFFLINE_CLASS;
                 map.put("subject_id", extraProperty.getSubjectId() + "");
                 map.put("chapter_id", extraProperty.getChapterId() + "");
+                map.put("lecture_type", extraProperty.getContentType() + "");
                 break;
             case ItemType.CATEGORY_TYPE_OLD_VIDEOS:
                 methodName = ApiEndPoint.GET_OLD_CLASS;

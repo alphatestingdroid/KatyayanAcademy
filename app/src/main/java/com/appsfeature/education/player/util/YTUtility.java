@@ -93,7 +93,7 @@ public class YTUtility {
         }
     }
 
-    private static String getVideoIdFromUrl(String lectureVideo) {
+    public static String getVideoIdFromUrl(String lectureVideo) {
         try {
             if (!TextUtils.isEmpty(lectureVideo) && BaseUtil.isValidUrl(lectureVideo)) {
                 return lectureVideo.substring(lectureVideo.lastIndexOf("/") + 1);
