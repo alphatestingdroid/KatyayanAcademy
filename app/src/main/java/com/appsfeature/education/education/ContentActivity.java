@@ -37,15 +37,18 @@ public class ContentActivity extends BaseActivity {
 
         onInitializeUI();
 //        setUpToolBar("Video Lecture");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         if (getExtraProperty() != null) {
             appPresenter.getDynamicData(getExtraProperty());
         }
     }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if (getExtraProperty() != null) {
+//            appPresenter.getDynamicData(getExtraProperty());
+//        }
+//    }
 
     public void onInitializeUI() {
         llNoData = findViewById(R.id.ll_no_data);

@@ -106,4 +106,8 @@ public class YTUtility {
         }
     }
 
+    public static String getYoutubePlaceholderImage(String videoId) {
+        return "http://img.youtube.com/vi/" + videoId + "/0.jpg";
+    }
+
 }

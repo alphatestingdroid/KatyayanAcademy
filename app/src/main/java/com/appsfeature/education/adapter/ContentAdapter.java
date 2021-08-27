@@ -88,9 +88,9 @@ public class ContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             } else {
                 viewHolder.tvDate.setVisibility(View.GONE);
             }
-            String videoPreviewUrl = getYoutubePlaceholderImage(YTUtility.getVideoIdFromUrl(mList.get(i).getLectureVideo()));
 
             if(!TextUtils.isEmpty(mList.get(i).getLectureVideo())) {
+                String videoPreviewUrl = getYoutubePlaceholderImage(YTUtility.getVideoIdFromUrl(mList.get(i).getLectureVideo()));
                 Picasso.get().load(videoPreviewUrl)
                         .placeholder(R.drawable.ic_yt_placeholder)
                         .error(R.drawable.ic_yt_placeholder)

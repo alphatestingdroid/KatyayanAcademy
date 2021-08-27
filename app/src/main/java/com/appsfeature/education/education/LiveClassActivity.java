@@ -3,10 +3,12 @@ package com.appsfeature.education.education;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appsfeature.education.R;
@@ -15,6 +17,7 @@ import com.appsfeature.education.entity.PresenterModel;
 import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.player.util.YTUtility;
 import com.appsfeature.education.util.SupportUtil;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +34,7 @@ public class LiveClassActivity extends BaseActivity {
     private TextView tvTitle, tvSubject, tvDate;
     private Button btnLiveClass;
     private boolean isActiveLiveClass = false;
+    private ImageView ivPreview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,7 @@ public class LiveClassActivity extends BaseActivity {
         tvTitle = findViewById(R.id.tv_live_title);
         tvSubject = findViewById(R.id.tv_live_subject);
         tvDate = findViewById(R.id.tv_live_date);
+        ivPreview = findViewById(R.id.pic);
         btnLiveClass = findViewById(R.id.btn_open_live_class);
         btnLiveClass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +116,17 @@ public class LiveClassActivity extends BaseActivity {
         tvTitle.setVisibility(View.VISIBLE);
         tvSubject.setVisibility(View.VISIBLE);
         tvDate.setVisibility(View.VISIBLE);
+
+        if(!TextUtils.isEmpty(mVideoModel.getLectureVideo())) {
+            String videoPreviewUrl = YTUtility.getYoutubePlaceholderImage(YTUtility.getVideoIdFromUrl(mVideoModel.getLectureVideo()));
+            Picasso.get().load(videoPreviewUrl)
+                    .placeholder(R.drawable.ic_yt_placeholder)
+                    .error(R.drawable.ic_yt_placeholder)
+                    .into(ivPreview);
+            ivPreview.setVisibility(View.VISIBLE);
+        }else {
+            ivPreview.setVisibility(View.INVISIBLE);
+        }
 
         calculateTimeLeft();
         startCountDown();
