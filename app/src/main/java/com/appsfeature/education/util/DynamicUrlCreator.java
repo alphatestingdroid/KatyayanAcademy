@@ -22,11 +22,9 @@ import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.google.gson.reflect.TypeToken;
 import com.helper.callback.Response;
-import com.helper.task.TaskRunner;
 import com.helper.util.BaseDynamicUrlCreator;
 import com.helper.util.BaseUtil;
 import com.pdfviewer.util.PDFDynamicShare;
-import com.pdfviewer.util.Screenshot;
 
 import java.util.HashMap;
 

@@ -66,19 +66,19 @@ public class MainActivity extends BaseInAppUpdateFlexibleActivity implements Vie
     }
 
     private void initView() {
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        imgProfile = (ImageView) findViewById(R.id.img_profile);
-        tvName = (TextView) findViewById(R.id.name);
-        tvAdmissionNo = (TextView) findViewById(R.id.phoneNo);
+        navigationView = findViewById(R.id.nav_view);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        imgProfile = findViewById(R.id.img_profile);
+        tvName = findViewById(R.id.name);
+        tvAdmissionNo = findViewById(R.id.phoneNo);
 
         navigationView.setNavigationItemSelectedListener(this);
         miProfile = navigationView.getMenu().findItem(R.id.nav_login);
 
         View header = navigationView.getHeaderView(0).findViewById(R.id.ll_header);
         header.setOnClickListener(this);
-        tvProfile = (TextView) header.findViewById(R.id.tv_profile);
-        ivProfile = (ImageView) header.findViewById(R.id.iv_profile);
+        tvProfile = header.findViewById(R.id.tv_profile);
+        ivProfile = header.findViewById(R.id.iv_profile);
         (findViewById(R.id.option_1)).setOnClickListener(this);
         (findViewById(R.id.option_2)).setOnClickListener(this);
         (findViewById(R.id.option_3)).setOnClickListener(this);
@@ -97,15 +97,15 @@ public class MainActivity extends BaseInAppUpdateFlexibleActivity implements Vie
         if (v.getId() == R.id.option_1) {
             ClassUtil.openLiveClassActivity(this);
         } else if (v.getId() == R.id.option_2) {
-            ClassUtil.openCategoryActivity(this, ContentType.TYPE_VIDEO, "Video Lecture", false);
+            ClassUtil.openCategoryActivity(this, ContentType.TYPE_VIDEO, getString(R.string.title_option_2), false);
         } else if (v.getId() == R.id.option_3) {
-            ClassUtil.openCategoryActivity(this, ContentType.TYPE_VIDEO, "Old Videos", true);
+            ClassUtil.openCategoryActivity(this, ContentType.TYPE_VIDEO, getString(R.string.title_option_3), true);
         } else if (v.getId() == R.id.option_4) {
-            ClassUtil.openCategoryActivity(this, ContentType.TYPE_PDF, "Study Material", true);
+            ClassUtil.openCategoryActivity(this, ContentType.TYPE_PDF, getString(R.string.title_option_4), true);
         } else if (v.getId() == R.id.option_5) {
             openProfile();
         } else if (v.getId() == R.id.option_6) {
-            BrowserSdk.open(this, "Class Schedule", AppConstant.URL_CLASS_SCHEDULE);
+            BrowserSdk.open(this, getString(R.string.title_option_6), AppConstant.URL_CLASS_SCHEDULE);
         }
     }
 

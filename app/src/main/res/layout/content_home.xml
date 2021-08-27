@@ -125,16 +125,18 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerCrop"
+                            android:layout_marginTop="8dp"
                             android:src="@drawable/ic_menu_live_class"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Live Classes"
+                            android:text="@string/title_option_1"
+                            android:lines="2"
+                            android:ellipsize="end"
                             android:gravity="center"
-                            android:textSize="18sp"
-                            android:layout_marginTop="8dp"/>
+                            android:textSize="18sp"/>
                     </LinearLayout>
 
                     <View
@@ -154,16 +156,18 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerCrop"
+                            android:layout_marginTop="8dp"
                             android:src="@drawable/ic_menu_video_lecture"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Previous Live Clases"
+                            android:text="@string/title_option_2"
                             android:gravity="center"
-                            android:textSize="18sp"
-                            android:layout_marginTop="8dp"/>
+                            android:lines="2"
+                            android:ellipsize="end"
+                            android:textSize="18sp"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -191,16 +195,18 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerCrop"
+                            android:layout_marginTop="8dp"
                             android:src="@drawable/ic_menu_test_series"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Video Lecture"
+                            android:text="@string/title_option_3"
+                            android:lines="2"
+                            android:ellipsize="end"
                             android:gravity="center"
-                            android:textSize="18sp"
-                            android:layout_marginTop="8dp"/>
+                            android:textSize="18sp"/>
                     </LinearLayout>
 
                     <View
@@ -220,16 +226,18 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerCrop"
+                            android:layout_marginTop="8dp"
                             android:src="@drawable/ic_menu_study_material"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Study Material"
+                            android:text="@string/title_option_4"
+                            android:lines="2"
+                            android:ellipsize="end"
                             android:gravity="center"
-                            android:textSize="18sp"
-                            android:layout_marginTop="8dp"/>
+                            android:textSize="18sp"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -257,16 +265,18 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerCrop"
+                            android:layout_marginTop="8dp"
                             android:src="@drawable/ic_profile"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="My Profile"
+                            android:text="@string/title_option_5"
+                            android:lines="2"
+                            android:ellipsize="end"
                             android:gravity="center"
-                            android:textSize="18sp"
-                            android:layout_marginTop="8dp"/>
+                            android:textSize="18sp"/>
                     </LinearLayout>
 
                     <View
@@ -286,16 +296,18 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:scaleType="centerCrop"
+                            android:layout_marginTop="8dp"
                             android:src="@drawable/ic_menu_class_schedule"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Class Schedule"
+                            android:text="@string/title_option_6"
+                            android:lines="2"
+                            android:ellipsize="end"
                             android:gravity="center"
-                            android:textSize="18sp"
-                            android:layout_marginTop="8dp"/>
+                            android:textSize="18sp"/>
 
                     </LinearLayout>
                 </LinearLayout>

@@ -65,8 +65,8 @@ public class MobileLogin extends BaseFragment {
         llForgot = v.findViewById(R.id.ll_forgot);
 
         if(LoginSDK.getInstance().isDebugMode()){
-            etUsername.setText("KA217182");
-            etPassword.setText("519737");
+            etUsername.setText("KA217902");
+            etPassword.setText("479616");
         }
 
         btnAction = ProgressButton.newInstance(getContext(), v)
