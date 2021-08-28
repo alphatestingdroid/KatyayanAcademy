@@ -1,9 +1,8 @@
 package com.appsfeature.education.model;
 
-import com.appsfeature.education.util.SupportUtil;
+import com.appsfeature.education.util.AppDbHelper;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.helper.util.BaseUtil;
 
 import java.io.Serializable;
 
@@ -58,6 +57,10 @@ public class EducationModel implements Serializable {
     @SerializedName(value = "category_type")
     @Expose
     private int categoryType;
+
+    private int videoTime = 0;
+    private String videoTimeFormatted;
+    private int isRead = 0;
 
     public String getId() {
         return id;
@@ -185,5 +188,33 @@ public class EducationModel implements Serializable {
 
     public void setCategoryType(int categoryType) {
         this.categoryType = categoryType;
+    }
+
+    public int getVideoTime() {
+        return videoTime;
+    }
+
+    public void setVideoTime(int videoTime) {
+        this.videoTime = videoTime;
+    }
+
+    public boolean isRead() {
+        return isRead == AppDbHelper.ACTIVE;
+    }
+
+    public int getIsRead() {
+        return isRead;
+    }
+
+    public void setIsRead(int isRead) {
+        this.isRead = isRead;
+    }
+
+    public String getVideoTimeFormatted() {
+        return videoTimeFormatted;
+    }
+
+    public void setVideoTimeFormatted(String videoTimeFormatted) {
+        this.videoTimeFormatted = videoTimeFormatted;
     }
 }

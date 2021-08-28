@@ -2,7 +2,6 @@ package com.appsfeature.education.adapter;
 
 
 import android.app.Activity;
-import android.text.PrecomputedText;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -12,13 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.appsfeature.education.R;
 import com.appsfeature.education.listeners.ContentType;
 import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.player.util.YTUtility;
-import com.appsfeature.education.util.SupportUtil;
 import com.helper.callback.Response;
 import com.squareup.picasso.Picasso;
 
@@ -81,6 +81,12 @@ public class ContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             VideoViewHolder viewHolder = (VideoViewHolder) holder;
             viewHolder.tvName.setText(mList.get(i).getLectureName());
             viewHolder.tvDepartment.setText(mList.get(i).getSubjectName());
+            if (mList.get(i).isRead() && mList.get(i).getVideoTime() > 0 && !TextUtils.isEmpty(mList.get(i).getVideoTimeFormatted())) {
+                viewHolder.tvWatchTime.setText("Watched: " + mList.get(i).getVideoTimeFormatted());
+                viewHolder.tvWatchTime.setVisibility(View.VISIBLE);
+            }else {
+                viewHolder.tvWatchTime.setVisibility(View.GONE);
+            }
             String dateTime = getTimeSpanString(mList.get(i).getLiveClassDate(), mList.get(i).getLiveClassTime());
             if (!TextUtils.isEmpty(dateTime)) {
                 viewHolder.tvDate.setText(dateTime);
@@ -99,12 +105,13 @@ public class ContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }else {
                 viewHolder.ivPic.setVisibility(View.GONE);
             }
+            viewHolder.cardView.setCardBackgroundColor(ContextCompat.getColor(activity, mList.get(i).isRead() ? R.color.yt_color_video_watched : R.color.themeBackgroundCardColor));
         }
 
     }
 
     private String getYoutubePlaceholderImage(String videoId) {
-        return "http://img.youtube.com/vi/" + videoId + "/0.jpg";
+        return "https://i.ytimg.com/vi/"+ videoId +"/mqdefault.jpg";
     }
 
 
@@ -114,13 +121,17 @@ public class ContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private final TextView tvName;
         private final TextView tvDepartment;
         private final TextView tvDate;
+        private final TextView tvWatchTime;
+        private final CardView cardView;
 
         private VideoViewHolder(View v) {
             super(v);
+            cardView = v.findViewById(R.id.card_view);
             ivPic = v.findViewById(R.id.pic);
             tvName = v.findViewById(R.id.name);
             tvDepartment = v.findViewById(R.id.department);
             tvDate = v.findViewById(R.id.location);
+            tvWatchTime = v.findViewById(R.id.watch_time);
 
             itemView.setOnClickListener(this);
         }

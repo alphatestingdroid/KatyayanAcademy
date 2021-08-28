@@ -16,9 +16,9 @@ import com.appsfeature.education.entity.PresenterModel;
 import com.appsfeature.education.listeners.ContentType;
 import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.player.util.YTUtility;
+import com.appsfeature.education.task.YTGetWatchListTask;
 import com.appsfeature.education.util.SupportUtil;
 import com.helper.callback.Response;
-import com.helper.util.BaseConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,14 +41,6 @@ public class ContentActivity extends BaseActivity {
             appPresenter.getDynamicData(getExtraProperty());
         }
     }
-
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if (getExtraProperty() != null) {
-//            appPresenter.getDynamicData(getExtraProperty());
-//        }
-//    }
 
     public void onInitializeUI() {
         llNoData = findViewById(R.id.ll_no_data);
@@ -74,10 +66,30 @@ public class ContentActivity extends BaseActivity {
         mList.clear();
         if (response.getEducationList() != null && response.getEducationList().size() > 0) {
             mList.addAll(response.getEducationList());
+            updateVideoList();
         } else {
             SupportUtil.showNoData(llNoData, View.VISIBLE);
         }
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateVideoList();
+    }
+
+    private void updateVideoList() {
+        if(mList != null && mList.size() > 0 && getExtraProperty().getContentType() == ContentType.TYPE_VIDEO){
+            new YTGetWatchListTask(mList).execute(new Response.Status<Boolean>() {
+                @Override
+                public void onSuccess(Boolean response) {
+                    if (adapter != null) {
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            });
+        }
     }
 
     @Override

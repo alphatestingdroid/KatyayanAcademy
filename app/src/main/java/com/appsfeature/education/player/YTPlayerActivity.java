@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebView;
@@ -17,6 +16,7 @@ import com.appsfeature.education.R;
 import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.entity.ExtraProperty;
 import com.appsfeature.education.player.util.YTUtility;
+import com.appsfeature.education.task.YTInsertWatchListTask;
 import com.appsfeature.education.util.AppConstant;
 import com.appsfeature.education.util.DynamicUrlCreator;
 import com.appsfeature.education.util.Logger;
@@ -35,13 +35,14 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
     private YouTubePlayer youTubePlayer;
     private boolean mOrientationLandScape = false;
     private String mVideoId;
-    private EducationModel mVideoModel;
+    private EducationModel mEducationModel;
     private String mTitle = "Player";
     private TextView tvLectureName, tvLectureSubject, tvLectureDate, tvLectureDiscription;
     private WebView webView;
     private boolean isLiveClass = false;
     private View layoutDescription;
     private ExtraProperty extraProperty;
+    private int videoTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +57,11 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
             extraProperty = (ExtraProperty) intent.getSerializableExtra(AppConstant.CATEGORY_PROPERTY);
             if(extraProperty != null && extraProperty.getVideoId() != null){
                 mVideoId = extraProperty.getVideoId();
-                mVideoModel = extraProperty.getEducationModel();
+                videoTime = extraProperty.getVideoTime();
+                mEducationModel = extraProperty.getEducationModel();
                 isLiveClass = extraProperty.isLiveClass();
-                if(mVideoModel != null && !TextUtils.isEmpty(mVideoModel.getLectureName())){
-                    mTitle = mVideoModel.getLectureName();
+                if(mEducationModel != null && !TextUtils.isEmpty(mEducationModel.getLectureName())){
+                    mTitle = mEducationModel.getLectureName();
                     loadView();
                 }
                 initToolBarTheme(mTitle);
@@ -75,10 +77,15 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
     }
 
     private void loadView() {
-        tvLectureName.setText(mVideoModel.getLectureName());
-        tvLectureSubject.setText(mVideoModel.getSubjectName());
-        tvLectureDate.setText(SupportUtil.getDateFormatted(mVideoModel.getLiveClassDate(), mVideoModel.getLiveClassTime()));
-        tvLectureDiscription.setText(mVideoModel.getLectureDescription());
+        tvLectureName.setText(mEducationModel.getLectureName());
+        tvLectureSubject.setText(mEducationModel.getSubjectName());
+        if(!TextUtils.isEmpty(mEducationModel.getLiveClassDate())) {
+            tvLectureDate.setText(SupportUtil.getDateFormatted(mEducationModel.getLiveClassDate(), mEducationModel.getLiveClassTime()));
+            tvLectureDate.setVisibility(View.VISIBLE);
+        }else {
+            tvLectureDate.setVisibility(View.INVISIBLE);
+        }
+        tvLectureDiscription.setText(mEducationModel.getLectureDescription());
         applySettings(webView);
         if(isLiveClass){
             webView.setVisibility(View.VISIBLE);
@@ -138,7 +145,7 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
         youTubePlayer.setFullscreenControlFlags(YouTubePlayer.FULLSCREEN_FLAG_CONTROL_SYSTEM_UI);
 
         if (!wasRestored) {
-            youTubePlayer.cueVideo(mVideoId);
+            youTubePlayer.cueVideo(mVideoId, videoTime);
         }
 
         youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
@@ -271,7 +278,20 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
             mOrientationLandScape = false;
             youTubePlayer.setFullscreen(false);
         } else {
+            closeYoutubePlayer();
             super.onBackPressed();
+        }
+    }
+
+    private void closeYoutubePlayer() {
+        try {
+            if (youTubePlayer != null) {
+                youTubePlayer.pause();
+                extraProperty.setVideoTime(youTubePlayer.getCurrentTimeMillis());
+            }
+            new YTInsertWatchListTask(extraProperty).execute();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

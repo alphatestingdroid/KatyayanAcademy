@@ -6,6 +6,7 @@ import android.app.Application;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.appsfeature.education.util.AppConstant;
+import com.appsfeature.education.util.AppDbHelper;
 import com.appsfeature.education.util.DataUtil;
 import com.appsfeature.login.LoginSDK;
 import com.appsfeature.login.LoginType;
@@ -24,6 +25,7 @@ public class AppApplication extends Application {
     private static AppApplication instance;
     private LoginSDK loginSdk;
     private ConfigManager configManager;
+    private AppDbHelper dbHelper;
 
     public static AppApplication getInstance() {
         return instance;
@@ -58,6 +60,12 @@ public class AppApplication extends Application {
         PDFViewer.setDownloadDirectory(this,AppConstant.PDF_FOLDER_NAME);
     }
 
+    public AppDbHelper getDBObject() {
+        if (dbHelper == null) {
+            dbHelper = AppDbHelper.getInstance(this);
+        }
+        return dbHelper;
+    }
 
     public ConfigManager getConfigManager() {
         if(configManager == null){

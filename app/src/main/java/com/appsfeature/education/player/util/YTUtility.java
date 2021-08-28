@@ -79,6 +79,8 @@ public class YTUtility {
         extraProperty.setVideoId(getVideoIdFromUrl(item.getLectureVideo()));
         extraProperty.setLiveClass(isLiveClass);
         extraProperty.setTitle(item.getLectureName());
+        extraProperty.setIsRead(item.getIsRead());
+        extraProperty.setVideoTime(item.getVideoTime());
         extraProperty.setEducationModel(item);
         playVideo(context, extraProperty);
     }
@@ -107,7 +109,7 @@ public class YTUtility {
     }
 
     public static String getYoutubePlaceholderImage(String videoId) {
-        return "http://img.youtube.com/vi/" + videoId + "/0.jpg";
+        return "https://i.ytimg.com/vi/"+ videoId +"/mqdefault.jpg";
     }
 
 }

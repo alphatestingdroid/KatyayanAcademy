@@ -9,5 +9,7 @@
     <color name="colorButtonGreen">#59A869</color>
     <color name="colorButtonDark">#E1711A</color>
     <color name="themeWindowBackground">#F4F4F4</color>
+    <color name="pdf_color_side_indicator_text">#ffffff</color>
+    <color name="yt_color_video_watched">#e9e9e9</color>
 
 </resources>

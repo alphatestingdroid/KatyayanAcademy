@@ -89,6 +89,7 @@ public class LiveClassActivity extends BaseActivity {
             }
         } else {
             SupportUtil.showNoData(llNoData, View.VISIBLE);
+            ivPreview.setVisibility(View.GONE);
             hideViews();
             if (menuRefresh != null) {
                 menuRefresh.setVisible(true);

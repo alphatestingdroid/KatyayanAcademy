@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.appsfeature.education.model.EducationModel;
 import com.helper.model.BaseCategoryProperty;
+import com.helper.util.GsonParser;
 
 import java.io.Serializable;
 
@@ -19,6 +20,11 @@ public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Se
     private boolean isLiveClass;
     private boolean isOldVideos;
     private EducationModel educationModel;
+
+    private int videoTime = 0;
+    private int isRead = 0;
+    private int isFav = 0;
+    private String jsonData;
 
     public int getContentType() {
         return contentType;
@@ -98,6 +104,42 @@ public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Se
 
     public void setOldVideos(boolean oldVideos) {
         isOldVideos = oldVideos;
+    }
+
+    public int getVideoTime() {
+        return videoTime;
+    }
+
+    public void setVideoTime(int videoTime) {
+        this.videoTime = videoTime;
+    }
+
+    public int getIsRead() {
+        return isRead;
+    }
+
+    public void setIsRead(int isRead) {
+        this.isRead = isRead;
+    }
+
+    public int getIsFav() {
+        return isFav;
+    }
+
+    public void setIsFav(int isFav) {
+        this.isFav = isFav;
+    }
+
+    public String getJsonData() {
+        return jsonData;
+    }
+
+    public void setJsonData(String jsonData) {
+        this.jsonData = jsonData;
+    }
+
+    public String toJson() {
+        return GsonParser.getGson().toJson(this, ExtraProperty.class);
     }
 
     @NonNull
