@@ -61,6 +61,7 @@ public class EducationModel implements Serializable {
     private int videoTime = 0;
     private String videoTimeFormatted;
     private int isRead = 0;
+    private int videoDuration = 0;
 
     public String getId() {
         return id;
@@ -216,5 +217,13 @@ public class EducationModel implements Serializable {
 
     public void setVideoTimeFormatted(String videoTimeFormatted) {
         this.videoTimeFormatted = videoTimeFormatted;
+    }
+
+    public int getVideoDuration() {
+        return videoDuration;
+    }
+
+    public void setVideoDuration(int videoDuration) {
+        this.videoDuration = videoDuration;
     }
 }

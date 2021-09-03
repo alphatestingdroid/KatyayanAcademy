@@ -27,6 +27,8 @@ public class AppDbHelper extends BaseDatabaseHelper {
     private static final String COLUMN_VIDEO_ID = "video_id";
     private static final String COLUMN_TITLE = "title";
     private static final String COLUMN_VIDEO_TIME = "video_time";
+    private static final String COLUMN_VIDEO_DURATION = "video_duration";
+    private static final String COLUMN_CHANNEL_ID = "channel_id";
     private static final String COLUMN_IS_READ = "is_read";
     private static final String COLUMN_IS_FAV = "is_fav";
     private static final String COLUMN_IS_ACTIVE = "is_active";
@@ -38,7 +40,9 @@ public class AppDbHelper extends BaseDatabaseHelper {
             "    id          INTEGER PRIMARY KEY AUTOINCREMENT," +
             "    video_id    VARCHAR," +
             "    title       VARCHAR," +
+            "    channel_id  VARCHAR," +
             "    video_time  INTEGER DEFAULT (0)," +
+            "    video_duration  INTEGER DEFAULT (0)," +
             "    is_read     INTEGER DEFAULT (0)," +
             "    is_fav      INTEGER DEFAULT (0)," +
             "    is_active   INTEGER DEFAULT (0)," +
@@ -127,6 +131,8 @@ public class AppDbHelper extends BaseDatabaseHelper {
         contentValues.put(COLUMN_VIDEO_ID, model.getVideoId());
         contentValues.put(COLUMN_TITLE, model.getTitle());
         contentValues.put(COLUMN_VIDEO_TIME, model.getVideoTime());
+        contentValues.put(COLUMN_VIDEO_DURATION, model.getVideoDuration());
+        contentValues.put(COLUMN_CHANNEL_ID, model.getChannelId());
         contentValues.put(COLUMN_IS_READ, ACTIVE);
         contentValues.put(COLUMN_JSON_DATA, model.toJson());
 
@@ -197,6 +203,8 @@ public class AppDbHelper extends BaseDatabaseHelper {
                 bean.setVideoId(cursor.getString(cursor.getColumnIndex(COLUMN_VIDEO_ID)));
                 bean.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_TITLE)));
                 bean.setVideoTime(cursor.getInt(cursor.getColumnIndex(COLUMN_VIDEO_TIME)));
+                bean.setVideoDuration(cursor.getInt(cursor.getColumnIndex(COLUMN_VIDEO_DURATION)));
+                bean.setChannelId(cursor.getString(cursor.getColumnIndex(COLUMN_CHANNEL_ID)));
                 bean.setIsRead(cursor.getInt(cursor.getColumnIndex(COLUMN_IS_READ)));
                 bean.setIsFav(cursor.getInt(cursor.getColumnIndex(COLUMN_IS_FAV)));
                 bean.setJsonData(cursor.getString(cursor.getColumnIndex(COLUMN_JSON_DATA)));

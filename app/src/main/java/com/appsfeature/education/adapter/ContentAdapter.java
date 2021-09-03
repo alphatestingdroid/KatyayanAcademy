@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -81,12 +82,12 @@ public class ContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             VideoViewHolder viewHolder = (VideoViewHolder) holder;
             viewHolder.tvName.setText(mList.get(i).getLectureName());
             viewHolder.tvDepartment.setText(mList.get(i).getSubjectName());
-            if (mList.get(i).isRead() && mList.get(i).getVideoTime() > 0 && !TextUtils.isEmpty(mList.get(i).getVideoTimeFormatted())) {
-                viewHolder.tvWatchTime.setText("Watched: " + mList.get(i).getVideoTimeFormatted());
-                viewHolder.tvWatchTime.setVisibility(View.VISIBLE);
-            }else {
+//            if (mList.get(i).isRead() && mList.get(i).getVideoTime() > 0 && !TextUtils.isEmpty(mList.get(i).getVideoTimeFormatted())) {
+//                viewHolder.tvWatchTime.setText("Watched: " + mList.get(i).getVideoTimeFormatted());
+//                viewHolder.tvWatchTime.setVisibility(View.VISIBLE);
+//            }else {
                 viewHolder.tvWatchTime.setVisibility(View.GONE);
-            }
+//            }
             String dateTime = getTimeSpanString(mList.get(i).getLiveClassDate(), mList.get(i).getLiveClassTime());
             if (!TextUtils.isEmpty(dateTime)) {
                 viewHolder.tvDate.setText(dateTime);
@@ -106,6 +107,14 @@ public class ContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 viewHolder.ivPic.setVisibility(View.GONE);
             }
             viewHolder.cardView.setCardBackgroundColor(ContextCompat.getColor(activity, mList.get(i).isRead() ? R.color.yt_color_video_watched : R.color.themeBackgroundCardColor));
+
+            if(mList.get(i).getVideoDuration() > 0) {
+                viewHolder.progressBar.setMax(mList.get(i).getVideoDuration());
+                viewHolder.progressBar.setProgress(mList.get(i).getVideoTime());
+                viewHolder.progressBar.setVisibility(View.VISIBLE);
+            }else {
+                viewHolder.progressBar.setVisibility(View.GONE);
+            }
         }
 
     }
@@ -123,6 +132,7 @@ public class ContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private final TextView tvDate;
         private final TextView tvWatchTime;
         private final CardView cardView;
+        private final ProgressBar progressBar;
 
         private VideoViewHolder(View v) {
             super(v);
@@ -132,6 +142,7 @@ public class ContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             tvDepartment = v.findViewById(R.id.department);
             tvDate = v.findViewById(R.id.location);
             tvWatchTime = v.findViewById(R.id.watch_time);
+            progressBar = itemView.findViewById(R.id.progress_bar);
 
             itemView.setOnClickListener(this);
         }

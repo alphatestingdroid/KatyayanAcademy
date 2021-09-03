@@ -43,7 +43,8 @@ public class YTGetWatchListTask {
                                     ExtraProperty watchedItem = watchList.get(getVideoIdFromUrl(item.getLectureVideo()));
                                     if (watchedItem != null) {
                                         item.setVideoTime(watchedItem.getVideoTime());
-                                        item.setVideoTimeFormatted(convertTimeStamp(watchedItem.getVideoTime()));
+                                        item.setVideoDuration(watchedItem.getVideoDuration());
+//                                        item.setVideoTimeFormatted(convertTimeStamp(watchedItem.getVideoTime()));
                                         item.setIsRead(watchedItem.getIsRead());
                                     }
                                 }

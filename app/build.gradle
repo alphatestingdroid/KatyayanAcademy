@@ -16,8 +16,8 @@ android {
     productFlavors {
         katyayanacademy {
             applicationId "com.katyayanacademy.katyayanacademy"
-            versionCode 15
-            versionName "3.15"
+            versionCode 16
+            versionName "3.16"
         }
     }
     signingConfigs {

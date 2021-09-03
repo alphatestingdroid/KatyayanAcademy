@@ -81,6 +81,7 @@ public class YTUtility {
         extraProperty.setTitle(item.getLectureName());
         extraProperty.setIsRead(item.getIsRead());
         extraProperty.setVideoTime(item.getVideoTime());
+        extraProperty.setVideoDuration(item.getVideoDuration());
         extraProperty.setEducationModel(item);
         playVideo(context, extraProperty);
     }

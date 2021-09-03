@@ -288,6 +288,7 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
             if (youTubePlayer != null) {
                 youTubePlayer.pause();
                 extraProperty.setVideoTime(youTubePlayer.getCurrentTimeMillis());
+                extraProperty.setVideoDuration(youTubePlayer.getDurationMillis());
             }
             new YTInsertWatchListTask(extraProperty).execute();
         } catch (Exception e) {

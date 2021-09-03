@@ -22,9 +22,11 @@ public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Se
     private EducationModel educationModel;
 
     private int videoTime = 0;
+    private int videoDuration = 0;
     private int isRead = 0;
     private int isFav = 0;
     private String jsonData;
+    private String channelId;
 
     public int getContentType() {
         return contentType;
@@ -140,6 +142,22 @@ public class ExtraProperty extends BaseCategoryProperty implements Cloneable, Se
 
     public String toJson() {
         return GsonParser.getGson().toJson(this, ExtraProperty.class);
+    }
+
+    public int getVideoDuration() {
+        return videoDuration;
+    }
+
+    public void setVideoDuration(int videoDuration) {
+        this.videoDuration = videoDuration;
+    }
+
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
     }
 
     @NonNull
