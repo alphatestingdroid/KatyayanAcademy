@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.appsfeature.education.AppApplication;
+import com.appsfeature.education.DirectionUtil;
 import com.appsfeature.education.R;
 import com.appsfeature.education.listeners.ContentType;
 import com.appsfeature.education.util.AppConstant;
@@ -94,19 +95,7 @@ public class MainActivity extends BaseInAppUpdateFlexibleActivity implements Vie
 //            SupportUtil.showToast(this, RemoteConfig.getAppExpiredErrorMesāsage(this));
 //            return;
 //        }
-        if (v.getId() == R.id.option_1) {
-            ClassUtil.openLiveClassActivity(this);
-        } else if (v.getId() == R.id.option_2) {
-            ClassUtil.openCategoryActivity(this, ContentType.TYPE_VIDEO, getString(R.string.title_option_2), false);
-        } else if (v.getId() == R.id.option_3) {
-            ClassUtil.openCategoryActivity(this, ContentType.TYPE_VIDEO, getString(R.string.title_option_3), true);
-        } else if (v.getId() == R.id.option_4) {
-            ClassUtil.openCategoryActivity(this, ContentType.TYPE_PDF, getString(R.string.title_option_4), true);
-        } else if (v.getId() == R.id.option_5) {
-            openProfile();
-        } else if (v.getId() == R.id.option_6) {
-            BrowserSdk.open(this, getString(R.string.title_option_6), AppConstant.URL_CLASS_SCHEDULE);
-        }
+        DirectionUtil.onMainActivityClick(this, v.getId());
     }
 
     @Override

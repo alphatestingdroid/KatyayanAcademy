@@ -17,11 +17,7 @@ import com.appsfeature.education.util.AppConstant;
 import com.appsfeature.education.util.SupportUtil;
 import com.helper.callback.Response;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class AppViewModel extends ViewModel {
     private AppCallback.View viewCallback;

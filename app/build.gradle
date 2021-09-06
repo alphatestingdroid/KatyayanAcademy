@@ -19,10 +19,21 @@ android {
             versionCode 16
             versionName "3.16"
         }
+        katyayanschool {
+            applicationId "com.katyayanschool.katyayanschool"
+            versionCode 1
+            versionName "1.0"
+        }
     }
     signingConfigs {
         katyayanacademy {
             storeFile file("../keystore/katyayanacademystudent.jks")
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
+        }
+        katyayanschool {
+            storeFile file("../keystore/katyayanschool.jks")
             storePassword "123456"
             keyAlias "key0"
             keyPassword "123456"
@@ -34,6 +45,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             productFlavors.katyayanacademy.signingConfig signingConfigs.katyayanacademy
+            productFlavors.katyayanschool.signingConfig signingConfigs.katyayanschool
         }
     }
 

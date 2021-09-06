@@ -17,5 +17,7 @@
     <string name="signup_mobile_msg1" translatable="false">By proceeding further you agree to our</string>
     <string name="signup_mobile_msg2" translatable="false">App</string>
     <string name="signup_mobile_msg3" translatable="false">TERMS OF USE</string>
+    <string name="login_user_name">KA217902</string>
+    <string name="login_user_password">479616</string>
 
 </resources>

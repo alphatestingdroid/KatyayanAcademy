@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Katyayan Academy</string>
+    <string name="terms">Terms and Conditions</string>
+    <string name="rating_message">Please take a moment to rate us.</string>
+    <string name="open_live_class">Open Live Class</string>
+    <string name="no_live_class_available">No Live class available</string>
+
+
+    <integer name="url_min_app_version">10</integer>
+    <string name="url_public_domain_host_manifest">katyayanacademy.page.link</string>
+
+    <string name="title_option_1">Live Classes</string>
+    <string name="title_option_2">Previous Live Classes</string>
+    <string name="title_option_3">Video Lecture</string>
+    <string name="title_option_4">Study Material</string>
+    <string name="title_option_5">My Profile</string>
+    <string name="title_option_6">Class Schedule</string>
+</resources>

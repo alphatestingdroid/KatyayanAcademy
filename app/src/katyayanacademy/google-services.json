@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1000975486543",
+    "firebase_url": "https://katyayanacademy-923de.firebaseio.com",
+    "project_id": "katyayanacademy-923de",
+    "storage_bucket": "katyayanacademy-923de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000975486543:android:8b3e9d0ec3bfcb2365a43a",
+        "android_client_info": {
+          "package_name": "com.katyayanacademy.katyayanacademy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000975486543-fp5ru7gi9ns35lpb9pg8ejhggjfaitgr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0lSBafW0QO1BfJkiQ6KzMTZAKBC2vTI8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000975486543-fp5ru7gi9ns35lpb9pg8ejhggjfaitgr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,18 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/katyayanschool/res/layout/activity_main.xml" value="0.275" />
+        <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/katyayanschool/res/layout/content_home.xml" value="0.275" />
+        <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/katyayanschool/res/layout/login_mobile.xml" value="0.275" />
         <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/activity_education_list.xml" value="0.275" />
         <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/activity_live_class.xml" value="0.275" />
+        <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/activity_main.xml" value="0.26481481481481484" />
         <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/activity_mapping_list.xml" value="0.275" />
         <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/activity_youtube_player.xml" value="0.27076923076923076" />
         <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/app_bar_home.xml" value="0.2564814814814815" />
-        <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/content_home.xml" value="0.1" />
+        <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/content_home.xml" value="0.2" />
         <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/slot_chapter_item.xml" value="0.275" />
         <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/slot_content_pdf.xml" value="0.275" />
         <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/slot_content_video.xml" value="0.275" />
         <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/slot_subject_item.xml" value="0.275" />
         <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/slot_video_view.xml" value="0.275" />
         <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/app/src/main/res/layout/yt_action_bar.xml" value="0.275" />
+        <entry key="..\:/Developer/alphatestingdroid/katyayanacademy/login/src/main/res/layout/login_mobile.xml" value="0.275" />
       </map>
     </option>
   </component>
