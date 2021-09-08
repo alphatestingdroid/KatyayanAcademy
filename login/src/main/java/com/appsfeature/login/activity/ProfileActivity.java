@@ -45,6 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private EditText etAdmissionNo, etClassSelected, etDisplayName, etEmail, etMobile, etFatherName, etFatherMobile, etMotherName, etDOB,
             etGender, etAddress, etState, etCity, etCountry;
+    private EditText etMotherMobile;
     private List<String> mGenderList;
     private ProgressButton btnAction;
     private ImageView ivProfilePic;
@@ -72,8 +73,14 @@ public class ProfileActivity extends AppCompatActivity {
         Profile profile = LoginPrefUtil.getProfileDetail();
 
         etAdmissionNo.setText(profile.getAdmissionNo());
-        if(LoginDataUtil.getInstance(this) != null && LoginDataUtil.getInstance(this).getSubCategories() != null) {
-            etClassSelected.setText(LoginDataUtil.getInstance(this).getSubCategories().get(profile.getSubCourseId()));
+        if(LoginDataUtil.getInstance(this) != null) {
+            if(LoginSDK.getInstance().isAcademyApp()) {
+                if(LoginDataUtil.getInstance(this).getSubCategories() != null) {
+                    etClassSelected.setText(LoginDataUtil.getInstance(this).getSubCategories().get(profile.getSubCourseId()));
+                }
+            }else {
+                etClassSelected.setText( "Class " + LoginSDK.getInstance().getCourseId());
+            }
             etClassSelected.setVisibility(View.VISIBLE);
         }else {
             etClassSelected.setVisibility(View.GONE);
@@ -84,6 +91,7 @@ public class ProfileActivity extends AppCompatActivity {
         etFatherName.setText(profile.getFatherName());
         etFatherMobile.setText(profile.getFatherMobile());
         etMotherName.setText(profile.getMotherName());
+        etMotherMobile.setText(profile.getMotherMobile());
         this.mDOB = profile.getDateOfBirth();
         etDOB.setText(DatePickerDialog.getViewFormat(profile.getDateOfBirth()));
         etGender.setText(profile.getGender());
@@ -120,6 +128,7 @@ public class ProfileActivity extends AppCompatActivity {
         etFatherName = findViewById(R.id.et_customer_field_4);
         etFatherMobile = findViewById(R.id.et_customer_field_5);
         etMotherName = findViewById(R.id.et_customer_field_5_1);
+        etMotherMobile = findViewById(R.id.et_customer_field_5_2);
         etGender = findViewById(R.id.et_customer_field_7);
         etDOB = findViewById(R.id.et_customer_field_8);
         etAddress = findViewById(R.id.et_customer_field_9);
@@ -170,10 +179,12 @@ public class ProfileActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!FieldValidation.isEmpty(v.getContext(), etDisplayName)) {
-                            return;
-                        } else if (!FieldValidation.isEmpty(v.getContext(), etMobile)) {
-                            return;
+                        if(LoginSDK.getInstance().isAcademyApp()) {
+                            if (!FieldValidation.isEmpty(v.getContext(), etDisplayName)) {
+                                return;
+                            } else if (!FieldValidation.isEmpty(v.getContext(), etMobile)) {
+                                return;
+                            }
                         }
 //                        else if (!FieldValidation.isEmpty(v.getContext(), etFatherMobile)) {
 //                            return;
@@ -213,6 +224,7 @@ public class ProfileActivity extends AppCompatActivity {
         String fatherName = etFatherName.getText().toString();
         String fatherMobile = etFatherMobile.getText().toString();
         String motherName = etMotherName.getText().toString();
+        String motherMobile = etMotherMobile.getText().toString();
         String dob = mDOB;
         String gender = etGender.getText().toString();
         String address = etAddress.getText().toString();
@@ -222,7 +234,7 @@ public class ProfileActivity extends AppCompatActivity {
         String userImage = LoginSDK.getInstance().getUserImage();
         String profilePictureOld = LoginUtil.getFileNameFromUrl(userImage);
 
-        LoginNetwork.getInstance(this).updateUserProfile(name, mobile, fatherName, fatherMobile, motherName
+        LoginNetwork.getInstance(this).updateUserProfile(name, mobile, fatherName, fatherMobile, motherName, motherMobile
                 , dob, gender, address, city, new LoginListener<Profile>() {
             @Override
             public void onPreExecute() {

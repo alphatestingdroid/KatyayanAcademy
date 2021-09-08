@@ -21,8 +21,8 @@ android {
         }
         katyayanschool {
             applicationId "com.katyayanschool.katyayanschool"
-            versionCode 1
-            versionName "1.0"
+            versionCode 41
+            versionName "4.1"
         }
     }
     signingConfigs {
@@ -91,6 +91,6 @@ dependencies {
     implementation "org.bitbucket.droidhelios:pdf-viewer-simple:1.0-alpha02"
     implementation 'org.bitbucket.droidhelios:ProgressButton:1.0'
     implementation 'org.bitbucket.droidhelios:firebase-config:1.2'
-    implementation 'com.github.appsfeature:browser:1.7'
+    implementation 'com.github.appsfeature:browser:1.9'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -18,4 +18,8 @@ public interface AppConstant {
     String URL_LIVE_CLASS_CHAT = "https://katyayanacademy.com/erp/index.php/student/chat/";
     String PDF_FOLDER_NAME = "KatyayanSchool";
     String BASE_URL_PDF_DOWNLOAD = "https://katyayanacademy.com/erp/application/libraries/uploads/studymaterial/";
+
+    String URL_TEST_GENERATING_RESULT = "https://www.katyayangroups.com/erp/index.php/Stu_app_exam/generating_result1/";
+    String URL_TEST_CLOSE_BUTTON = "https://www.katyayangroups.com/erp/index.php/Stu_app_exam/submit";
+    String URL_TEST_OPENED = "https://www.katyayangroups.com/erp/index.php/Stu_app_exam/start_test1";
 }

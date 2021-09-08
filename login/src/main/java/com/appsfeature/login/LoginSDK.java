@@ -51,6 +51,14 @@ public class LoginSDK {
         return isDebugMode;
     }
 
+    public boolean isAcademyApp() {
+        return context.getPackageName().equalsIgnoreCase(LoginConstant.PACKAGE_ACADEMY);
+    }
+
+    public boolean isSchoolApp() {
+        return context.getPackageName().equalsIgnoreCase(LoginConstant.PACKAGE_SCHOOL);
+    }
+
     public interface Listener {
         void onSuccess(Profile response);
 

@@ -4,6 +4,7 @@
     <string name="rating_message">Please take a moment to rate us.</string>
     <string name="open_live_class">Open Live Class</string>
     <string name="no_live_class_available">No Live class available</string>
+    <string name="preference_login">.login2.sdk</string>
 
 
     <integer name="url_min_app_version">1</integer>
@@ -17,6 +18,6 @@
     <string name="title_option_6">Class Schedule</string>
 
 
-    <string name="login_user_name">JP21306</string>
-    <string name="login_user_password">115692</string>
+    <string name="login_user_name">KP1498</string>
+    <string name="login_user_password">654198</string>
 </resources>

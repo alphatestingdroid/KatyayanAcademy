@@ -13,6 +13,8 @@ public class LoginConstant {
 
     public static final String SERVER_TIME_OUT_MSG = BaseConstants.Error.MSG_ERROR;
     public static final String SERVER_TIME_OUT_TAG = "Alert!";
+    public static final String PACKAGE_ACADEMY = "com.katyayanacademy.katyayanacademy";
+    public static final String PACKAGE_SCHOOL = "com.katyayanschool.katyayanschool";
 
     public interface SharedPref {
         String IS_LOGIN_COMPLETE = "isLogComplete";

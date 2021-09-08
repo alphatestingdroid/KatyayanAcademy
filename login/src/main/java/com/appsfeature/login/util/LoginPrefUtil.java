@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.appsfeature.login.LoginSDK;
+import com.appsfeature.login.R;
 import com.appsfeature.login.model.Profile;
 import com.google.gson.reflect.TypeToken;
 import com.helper.util.GsonParser;
@@ -246,7 +247,7 @@ public class LoginPrefUtil {
     private static SharedPreferences getDefaultSharedPref() {
         if (sharedPreferences == null) {
             Context context = LoginSDK.getInstance().getContext();
-            sharedPreferences = context.getSharedPreferences(context.getPackageName() + ".login.sdk", Context.MODE_PRIVATE);
+            sharedPreferences = context.getSharedPreferences(context.getPackageName() + context.getString(R.string.preference_login), Context.MODE_PRIVATE);
         }
         return sharedPreferences;
     }

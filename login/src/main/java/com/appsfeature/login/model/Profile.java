@@ -1,5 +1,7 @@
 package com.appsfeature.login.model;
 
+import android.text.TextUtils;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,10 +12,10 @@ public class Profile implements Serializable {
     @SerializedName("id")
     @Expose
     private int id;
-    @SerializedName("course_id")
+    @SerializedName(value="course_id", alternate={"class_id"})
     @Expose
     private int courseId;
-    @SerializedName("sub_course_id")
+    @SerializedName(value="sub_course_id", alternate={"section_id"})
     @Expose
     private int subCourseId;
     @SerializedName("is_active")
@@ -31,6 +33,15 @@ public class Profile implements Serializable {
     @SerializedName("student_name")
     @Expose
     private String name;
+    @SerializedName("student_firstname")
+    @Expose
+    private String firstName;
+    @SerializedName("student_middlename")
+    @Expose
+    private String middleName;
+    @SerializedName("student_lastname")
+    @Expose
+    private String lastName;
     @SerializedName("student_gender")
     @Expose
     private String gender;
@@ -55,6 +66,9 @@ public class Profile implements Serializable {
     @SerializedName("mother_name")
     @Expose
     private String motherName;
+     @SerializedName("mother_mobile")
+    @Expose
+    private String motherMobile;
     @SerializedName("student_photo")
     @Expose
     private String student_photo;
@@ -131,7 +145,11 @@ public class Profile implements Serializable {
     }
 
     public String getName() {
-        return name;
+        if(!TextUtils.isEmpty(name)) {
+            return name;
+        }else {
+            return firstName + middleName + lastName;
+        }
     }
 
     public void setName(String name) {
@@ -248,5 +266,13 @@ public class Profile implements Serializable {
 
     public void setMotherName(String motherName) {
         this.motherName = motherName;
+    }
+
+    public String getMotherMobile() {
+        return motherMobile;
+    }
+
+    public void setMotherMobile(String motherMobile) {
+        this.motherMobile = motherMobile;
     }
 }
