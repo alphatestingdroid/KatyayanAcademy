@@ -79,7 +79,7 @@ public class ProfileActivity extends AppCompatActivity {
                     etClassSelected.setText(LoginDataUtil.getInstance(this).getSubCategories().get(profile.getSubCourseId()));
                 }
             }else {
-                etClassSelected.setText( "Class " + LoginSDK.getInstance().getCourseId());
+                etClassSelected.setText( "Class " + LoginDataUtil.getInstance(this).getSchoolClassNameList().get(profile.getCourseId()));
             }
             etClassSelected.setVisibility(View.VISIBLE);
         }else {
