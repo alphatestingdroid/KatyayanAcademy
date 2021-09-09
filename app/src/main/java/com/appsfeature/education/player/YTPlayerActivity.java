@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import com.appsfeature.education.util.DynamicUrlCreator;
 import com.appsfeature.education.util.Logger;
 import com.appsfeature.education.util.SupportUtil;
 import com.appsfeature.login.LoginSDK;
+import com.browser.util.BrowserLogger;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -115,7 +117,9 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
 
     public void loadChatWindow(String videoId){
         if (webView != null && isLiveClass) {
-            webView.loadUrl(AppConstant.URL_LIVE_CLASS_CHAT + videoId + "/" + LoginSDK.getInstance().getAdmissionNo());
+            String chatUrl = AppConstant.URL_LIVE_CLASS_CHAT + videoId + "/" + LoginSDK.getInstance().getAdmissionNo();
+            webView.loadUrl(chatUrl);
+            BrowserLogger.d("loadChatWindow(String videoId)", "chatUrl: " + chatUrl);
         }
     }
 

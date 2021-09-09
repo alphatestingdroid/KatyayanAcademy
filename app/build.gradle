@@ -91,6 +91,6 @@ dependencies {
     implementation "org.bitbucket.droidhelios:pdf-viewer-simple:1.0-alpha02"
     implementation 'org.bitbucket.droidhelios:ProgressButton:1.0'
     implementation 'org.bitbucket.droidhelios:firebase-config:1.2'
-    implementation 'com.github.appsfeature:browser:1.9'
+    implementation 'com.github.appsfeature:browser:2.0'
 }
 apply plugin: 'com.google.gms.google-services'

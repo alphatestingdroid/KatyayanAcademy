@@ -74,6 +74,12 @@ public class LiveClassActivity extends BaseActivity {
                 }
             }
         });
+        ivPreview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnLiveClass.performClick();
+            }
+        });
         hideViews();
     }
 

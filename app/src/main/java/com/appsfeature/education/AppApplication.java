@@ -30,6 +30,7 @@ public class AppApplication extends Application {
     public static AppApplication getInstance() {
         return instance;
     }
+
     public ViewModelProvider.Factory viewModelFactory = new ViewModelProvider.AndroidViewModelFactory(this);
 
     public ViewModelProvider.Factory getViewModelFactory() {
@@ -43,21 +44,23 @@ public class AppApplication extends Application {
         instance = this;
         getConfigManager();
         getLoginSDK();
-        BrowserSdk.getInstance().setCallback(new BrowserCallback() {
-            @Override
-            public void onOpenPdf(Activity activity, String url) {
-                int id = (int) System.currentTimeMillis();
-                String fileName = PDFFileUtil.getFileNameFromUrl(url);
-                openPdf(activity, id, "Doc" + BaseUtil.getTimeStamp(), fileName, url, null);
-            }
-        });
+        BrowserSdk.getInstance()
+                .setDebugMode(BuildConfig.DEBUG)
+                .setCallback(new BrowserCallback() {
+                    @Override
+                    public void onOpenPdf(Activity activity, String url) {
+                        int id = (int) System.currentTimeMillis();
+                        String fileName = PDFFileUtil.getFileNameFromUrl(url);
+                        openPdf(activity, id, "Doc" + BaseUtil.getTimeStamp(), fileName, url, null);
+                    }
+                });
         DataUtil.getInstance(this);
         PDFViewer.getInstance()
                 .setBaseUrl(AppConstant.BASE_URL_PDF_DOWNLOAD)
                 .setDisablePrint(false)
                 .setDisableShare(false)
                 .init(this);
-        PDFViewer.setDownloadDirectory(this,AppConstant.PDF_FOLDER_NAME);
+        PDFViewer.setDownloadDirectory(this, AppConstant.PDF_FOLDER_NAME);
     }
 
     public AppDbHelper getDBObject() {
@@ -68,7 +71,7 @@ public class AppApplication extends Application {
     }
 
     public ConfigManager getConfigManager() {
-        if(configManager == null){
+        if (configManager == null) {
             configManager = ConfigManager.getInstance(this, ConfigUtil.getSecurityCode(this), BuildConfig.DEBUG);
             configManager.setConfigHost(instance, AppConstant.BASE_URL)
                     .setEnableConfigManager(false);
@@ -85,7 +88,7 @@ public class AppApplication extends Application {
 
 
     public LoginSDK getLoginSDK() {
-        if(loginSdk == null) {
+        if (loginSdk == null) {
             loginSdk = LoginSDK.getInstance(this, getConfigManager())
                     .setLoginType(LoginType.TYPE_MOBILE)
                     .setDebugMode(BuildConfig.DEBUG)
@@ -104,6 +107,6 @@ public class AppApplication extends Application {
     }
 
     public void openPdf(Activity activity, int id, String pdfTitle, String pdfFileName, String pdfFileUrl, String subTitle) {
-        PDFViewer.openPdfDownloadActivity(activity, id, pdfTitle, pdfFileName, AppConstant.BASE_URL_PDF_DOWNLOAD , pdfFileUrl, subTitle);
+        PDFViewer.openPdfDownloadActivity(activity, id, pdfTitle, pdfFileName, AppConstant.BASE_URL_PDF_DOWNLOAD, pdfFileUrl, subTitle);
     }
 }

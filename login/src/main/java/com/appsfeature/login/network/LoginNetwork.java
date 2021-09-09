@@ -256,7 +256,7 @@ public class LoginNetwork extends BaseNetworkManager {
             String lastName = "";
             try {
                 if (!TextUtils.isEmpty(name)) {
-                    if(name.contains(" ")) {
+                    if(name.trim().contains(" ")) {
                         String[] nameArray = name.split(" ");
                         firstName = nameArray[0];
                         lastName = nameArray[1];

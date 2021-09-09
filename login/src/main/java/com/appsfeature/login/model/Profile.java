@@ -145,10 +145,10 @@ public class Profile implements Serializable {
     }
 
     public String getName() {
-        if(!TextUtils.isEmpty(name)) {
-            return name;
+        if(!TextUtils.isEmpty(firstName)) {
+            return firstName.trim() + " " + lastName;
         }else {
-            return firstName + middleName + lastName;
+            return name;
         }
     }
 
