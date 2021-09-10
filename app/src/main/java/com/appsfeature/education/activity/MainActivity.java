@@ -34,7 +34,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.helper.util.BaseDynamicUrlCreator;
 import com.helper.util.BaseUtil;
 
-public class MainActivity extends BaseInAppUpdateFlexibleActivity implements View.OnClickListener
+public class MainActivity extends BaseInAppUpdateImmediateActivity implements View.OnClickListener
         , NavigationView.OnNavigationItemSelectedListener, BaseDynamicUrlCreator.DynamicUrlResult {
 
     private NavigationView navigationView;

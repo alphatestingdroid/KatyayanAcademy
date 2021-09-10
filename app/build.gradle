@@ -21,8 +21,8 @@ android {
         }
         katyayanschool {
             applicationId "com.katyayanschool.katyayanschool"
-            versionCode 43
-            versionName "4.3"
+            versionCode 44
+            versionName "4.4"
         }
     }
     signingConfigs {
