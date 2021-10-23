@@ -66,6 +66,12 @@ public class NetworkManager extends BaseNetworkManager {
                 map.put("chapter_id", extraProperty.getChapterId() + "");
                 map.put("lecture_type", extraProperty.getContentType() + "");
                 break;
+            case ItemType.CATEGORY_TYPE_PRE_CLASS:
+                methodName = ApiEndPoint.GET_PRE_CLASS;
+                map.put("subject_id", extraProperty.getSubjectId() + "");
+                map.put("chapter_id", extraProperty.getChapterId() + "");
+                map.put("lecture_type", extraProperty.getContentType() + "");
+                break;
             default:
                 break;
         }

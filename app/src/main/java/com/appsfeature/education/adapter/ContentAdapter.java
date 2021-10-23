@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.appsfeature.education.R;
 import com.appsfeature.education.listeners.ContentType;
+import com.appsfeature.education.listeners.ItemType;
 import com.appsfeature.education.model.EducationModel;
 import com.appsfeature.education.player.util.YTUtility;
 import com.helper.callback.Response;
@@ -35,6 +36,7 @@ public class ContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private final Activity activity;
     private final int contentType;
     private final List<EducationModel> mList;
+    private @ItemType int itemType = ItemType.CATEGORY_TYPE_DEFAULT;
 
     @Override
     public int getItemViewType(int position) {
@@ -80,7 +82,11 @@ public class ContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
         } else if (holder instanceof VideoViewHolder) {
             VideoViewHolder viewHolder = (VideoViewHolder) holder;
-            viewHolder.tvName.setText(mList.get(i).getLectureName());
+            if(itemType == ItemType.CATEGORY_TYPE_PRE_CLASS){
+                viewHolder.tvName.setText(mList.get(i).getLectureDescription());
+            }else {
+                viewHolder.tvName.setText(mList.get(i).getLectureName());
+            }
             viewHolder.tvDepartment.setText(mList.get(i).getSubjectName());
 //            if (mList.get(i).isRead() && mList.get(i).getVideoTime() > 0 && !TextUtils.isEmpty(mList.get(i).getVideoTimeFormatted())) {
 //                viewHolder.tvWatchTime.setText("Watched: " + mList.get(i).getVideoTimeFormatted());
@@ -121,6 +127,10 @@ public class ContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private String getYoutubePlaceholderImage(String videoId) {
         return "https://i.ytimg.com/vi/"+ videoId +"/mqdefault.jpg";
+    }
+
+    public void setItemType(int itemType) {
+        this.itemType = itemType;
     }
 
 

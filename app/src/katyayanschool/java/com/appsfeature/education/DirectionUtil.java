@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.appsfeature.education.activity.AppBrowserActivity;
 import com.appsfeature.education.listeners.ContentType;
+import com.appsfeature.education.listeners.ItemType;
 import com.appsfeature.education.util.ClassUtil;
 import com.appsfeature.education.util.AppConstant;
 import com.appsfeature.login.LoginSDK;
@@ -18,6 +19,8 @@ public class DirectionUtil {
             AppBrowserActivity.open(activity, activity.getString(R.string.title_option_2), AppConstant.BASE_URL_TEST_SERIES + LoginSDK.getInstance().getAdmissionNo());
         } else if (id == R.id.option_5) {
             LoginSDK.getInstance().openLoginPage(activity, true);
+        } else if (id == R.id.option_6) {
+            ClassUtil.openCategoryActivity(activity, ItemType.CATEGORY_TYPE_PRE_CLASS, ContentType.TYPE_VIDEO, activity.getString(R.string.previous_classes));
         }
     }
 }

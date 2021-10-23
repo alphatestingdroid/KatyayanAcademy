@@ -34,7 +34,7 @@ allprojects {
         cardview = '1.0.0'
 
         api_config = '1.7-alpha08'
-        helper = '1.4-alpha01'
+        helper = '1.4'
 
         room_version = "2.2.6"
         retrofit_version = '2.3.0'

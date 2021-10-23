@@ -6,7 +6,9 @@ import android.content.Intent;
 import com.appsfeature.education.education.CategoryListActivity;
 import com.appsfeature.education.education.LiveClassActivity;
 import com.appsfeature.education.education.ContentActivity;
+import com.appsfeature.education.education.PreClassActivity;
 import com.appsfeature.education.entity.ExtraProperty;
+import com.appsfeature.education.listeners.ContentType;
 import com.appsfeature.education.listeners.ItemType;
 import com.appsfeature.login.LoginSDK;
 
@@ -22,19 +24,29 @@ public class ClassUtil {
         openActivity(activity, extraProperty);
     }
 
-    public static void openCategoryActivity(Activity activity, int contentType, String title) {
-        openCategoryActivity(activity, contentType, title, false);
+    public static void openCategoryActivity(Activity activity, @ContentType int contentType, String title, boolean isOldVideos) {
+        openCategoryActivity(activity, ItemType.CATEGORY_TYPE_SUBJECT, contentType, title, isOldVideos);
     }
 
-    public static void openCategoryActivity(Activity activity, int contentType, String title, boolean isOldVideos) {
-        ExtraProperty extraProperty = new ExtraProperty();
-        extraProperty.setTitle(title);
-        extraProperty.setCourseId(LoginSDK.getInstance().getCourseId());
-        extraProperty.setSubCourseId(LoginSDK.getInstance().getSubCourseId());
-        extraProperty.setItemType(ItemType.CATEGORY_TYPE_SUBJECT);
-        extraProperty.setContentType(contentType);
-        extraProperty.setOldVideos(isOldVideos);
-        openActivity(activity, extraProperty);
+    public static void openCategoryActivity(Activity activity, @ItemType int itemType, @ContentType int contentType, String title) {
+        openCategoryActivity(activity, itemType, contentType, title, false);
+    }
+
+    /**
+     * @param itemType: open activity type by @ItemType
+     * @param contentType: is @ContentType.TYPE_VIDEO or TYPE_PDF
+     * @param title : Activity title
+     * @param isOldVideos : decide to open old or offline videos
+     */
+    public static void openCategoryActivity(Activity activity, @ItemType int itemType, @ContentType int contentType, String title, boolean isOldVideos) {
+        ExtraProperty property = new ExtraProperty();
+        property.setTitle(title);
+        property.setCourseId(LoginSDK.getInstance().getCourseId());
+        property.setSubCourseId(LoginSDK.getInstance().getSubCourseId());
+        property.setItemType(itemType);
+        property.setContentType(contentType);
+        property.setOldVideos(isOldVideos);
+        openActivity(activity, property);
     }
 
     public static void openActivity(Activity activity, ExtraProperty extraProperty) {
@@ -59,6 +71,8 @@ public class ClassUtil {
                 return CategoryListActivity.class;
             case ItemType.CATEGORY_TYPE_CHAPTER:
                 return CategoryListActivity.class;
+            case ItemType.CATEGORY_TYPE_PRE_CLASS:
+                return PreClassActivity.class;
             default:
                 return null;
         }

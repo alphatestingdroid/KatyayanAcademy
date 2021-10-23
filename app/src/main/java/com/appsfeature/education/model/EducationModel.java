@@ -1,12 +1,14 @@
 package com.appsfeature.education.model;
 
+import androidx.annotation.NonNull;
+
 import com.appsfeature.education.util.AppDbHelper;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class EducationModel implements Serializable {
+public class EducationModel implements Serializable, Cloneable {
 
     @SerializedName("id")
     @Expose
@@ -225,5 +227,21 @@ public class EducationModel implements Serializable {
 
     public void setVideoDuration(int videoDuration) {
         this.videoDuration = videoDuration;
+    }
+
+
+
+    @NonNull
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    public EducationModel getClone() {
+        try {
+            return (EducationModel) clone();
+        } catch (CloneNotSupportedException e) {
+            return new EducationModel();
+        }
     }
 }
