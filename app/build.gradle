@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-// Apply the Crashlytics Gradle plugin
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
@@ -16,8 +15,8 @@ android {
     productFlavors {
         katyayanacademy {
             applicationId "com.katyayanacademy.katyayanacademy"
-            versionCode 16
-            versionName "3.16"
+            versionCode 17
+            versionName "3.17"
         }
         katyayanschool {
             applicationId "com.katyayanschool.katyayanschool"

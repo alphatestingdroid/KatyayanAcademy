@@ -38,7 +38,7 @@ public class DynamicUrlCreator extends BaseDynamicUrlCreator {
     }
 
     public static void openActivity(Activity activity, Uri url, String extraData) {
-        if(url != null){
+        if(url != null && url.toString().contains(ACTION_TYPE)){
             if(url.getQueryParameter(ACTION_TYPE).equals(PDFDynamicShare.TYPE_PDF)) {
                 PDFDynamicShare.open(activity, url, extraData);
             }else if(url.getQueryParameter(ACTION_TYPE).equals(TYPE_VIDEO)) {

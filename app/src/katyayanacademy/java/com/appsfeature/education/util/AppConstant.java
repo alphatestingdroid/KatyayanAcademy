@@ -2,7 +2,7 @@ package com.appsfeature.education.util;
 
 public interface AppConstant extends BaseConstant{
     String PDF_FOLDER_NAME = "KatyayanAcademy";
-    String BASE_URL = "https://bharatsamachartv.in/katyayan/v3/webapi/";
+    String BASE_URL = "https://katyayanacademy.com/erp/v3/webapi/";
 
     String URL_CLASS_SCHEDULE = "https://katyayanacademy.com/erp/index.php/student/liveschedule";
     String URL_LIVE_CLASS_CHAT = "https://katyayanacademy.com/erp/index.php/student/chat/";
