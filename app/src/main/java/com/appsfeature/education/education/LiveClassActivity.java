@@ -145,7 +145,7 @@ public class LiveClassActivity extends BaseActivity {
             long seconds = ((mCalender.getTimeInMillis() - System.currentTimeMillis()) / 1000);
 
             int day = (int) TimeUnit.SECONDS.toDays(seconds);
-            long hours = TimeUnit.SECONDS.toHours(seconds) - (day * 24);
+            long hours = TimeUnit.SECONDS.toHours(seconds) - (day * 24L);
             long minute = TimeUnit.SECONDS.toMinutes(seconds) - (TimeUnit.SECONDS.toHours(seconds) * 60);
             long second = TimeUnit.SECONDS.toSeconds(seconds) - (TimeUnit.SECONDS.toMinutes(seconds) * 60);
             String timeLeft = String.format(Locale.US, "%d Days %d hr %d min %d sec", day, (int) hours, (int) minute, (int) second);
@@ -155,6 +155,16 @@ public class LiveClassActivity extends BaseActivity {
                 btnLiveClass.setText(getString(R.string.open_live_class));
             }
         }
+    }
+
+    private String calTimeLeft() {
+        Calendar mCalender = getCalendar();
+        long seconds = ((mCalender.getTimeInMillis() - System.currentTimeMillis()) / 1000);
+        int day = (int) TimeUnit.SECONDS.toDays(seconds);
+        long hours = TimeUnit.SECONDS.toHours(seconds) - (day * 24L);
+        long minute = TimeUnit.SECONDS.toMinutes(seconds) - (TimeUnit.SECONDS.toHours(seconds) * 60);
+        long second = TimeUnit.SECONDS.toSeconds(seconds) - (TimeUnit.SECONDS.toMinutes(seconds) * 60);
+        return String.format(Locale.US, "%d Days %d hr %d min %d sec", day, (int) hours, (int) minute, (int) second);
     }
 
     public Calendar getCalendar() {
@@ -173,6 +183,14 @@ public class LiveClassActivity extends BaseActivity {
         }
     }
 
+    public Calendar getCalendar(Date inputDate) {
+        Calendar date = Calendar.getInstance();
+        if (inputDate != null) {
+            date.setTime(inputDate);
+        }
+        return date;
+    }
+
     private boolean active;
 
     @Override
@@ -187,15 +205,37 @@ public class LiveClassActivity extends BaseActivity {
     private CountDownTimer countDown;
 
     private void startCountDown() {
+        if (countDown != null) {
+            countDown.cancel();
+        }
         countDown = new CountDownTimer(24 * 60 * 60, 1000) {
-
             public void onTick(long millisUntilFinished) {
                 if (active) {
                     calculateTimeLeft();
                 } else
                     this.cancel();
             }
+            public void onFinish() {
+                if (active) {
+                    calculateTimeLeft();
+                } else
+                    this.cancel();
+            }
+        }.start();
+    }
 
+
+    private void startCountDown(long maxTimeCount) {
+        if (countDown != null) {
+            countDown.cancel();
+        }
+        countDown = new CountDownTimer(maxTimeCount, 1000) {
+            public void onTick(long millisUntilFinished) {
+                if (active) {
+                    calculateTimeLeft();
+                } else
+                    this.cancel();
+            }
             public void onFinish() {
                 if (active) {
                     calculateTimeLeft();

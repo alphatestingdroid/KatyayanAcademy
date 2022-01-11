@@ -152,7 +152,7 @@ public class YTPlayerActivity extends YouTubeBaseActivity implements YouTubePlay
             youTubePlayer.cueVideo(mVideoId, videoTime);
         }
 
-        youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+        youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.MINIMAL);
 
         youTubePlayer.setOnFullscreenListener(new YouTubePlayer.OnFullscreenListener() {
             @Override
