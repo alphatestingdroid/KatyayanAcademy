@@ -20,8 +20,13 @@ android {
         }
         katyayanschool {
             applicationId "com.katyayanschool.katyayanschool"
-            versionCode 45
-            versionName "4.5"
+            versionCode 46
+            versionName "4.6"
+        }
+        freeclass {
+            applicationId "com.appsfeature.freeclass"
+            versionCode 1
+            versionName "1.0"
         }
     }
     signingConfigs {
@@ -37,6 +42,12 @@ android {
             keyAlias "key0"
             keyPassword "123456"
         }
+        freeclass {
+            storeFile file("../keystore/freeclass.jks")
+            storePassword "123456"
+            keyAlias "freeclass"
+            keyPassword "123456"
+        }
     }
 
     buildTypes {
@@ -45,6 +56,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             productFlavors.katyayanacademy.signingConfig signingConfigs.katyayanacademy
             productFlavors.katyayanschool.signingConfig signingConfigs.katyayanschool
+            productFlavors.freeclass.signingConfig signingConfigs.freeclass
         }
     }
 

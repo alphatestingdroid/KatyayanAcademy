@@ -68,7 +68,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:background="@drawable/login_et_multi_row"
-                                        android:hint="Admission No."
+                                        android:hint="Student ID"
                                         android:layout_marginTop="@dimen/vertical_margin"
                                         android:inputType="textCapCharacters"
                                         android:padding="@dimen/vertical_margin" />
